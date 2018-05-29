@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFileChooser;
-//comentario de prueba netbeans
+//comentario de prueba netbeans 2
 /**
  *
  * @author Rodrigo
