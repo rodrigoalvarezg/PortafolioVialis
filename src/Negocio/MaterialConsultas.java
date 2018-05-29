@@ -29,23 +29,23 @@ public class MaterialConsultas extends Conexion {
     
     public void subirCotizacion (String id_mat, FileInputStream archivo,long longitud)
     { 
-        try {
-            ps = con.getConexion().prepareStatement("CALL PRO_SUB_COT(?,?)");
-            ps.setBlob(1, archivo,longitud);
-            ps.setString(2, id_mat);
-            ps.executeUpdate();
-            System.out.println("Sentencia sql correcta en Material Consulta");
-            rs.close();
-        } catch (Exception e) {
-            System.out.println("No se Realizo bien la sentencia sql en Material Consulta");
-            System.out.println("Error: "+e);
-        }  
+            try {
+                ps = getConexion().prepareStatement("CALL PRO_SUB_COT(?,?)");
+                ps.setBlob(1, archivo,longitud);
+                ps.setString(2, id_mat);
+                ps.executeUpdate();
+                System.out.println("Sentencia sql correcta en Material Consulta");
+                rs.close();
+            } catch (Exception e) {
+                System.out.println("No se Realizo bien la sentencia sql en Material Consulta");
+                System.out.println("Error: "+e);
+            }  
     }
     
     public void subirCotiServicio (String id_serv, FileInputStream archivo,long longitud)
     { 
         try {
-            ps = con.getConexion().prepareStatement("CALL PRO_SUB_COT_SERV(?,?)");
+            ps = getConexion().prepareStatement("CALL PRO_SUB_COT_SERV(?,?)");
             ps.setBlob(1, archivo,longitud);
             ps.setString(2, id_serv);
             ps.executeUpdate();
@@ -87,7 +87,7 @@ public class MaterialConsultas extends Conexion {
     public void descargarCotMaterial(String codigo_cot){
         try {
             String query = "SELECT DOCUMENTO_COT FROM COTI_MAT WHERE CODIGO_COT = "+codigo_cot+"";
-            ps = con.getConexion().prepareStatement(query);
+            ps = getConexion().prepareStatement(query);
             rs = ps.executeQuery();
             
             while(rs.next()){
@@ -130,7 +130,7 @@ public class MaterialConsultas extends Conexion {
     public void descargarCotServicio(String codigo_cot){
         try {
             String query = "SELECT DOCUMENTO_COT FROM COTI_SERV WHERE CODIGO_COT = "+codigo_cot+"";
-            ps = con.getConexion().prepareStatement(query);
+            ps = getConexion().prepareStatement(query);
             rs = ps.executeQuery();
             
             while(rs.next()){
@@ -183,6 +183,63 @@ public class MaterialConsultas extends Conexion {
         }catch(SQLException ex){
             System.out.println("Registro no Eliminado");
             System.out.println("Error:"+ex);
+        }
+    }
+    
+     public void aceptarCotMaterial(String codigo_cot_mat){
+        
+        try {
+            String query = "CALL PRO_ACT_COT_MAT(?)";
+            ps = getConexion().prepareStatement(query);
+            ps.setString(1, codigo_cot_mat);
+            ps.executeUpdate();
+            rs.close();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void rechazarCotMaterial(String codigo_cot_mat){
+        
+        try {
+            String query = "CALL PRO_REC_COT_MAT(?)";
+            ps = getConexion().prepareStatement(query);
+            ps.setString(1, codigo_cot_mat);
+            ps.executeUpdate();
+            rs.close();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void aceptarCotServicio(String codigo_cot_mat){
+        
+        try {
+            String query = "CALL PRO_ACT_COT_SERV(?)";
+            ps = getConexion().prepareStatement(query);
+            ps.setString(1, codigo_cot_mat);
+            ps.executeUpdate();
+            rs.close();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void rechazarCotServicio(String codigo_cot_serv){
+        
+        try {
+            String query = "CALL PRO_REC_COT_SERV(?)";
+            ps = getConexion().prepareStatement(query);
+            ps.setString(1, codigo_cot_serv);
+            ps.executeUpdate();
+            rs.close();
+        } catch (Exception e) {
+        }
+    }
+    
+    public void validarCotizacionMateriales(String cod_material){
+        try {
+            String query = "SELECT COUNT(*) FROM COTI_MAT WHERE MATERIAL_ID_MAT="+cod_material+"";
+            ps = getConexion().prepareStatement(query);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
         }
     }
     

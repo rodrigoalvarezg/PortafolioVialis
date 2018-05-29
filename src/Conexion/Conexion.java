@@ -6,12 +6,14 @@
 package Conexion;
 import java.sql.*;
 
-
-
+/**
+ *
+ * @author Rodrigo
+ */
 public class Conexion {
     private String username ="cons";
-    private String password  ="oracle";
-    private String host ="@localhost";
+    private String password  ="portafolio2018";
+    private String host ="@vialis.c1rdtq9kg6sd.us-east-2.rds.amazonaws.com";
     private String port ="1521";
     private String database ="cons";
     private String url  = "jdbc:oracle:thin:"+host+":"+port+":"+database;
@@ -39,4 +41,3 @@ public class Conexion {
         Conexion con = new Conexion();
     }
 }
-

@@ -29,6 +29,7 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
      */
     FileInputStream myFile;
     long lon;
+    Conexion con = new Conexion();
     public GUI_Cotizaciones() {
         initComponents();
         muestraFecha();
@@ -44,81 +45,107 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
     }
     
     void llenarTabla(){
-        Conexion con = new Conexion();
+        
         try {
-            con.getConexion();
             Statement stmt = con.getConexion().createStatement();
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM MATERIAL")) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM MATERIAL ORDER BY NOMBRE_MAT");
                 DefaultTableModel value = new DefaultTableModel();
                 jTable1.setModel(value);
                 value.addColumn("NOMBRE");
-                value.addColumn("Id");
+            value.addColumn("ID");
+            //Oculta la Columna ID 
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(0);
+            jTable1.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+            jTable1.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+            //------
+            
                 while(rs.next()){
                     Material m = new Material(rs.getString("ID_MAT"), rs.getString("NOMBRE_MAT"));
                     value.addRow(new Object[]{m.getNombre_mat(),m.getId_mat()});
                 }
-            }
-        } catch (SQLException e) {
+            rs.close();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
     
     void llenarTablaServicio(){
-        Conexion con = new Conexion();
         try {
-            con.getConexion();
             Statement stmt = con.getConexion().createStatement();
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM SERVICIO")) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM SERVICIO ORDER BY NOMBRE_SERV");
                 DefaultTableModel value = new DefaultTableModel();
                 tblServicios.setModel(value);
                 value.addColumn("NOMBRE");
-                value.addColumn("Id");
+            value.addColumn("ID");
+            //Oculta la Columna ID 
+            tblServicios.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblServicios.getColumnModel().getColumn(1).setMinWidth(0);
+            tblServicios.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+            tblServicios.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+            //------
                 while(rs.next()){
                     value.addRow(new Object[]{rs.getString("NOMBRE_SERV"),rs.getString("ID_SERV")});
                 }
-            }
-        } catch (SQLException e) {
+            rs.close();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
     
     void llenarTablaCotServicio(){
-        Conexion con = new Conexion();
         try {
-            con.getConexion();
             Statement stmt = con.getConexion().createStatement();
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM COTI_SERV")) {
+            ResultSet rs = stmt.executeQuery("SELECT C.CODIGO_COT,S.NOMBRE_SERV,C.FECHA_COT,C.ACEPTACION_COT FROM COTI_SERV C JOIN SERVICIO S ON (C.SERVICIO_ID_SERV=S.ID_SERV) ORDER BY S.NOMBRE_SERV,C.FECHA_COT");
                 DefaultTableModel value = new DefaultTableModel();
                 tblAceptacionCotizacionesServ.setModel(value);
                 value.addColumn("ID");
-                value.addColumn("Id SERVICIO");
+            value.addColumn("SERVICIO");
                 value.addColumn("FECHA");
-                value.addColumn("ESTADO");
+            value.addColumn("ESTADO DE COTIZACION");
+            tblAceptacionCotizacionesServ.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAceptacionCotizacionesServ.getColumnModel().getColumn(0).setMinWidth(0);
+            tblAceptacionCotizacionesServ.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAceptacionCotizacionesServ.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
                 while(rs.next()){
-                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("SERVICIO_ID_SERV"),rs.getString("FECHA_COT"),rs.getString("ACEPTACION_COT")});
+                if(rs.getString("ACEPTACION_COT").equals("R")){
+               value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("NOMBRE_SERV"),rs.getString("FECHA_COT"),"RECHAZADA"});
+                }else if(rs.getString("ACEPTACION_COT").equals("A")){
+                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("NOMBRE_SERV"),rs.getString("FECHA_COT"),"ACEPTADA"});
+                }else{
+                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("NOMBRE_SERV"),rs.getString("FECHA_COT"),"PENDIENTE"});
                 }
             }
-        } catch (SQLException e) {
+            rs.close();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
     
     void llenarTablaCotMaterial(){
-        Conexion con = new Conexion();
         try {
-            con.getConexion();
             Statement stmt = con.getConexion().createStatement();
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM COTI_MAT")) {
+            ResultSet rs = stmt.executeQuery("SELECT C.CODIGO_COT,M.NOMBRE_MAT,C.FECHA_COT,C.ACEPTACION_COT FROM COTI_MAT C JOIN MATERIAL M ON (C.MATERIAL_ID_MAT=M.ID_MAT) ORDER BY M.NOMBRE_MAT,C.FECHA_COT");
                 DefaultTableModel value = new DefaultTableModel();
                 tblAceptacionCotizaciones.setModel(value);
                 value.addColumn("ID");
-                value.addColumn("Id MATERIAL");
+            value.addColumn("MATERIAL");
                 value.addColumn("FECHA");
                 value.addColumn("ESTADO");
+            tblAceptacionCotizaciones.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAceptacionCotizaciones.getColumnModel().getColumn(0).setMinWidth(0);
+            tblAceptacionCotizaciones.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAceptacionCotizaciones.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
                 while(rs.next()){
-                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("MATERIAL_ID_MAT"),rs.getString("FECHA_COT"),rs.getString("ACEPTACION_COT")});
+                if(rs.getString("ACEPTACION_COT").equals("R")){
+                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("NOMBRE_MAT"),rs.getString("FECHA_COT"),"RECHAZADA"});
+                }else if(rs.getString("ACEPTACION_COT").equals("A")){
+                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("NOMBRE_MAT"),rs.getString("FECHA_COT"),"ACEPTADA"});
+                }else{
+                    value.addRow(new Object[]{rs.getString("CODIGO_COT"),rs.getString("NOMBRE_MAT"),rs.getString("FECHA_COT"),"PENDIENTE"});
                 }
             }
+            rs.close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -423,6 +450,9 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
         btnLimpiarEditFun.setBackground(new java.awt.Color(204, 51, 0));
         btnLimpiarEditFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarEditFunMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLimpiarEditFunMouseEntered(evt);
             }
@@ -678,6 +708,9 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
         btnAceptarCotServ.setBackground(new java.awt.Color(0, 153, 153));
         btnAceptarCotServ.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAceptarCotServMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAceptarCotServMouseEntered(evt);
             }
@@ -696,6 +729,9 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
         btnRechazarCotServ.setBackground(new java.awt.Color(204, 51, 0));
         btnRechazarCotServ.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRechazarCotServMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnRechazarCotServMouseEntered(evt);
             }
@@ -919,18 +955,22 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnAbrirCotServicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCotServicioMouseEntered
         // TODO add your handling code here:
+        btnAbrirCotServicio.setBackground(new Color (51,255,255));
     }//GEN-LAST:event_btnAbrirCotServicioMouseEntered
 
     private void btnAbrirCotServicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCotServicioMouseExited
         // TODO add your handling code here:
+        btnAbrirCotServicio.setBackground(new Color (0,204,204));
     }//GEN-LAST:event_btnAbrirCotServicioMouseExited
 
     private void btnSubirCotServicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubirCotServicioMouseEntered
         // TODO add your handling code here:
+        btnSubirCotServicio.setBackground(new Color (0,204,153));
     }//GEN-LAST:event_btnSubirCotServicioMouseEntered
 
     private void btnSubirCotServicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubirCotServicioMouseExited
         // TODO add your handling code here:
+        btnSubirCotServicio.setBackground(new Color (0,153,153));
     }//GEN-LAST:event_btnSubirCotServicioMouseExited
 
     private void btnDescargarCotProdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarCotProdMouseEntered
@@ -980,40 +1020,45 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnDescargarCotServMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarCotServMouseEntered
         // TODO add your handling code here:
+        btnDescargarCotServ.setBackground(new Color (255,204,153));
     }//GEN-LAST:event_btnDescargarCotServMouseEntered
 
     private void btnDescargarCotServMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarCotServMouseExited
         // TODO add your handling code here:
+        btnDescargarCotServ.setBackground(new Color (255,204,51));
     }//GEN-LAST:event_btnDescargarCotServMouseExited
 
     private void btnAceptarCotServMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarCotServMouseEntered
         // TODO add your handling code here:
+        btnAceptarCotServ.setBackground(new Color (0,204,153));
     }//GEN-LAST:event_btnAceptarCotServMouseEntered
 
     private void btnAceptarCotServMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarCotServMouseExited
         // TODO add your handling code here:
+        btnAceptarCotServ.setBackground(new Color (0,153,153));
     }//GEN-LAST:event_btnAceptarCotServMouseExited
 
     private void btnRechazarCotServMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRechazarCotServMouseEntered
         // TODO add your handling code here:
+        btnRechazarCotServ.setBackground(new Color (255,51,0));
     }//GEN-LAST:event_btnRechazarCotServMouseEntered
 
     private void btnRechazarCotServMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRechazarCotServMouseExited
         // TODO add your handling code here:
+        btnRechazarCotServ.setBackground(new Color (204,51,0));
     }//GEN-LAST:event_btnRechazarCotServMouseExited
 
     private void btnSubirCotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubirCotMouseClicked
         // TODO add your handling code here:
-        TCotizacion mc = new TCotizacion();
+        MaterialConsultas mc = new MaterialConsultas();
         DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
         String dato = String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),1));
-        System.out.println(dato);
         mc.subirCotizacion(dato, myFile, lon);
     }//GEN-LAST:event_btnSubirCotMouseClicked
 
     private void btnSubirCotServicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubirCotServicioMouseClicked
         // TODO add your handling code here:
-        TCotizacion mc = new TCotizacion();
+        MaterialConsultas mc = new MaterialConsultas();
         DefaultTableModel tm = (DefaultTableModel)tblServicios.getModel();
         String dato = String.valueOf(tm.getValueAt(tblServicios.getSelectedRow(),1));
         System.out.println(dato);
@@ -1022,7 +1067,7 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnDescargarCotServMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarCotServMouseClicked
         // TODO add your handling code here:
-        TCotizacion mc = new TCotizacion();
+        MaterialConsultas mc = new MaterialConsultas();
         DefaultTableModel tm = (DefaultTableModel)tblAceptacionCotizacionesServ.getModel();
         String dato = String.valueOf(tm.getValueAt(tblAceptacionCotizacionesServ.getSelectedRow(),0));
         mc.descargarCotServicio(dato);
@@ -1031,16 +1076,50 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnDescargarCotProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarCotProdMouseClicked
         // TODO add your handling code here:
-        TCotizacion mc = new TCotizacion();
+        MaterialConsultas mc = new MaterialConsultas();
         DefaultTableModel tm = (DefaultTableModel)tblAceptacionCotizaciones.getModel();
         String dato = String.valueOf(tm.getValueAt(tblAceptacionCotizaciones.getSelectedRow(),0));
         mc.descargarCotMaterial(dato);
     }//GEN-LAST:event_btnDescargarCotProdMouseClicked
 
     private void btnAceptarCotProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarCotProdMouseClicked
-        // TODO add your handling code here:
+        
+        MaterialConsultas mc = new MaterialConsultas();
+        DefaultTableModel tm = (DefaultTableModel)tblAceptacionCotizaciones.getModel();
+        String dato = String.valueOf(tm.getValueAt(tblAceptacionCotizaciones.getSelectedRow(),0));
+        mc.aceptarCotMaterial(dato);
+        llenarTablaCotMaterial();
         
     }//GEN-LAST:event_btnAceptarCotProdMouseClicked
+
+    private void btnLimpiarEditFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarEditFunMouseClicked
+        // TODO add your handling code here:
+        MaterialConsultas mc = new MaterialConsultas();
+        DefaultTableModel tm = (DefaultTableModel)tblAceptacionCotizaciones.getModel();
+        String dato = String.valueOf(tm.getValueAt(tblAceptacionCotizaciones.getSelectedRow(),0));
+        mc.rechazarCotMaterial(dato);
+        llenarTablaCotMaterial();
+    }//GEN-LAST:event_btnLimpiarEditFunMouseClicked
+
+    private void btnRechazarCotServMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRechazarCotServMouseClicked
+        // TODO add your handling code here:
+        MaterialConsultas mc = new MaterialConsultas();
+        DefaultTableModel tm = (DefaultTableModel)tblAceptacionCotizacionesServ.getModel();
+        String dato = String.valueOf(tm.getValueAt(tblAceptacionCotizacionesServ.getSelectedRow(),0));
+        mc.rechazarCotServicio(dato);
+        llenarTablaCotServicio();
+    }//GEN-LAST:event_btnRechazarCotServMouseClicked
+
+    private void btnAceptarCotServMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarCotServMouseClicked
+        // TODO add your handling code here:
+        MaterialConsultas mc = new MaterialConsultas();
+        DefaultTableModel tm = (DefaultTableModel)tblAceptacionCotizacionesServ.getModel();
+        String dato = String.valueOf(tm.getValueAt(tblAceptacionCotizacionesServ.getSelectedRow(),0));
+        mc.aceptarCotServicio(dato);
+        llenarTablaCotServicio();
+    }//GEN-LAST:event_btnAceptarCotServMouseClicked
+                                                                                        
+                                              
 
     /**
      * @param args the command line arguments
@@ -1067,7 +1146,6 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUI_Cotizaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
