@@ -7,7 +7,7 @@ package Negocio;
 
 import Conexion.Conexion;
 import Modelo.Proyecto;
-import com.sun.istack.internal.logging.Logger;
+//import com.sun.istack.internal.logging.Logger;
 import java.awt.List;
 import java.sql.CallableStatement;
 import java.sql.Connection;
