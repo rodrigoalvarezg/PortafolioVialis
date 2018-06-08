@@ -61,9 +61,10 @@ public final class MainMenu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btnReuniones = new javax.swing.JPanel();
+        btnReunionesInspecciones = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         btnCotizaciones = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -79,7 +80,7 @@ public final class MainMenu extends javax.swing.JFrame {
         btnCuentas = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        btnInspecciones = new javax.swing.JPanel();
+        btnHito = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
 
@@ -173,24 +174,32 @@ public final class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        btnReuniones.setBackground(new java.awt.Color(0, 153, 102));
-        btnReuniones.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnReunionesInspecciones.setBackground(new java.awt.Color(0, 153, 102));
+        btnReunionesInspecciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReunionesInspeccionesMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnReunionesMouseEntered(evt);
+                btnReunionesInspeccionesMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnReunionesMouseExited(evt);
+                btnReunionesInspeccionesMouseExited(evt);
             }
         });
-        btnReuniones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnReunionesInspecciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Reuniones");
-        btnReuniones.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jLabel13.setText("e Inspecciones");
+        btnReunionesInspecciones.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/REUNIONES_ICON_MAINMENU.png"))); // NOI18N
-        btnReuniones.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        btnReunionesInspecciones.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Reuniones");
+        btnReunionesInspecciones.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         btnCotizaciones.setBackground(new java.awt.Color(0, 102, 102));
         btnCotizaciones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -299,24 +308,27 @@ public final class MainMenu extends javax.swing.JFrame {
         jLabel26.setText("Cuentas");
         btnCuentas.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 63, -1, -1));
 
-        btnInspecciones.setBackground(new java.awt.Color(204, 0, 204));
-        btnInspecciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnHito.setBackground(new java.awt.Color(204, 0, 204));
+        btnHito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHitoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnInspeccionesMouseEntered(evt);
+                btnHitoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnInspeccionesMouseExited(evt);
+                btnHitoMouseExited(evt);
             }
         });
-        btnInspecciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnHito.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Inspecciones_MainMenu.png"))); // NOI18N
-        btnInspecciones.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        btnHito.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Inspecciones");
-        btnInspecciones.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 69, -1, -1));
+        jLabel28.setText("Hitos");
+        btnHito.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 69, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -329,7 +341,7 @@ public final class MainMenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnProyectos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReuniones, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnReunionesInspecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,7 +351,7 @@ public final class MainMenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnInspecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnHito, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(445, 445, 445)
                         .addComponent(jLabel6)))
@@ -399,11 +411,11 @@ public final class MainMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInspecciones, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReuniones, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                    .addComponent(btnReunionesInspecciones, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                     .addComponent(btnCotizaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(101, 101, 101)
                 .addComponent(jLabel6)
@@ -454,15 +466,15 @@ public final class MainMenu extends javax.swing.JFrame {
         btnFuncionarios.setBackground(new Color (255,153,51));
     }//GEN-LAST:event_btnFuncionariosMouseExited
 
-    private void btnReunionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReunionesMouseEntered
+    private void btnReunionesInspeccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReunionesInspeccionesMouseEntered
         // TODO add your handling code here:
-        btnReuniones.setBackground(new Color (0,204,102));
-    }//GEN-LAST:event_btnReunionesMouseEntered
+        btnReunionesInspecciones.setBackground(new Color (0,204,102));
+    }//GEN-LAST:event_btnReunionesInspeccionesMouseEntered
 
-    private void btnReunionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReunionesMouseExited
+    private void btnReunionesInspeccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReunionesInspeccionesMouseExited
         // TODO add your handling code here:
-        btnReuniones.setBackground(new Color (0,153,102));
-    }//GEN-LAST:event_btnReunionesMouseExited
+        btnReunionesInspecciones.setBackground(new Color (0,153,102));
+    }//GEN-LAST:event_btnReunionesInspeccionesMouseExited
 
     private void btnMaterialesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaterialesMouseEntered
         // TODO add your handling code here:
@@ -504,15 +516,15 @@ public final class MainMenu extends javax.swing.JFrame {
         btnRecursos.setBackground(new Color (0,0,153));
     }//GEN-LAST:event_btnRecursosMouseExited
 
-    private void btnInspeccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInspeccionesMouseEntered
+    private void btnHitoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHitoMouseEntered
         // TODO add your handling code here:
-        btnInspecciones.setBackground(new Color (255,51,255));
-    }//GEN-LAST:event_btnInspeccionesMouseEntered
+        btnHito.setBackground(new Color (255,51,255));
+    }//GEN-LAST:event_btnHitoMouseEntered
 
-    private void btnInspeccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInspeccionesMouseExited
+    private void btnHitoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHitoMouseExited
         // TODO add your handling code here:
-        btnInspecciones.setBackground(new Color (204,0,204));
-    }//GEN-LAST:event_btnInspeccionesMouseExited
+        btnHito.setBackground(new Color (204,0,204));
+    }//GEN-LAST:event_btnHitoMouseExited
 
     private void btnCuentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCuentasMouseEntered
         // TODO add your handling code here:
@@ -559,6 +571,20 @@ public final class MainMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnMaterialesMouseClicked
 
+    private void btnHitoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHitoMouseClicked
+        // TODO add your handling code here:
+        GUI_Hitos hit = new GUI_Hitos();
+        hit.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHitoMouseClicked
+
+    private void btnReunionesInspeccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReunionesInspeccionesMouseClicked
+        // TODO add your handling code here:
+        GUI_Reuniones_Inspecciones re = new GUI_Reuniones_Inspecciones();
+        re.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReunionesInspeccionesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -599,11 +625,11 @@ public final class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel btnCuentas;
     private javax.swing.JPanel btnFuncionarios;
     private javax.swing.JPanel btnHerramientas;
-    private javax.swing.JPanel btnInspecciones;
+    private javax.swing.JPanel btnHito;
     private javax.swing.JPanel btnMateriales;
     private javax.swing.JPanel btnProyectos;
     private javax.swing.JPanel btnRecursos;
-    private javax.swing.JPanel btnReuniones;
+    private javax.swing.JPanel btnReunionesInspecciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -614,6 +640,7 @@ public final class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
