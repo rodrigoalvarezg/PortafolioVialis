@@ -291,6 +291,9 @@ public final class MainMenu extends javax.swing.JFrame {
 
         btnCuentas.setBackground(new java.awt.Color(153, 153, 153));
         btnCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCuentasMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCuentasMouseEntered(evt);
             }
@@ -584,6 +587,13 @@ public final class MainMenu extends javax.swing.JFrame {
         re.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnReunionesInspeccionesMouseClicked
+
+    private void btnCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCuentasMouseClicked
+        // TODO add your handling code here:
+        GUI_Cuenta cu = new GUI_Cuenta();
+        cu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCuentasMouseClicked
 
     /**
      * @param args the command line arguments

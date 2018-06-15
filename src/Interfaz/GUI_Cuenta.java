@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author Esteban
  */
-public class GUI_Cuentas extends javax.swing.JPanel {
+public class GUI_Cuenta extends javax.swing.JFrame {
 
     /**
-     * Creates new form GUI_Cuentas
+     * Creates new form GUI_Cuenta
      */
-    public GUI_Cuentas() {
+    public GUI_Cuenta() {
         initComponents();
     }
 
@@ -107,7 +107,8 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -722,18 +723,19 @@ public class GUI_Cuentas extends javax.swing.JPanel {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(132, 132, 132))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 820));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 820));
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalir_FunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir_FunMouseClicked
@@ -743,12 +745,13 @@ public class GUI_Cuentas extends javax.swing.JPanel {
 
     private void btnAtras_FunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtras_FunMouseClicked
         // TODO add your handling code here:
-
+        MainMenu menu = new MainMenu();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAtras_FunMouseClicked
 
     private void btnLimpiarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarFunMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_btnLimpiarFunMouseClicked
 
     private void btnLimpiarFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarFunMouseEntered
@@ -763,7 +766,6 @@ public class GUI_Cuentas extends javax.swing.JPanel {
 
     private void btnInsertarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertarFunMouseClicked
 
-
     }//GEN-LAST:event_btnInsertarFunMouseClicked
 
     private void btnInsertarFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertarFunMouseEntered
@@ -775,6 +777,12 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         // TODO add your handling code here:
         btnInsertarFun.setBackground(new Color (0,153,153));
     }//GEN-LAST:event_btnInsertarFunMouseExited
+
+    private void txtContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseñaMouseClicked
+        // TODO add your handling code here:
+
+        txtContraseña.setText("");
+    }//GEN-LAST:event_txtContraseñaMouseClicked
 
     private void btnEditarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUserMouseClicked
 
@@ -818,6 +826,10 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         btnBuscarUser.setBackground(new Color (255,204,51));
     }//GEN-LAST:event_btnBuscarUserMouseExited
 
+    private void txtContraseñaEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseñaEditarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaEditarMouseClicked
+
     private void btnEliminarCuenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarCuenMouseClicked
 
     }//GEN-LAST:event_btnEliminarCuenMouseClicked
@@ -842,6 +854,10 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         btnLimpiarElimFun.setBackground(new Color (204,51,0));
     }//GEN-LAST:event_btnLimpiarElimFunMouseExited
 
+    private void tblCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuentasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblCuentasMouseClicked
+
     private void btnCrearCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseClicked
         // TODO add your handling code here:
 
@@ -849,12 +865,10 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         btnEditarCuenta.setBackground(new Color (51,0,204));
         btnEliminarCuenta.setBackground(new Color (204,0,204));
 
-
         PanelMenuCuentas.setVisible(false);
         PanelCrearCuenta.setVisible(true);
         PanelEditarCuenta.setVisible(false);
         PanelEliminarCuenta.setVisible(false);
-
     }//GEN-LAST:event_btnCrearCuentaMouseClicked
 
     private void btnEditarCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarCuentaMouseClicked
@@ -863,12 +877,10 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         btnEditarCuenta.setBackground(new Color (204,204,255));
         btnEliminarCuenta.setBackground(new Color (204,0,204));
 
-
         PanelMenuCuentas.setVisible(false);
         PanelCrearCuenta.setVisible(false);
         PanelEditarCuenta.setVisible(true);
         PanelEliminarCuenta.setVisible(false);
-
     }//GEN-LAST:event_btnEditarCuentaMouseClicked
 
     private void btnEliminarCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarCuentaMouseClicked
@@ -877,27 +889,12 @@ public class GUI_Cuentas extends javax.swing.JPanel {
         btnEditarCuenta.setBackground(new Color (51,0,204));
         btnEliminarCuenta.setBackground(new Color (255,153,255));
 
-
         PanelMenuCuentas.setVisible(false);
         PanelCrearCuenta.setVisible(false);
         PanelEditarCuenta.setVisible(false);
         PanelEliminarCuenta.setVisible(true);
-
     }//GEN-LAST:event_btnEliminarCuentaMouseClicked
 
-    private void txtContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseñaMouseClicked
-        // TODO add your handling code here:
-
-        txtContraseña.setText("");
-    }//GEN-LAST:event_txtContraseñaMouseClicked
-
-    private void txtContraseñaEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseñaEditarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseñaEditarMouseClicked
-
-    private void tblCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuentasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblCuentasMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -915,21 +912,20 @@ public class GUI_Cuentas extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI_Materiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI_Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI_Materiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI_Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI_Materiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI_Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI_Materiales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI_Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI_Cuentas().setVisible(true);
+                new GUI_Cuenta().setVisible(true);
             }
         });
     }
@@ -1013,7 +1009,4 @@ public class GUI_Cuentas extends javax.swing.JPanel {
     private javax.swing.JTextField txtUser;
     private javax.swing.JTextField txtUserEditar;
     // End of variables declaration//GEN-END:variables
-
-
-
 }
