@@ -5,7 +5,13 @@
  */
 package Interfaz;
 
+import Conexion.Conexion;
+import Negocio.HitosConsultas;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +22,12 @@ public class GUI_Hitos extends javax.swing.JFrame {
     /**
      * Creates new form GUI_Inspecciones
      */
+    Conexion con = new Conexion();
     public GUI_Hitos() {
         initComponents();
+        llenarObra();
+        llenarObraTarea();
+        llenarObraSeguimiento();
     }
 
     /**
@@ -111,6 +121,11 @@ public class GUI_Hitos extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
@@ -257,6 +272,11 @@ public class GUI_Hitos extends javax.swing.JFrame {
                 txtNombreHito1MouseClicked(evt);
             }
         });
+        txtNombreHito1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreHito1KeyPressed(evt);
+            }
+        });
         PanelRegistrarHito.add(txtNombreHito1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 189, -1));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
@@ -383,6 +403,14 @@ public class GUI_Hitos extends javax.swing.JFrame {
                 txtFechaInicioTareaMouseClicked(evt);
             }
         });
+        txtFechaInicioTarea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFechaInicioTareaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFechaInicioTareaKeyReleased(evt);
+            }
+        });
         PanelRegistrarActividades.add(txtFechaInicioTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 200, 189, -1));
 
         jSeparator31.setForeground(new java.awt.Color(255, 255, 255));
@@ -433,6 +461,11 @@ public class GUI_Hitos extends javax.swing.JFrame {
                 tblSeleccionarObra_TareaMouseClicked(evt);
             }
         });
+        tblSeleccionarObra_Tarea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblSeleccionarObra_TareaKeyReleased(evt);
+            }
+        });
         jScrollPane10.setViewportView(tblSeleccionarObra_Tarea);
 
         PanelRegistrarActividades.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 640, 130));
@@ -450,12 +483,10 @@ public class GUI_Hitos extends javax.swing.JFrame {
         tblSeleccioneHito_Tareas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblSeleccioneHito_Tareas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Aplanar Terreno", "Completo"},
-                {"2", "Comprar Materiales", "Completo"},
-                {"3", "Iniciar Construcción", "Incompleto"}
+
             },
             new String [] {
-                "ID", "HITO", "ESTADO"
+                "HITO", "ESTADO"
             }
         ));
         tblSeleccioneHito_Tareas.setGridColor(new java.awt.Color(255, 255, 255));
@@ -508,6 +539,11 @@ public class GUI_Hitos extends javax.swing.JFrame {
                 tblSeleccionarObra_Seguimiento_TareasMouseClicked(evt);
             }
         });
+        tblSeleccionarObra_Seguimiento_Tareas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblSeleccionarObra_Seguimiento_TareasKeyReleased(evt);
+            }
+        });
         jScrollPane6.setViewportView(tblSeleccionarObra_Seguimiento_Tareas);
 
         PanelSeguimiento.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 350, 130));
@@ -525,12 +561,10 @@ public class GUI_Hitos extends javax.swing.JFrame {
         tblSeleccioneTarea_Seguimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblSeleccioneTarea_Seguimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Arrendar Maquinaria", "22/04/2018", "22/05/2018", "100%"},
-                {"2", "Asignar Recursos", "22/04/2018", "23/05/2018", "100%"},
-                {"3", "Trazar Planos", "22/05/2018", "08/06/2018", "70%"}
+
             },
             new String [] {
-                "ID", "TAREA", "FECHA INICIO", "FECHA TERMINO", "PORCENTAJE"
+                "TAREA", "FECHA INICIO", "FECHA TERMINO", "PORCENTAJE"
             }
         ));
         tblSeleccioneTarea_Seguimiento.setGridColor(new java.awt.Color(255, 255, 255));
@@ -540,6 +574,11 @@ public class GUI_Hitos extends javax.swing.JFrame {
         tblSeleccioneTarea_Seguimiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblSeleccioneTarea_SeguimientoMouseClicked(evt);
+            }
+        });
+        tblSeleccioneTarea_Seguimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblSeleccioneTarea_SeguimientoKeyReleased(evt);
             }
         });
         jScrollPane7.setViewportView(tblSeleccioneTarea_Seguimiento);
@@ -559,12 +598,10 @@ public class GUI_Hitos extends javax.swing.JFrame {
         tblSeleccioneHito_Seguimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblSeleccioneHito_Seguimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Aplanar Terreno", "Completo"},
-                {"2", "Comprar Materiales", "Completo"},
-                {"3", "Iniciar Construcción", "Incompleto"}
+
             },
             new String [] {
-                "ID", "HITO", "ESTADO"
+                "HITO", "ESTADO"
             }
         ));
         tblSeleccioneHito_Seguimiento.setGridColor(new java.awt.Color(255, 255, 255));
@@ -576,6 +613,11 @@ public class GUI_Hitos extends javax.swing.JFrame {
                 tblSeleccioneHito_SeguimientoMouseClicked(evt);
             }
         });
+        tblSeleccioneHito_Seguimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblSeleccioneHito_SeguimientoKeyReleased(evt);
+            }
+        });
         jScrollPane11.setViewportView(tblSeleccioneHito_Seguimiento);
 
         PanelSeguimiento.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 500, 130));
@@ -585,6 +627,7 @@ public class GUI_Hitos extends javax.swing.JFrame {
         jLabel30.setText("Seleccione Hito:");
         PanelSeguimiento.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
+        txtTareaSeleccionada.setEditable(false);
         txtTareaSeleccionada.setBackground(new java.awt.Color(102, 102, 255));
         txtTareaSeleccionada.setForeground(new java.awt.Color(255, 255, 255));
         txtTareaSeleccionada.setText("Tarea Seleccionada...");
@@ -625,9 +668,21 @@ public class GUI_Hitos extends javax.swing.JFrame {
         txtPorcentajeAvance.setForeground(new java.awt.Color(255, 255, 255));
         txtPorcentajeAvance.setText("%");
         txtPorcentajeAvance.setBorder(null);
+        txtPorcentajeAvance.setSelectionEnd(3);
         txtPorcentajeAvance.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtPorcentajeAvanceMouseClicked(evt);
+            }
+        });
+        txtPorcentajeAvance.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPorcentajeAvanceKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPorcentajeAvanceKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPorcentajeAvanceKeyTyped(evt);
             }
         });
         PanelSeguimiento.add(txtPorcentajeAvance, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 290, -1));
@@ -764,6 +819,158 @@ public class GUI_Hitos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    void llenarObra(){
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ID_PROY, NOMBRE_PROY FROM PROYECTO");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSeleccionarObra_RegHito1.setModel(value);
+            value.addColumn("NOMBRE DE OBRA");
+            value.addColumn("ID_OBRA");
+            tblSeleccionarObra_RegHito1.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblSeleccionarObra_RegHito1.getColumnModel().getColumn(1).setMinWidth(0);
+            tblSeleccionarObra_RegHito1.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+            tblSeleccionarObra_RegHito1.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+            
+            while(rs.next()){
+                value.addRow(new Object[]{rs.getString("NOMBRE_PROY"),rs.getString("ID_PROY")});
+            }
+            rs.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    void llenarObraTarea(){
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ID_PROY, NOMBRE_PROY FROM PROYECTO");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSeleccionarObra_Tarea.setModel(value);
+            value.addColumn("NOMBRE DE OBRA");
+            value.addColumn("ID_OBRA");
+            tblSeleccionarObra_Tarea.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblSeleccionarObra_Tarea.getColumnModel().getColumn(1).setMinWidth(0);
+            tblSeleccionarObra_Tarea.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+            tblSeleccionarObra_Tarea.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+            while(rs.next()){
+                value.addRow(new Object[]{rs.getString("NOMBRE_PROY"),rs.getString("ID_PROY")});
+            }
+            rs.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    void llenarHito(String proy_id){
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM HITO WHERE PROYECTO_ID_PROY = '"+proy_id+"'");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSeleccioneHito_Tareas.setModel(value);
+            value.addColumn("ID_HITO");
+            value.addColumn("HITO");
+            value.addColumn("PROYECTO_ID_PROY");
+            value.addColumn("ESTADO");
+            tblSeleccioneHito_Tareas.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblSeleccioneHito_Tareas.getColumnModel().getColumn(0).setMinWidth(0);
+            tblSeleccioneHito_Tareas.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblSeleccioneHito_Tareas.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+            tblSeleccioneHito_Tareas.getColumnModel().getColumn(2).setMaxWidth(0);
+            tblSeleccioneHito_Tareas.getColumnModel().getColumn(2).setMinWidth(0);
+            tblSeleccioneHito_Tareas.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
+            tblSeleccioneHito_Tareas.getTableHeader().getColumnModel().getColumn(2).setMinWidth(0);
+            while(rs.next()){
+                if(rs.getString("INSPECCION_AVANCE").equals("100%")){
+                    value.addRow(new Object[]{rs.getString("ID_HITO"),rs.getString("NOMBRE_HITO"),rs.getString("PROYECTO_ID_PROY"),"Completo"});
+                }else{
+                    value.addRow(new Object[]{rs.getString("ID_HITO"),rs.getString("NOMBRE_HITO"),rs.getString("PROYECTO_ID_PROY"),"Incompleto"});
+                }
+            }
+            rs.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    void llenarObraSeguimiento(){
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ID_PROY, NOMBRE_PROY FROM PROYECTO");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSeleccionarObra_Seguimiento_Tareas.setModel(value);
+            value.addColumn("NOMBRE DE OBRA");
+            value.addColumn("ID_OBRA");
+            tblSeleccionarObra_Seguimiento_Tareas.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblSeleccionarObra_Seguimiento_Tareas.getColumnModel().getColumn(1).setMinWidth(0);
+            tblSeleccionarObra_Seguimiento_Tareas.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+            tblSeleccionarObra_Seguimiento_Tareas.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+            
+            while(rs.next()){
+                value.addRow(new Object[]{rs.getString("NOMBRE_PROY"),rs.getString("ID_PROY")});
+            }
+            rs.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    void llenarHitoSeguimiento(String proy_id){
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM HITO WHERE PROYECTO_ID_PROY = '"+proy_id+"'");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSeleccioneHito_Seguimiento.setModel(value);
+            value.addColumn("ID_HITO");
+            value.addColumn("HITO");
+            value.addColumn("PROYECTO_ID_PROY");
+            value.addColumn("ESTADO");
+            tblSeleccioneHito_Seguimiento.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblSeleccioneHito_Seguimiento.getColumnModel().getColumn(0).setMinWidth(0);
+            tblSeleccioneHito_Seguimiento.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblSeleccioneHito_Seguimiento.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+            tblSeleccioneHito_Seguimiento.getColumnModel().getColumn(2).setMaxWidth(0);
+            tblSeleccioneHito_Seguimiento.getColumnModel().getColumn(2).setMinWidth(0);
+            tblSeleccioneHito_Seguimiento.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
+            tblSeleccioneHito_Seguimiento.getTableHeader().getColumnModel().getColumn(2).setMinWidth(0);
+            while(rs.next()){
+                if(rs.getString("INSPECCION_AVANCE").equals("100%")){
+                    value.addRow(new Object[]{rs.getString("ID_HITO"),rs.getString("NOMBRE_HITO"),rs.getString("PROYECTO_ID_PROY"),"Completo"});
+                }else{
+                    value.addRow(new Object[]{rs.getString("ID_HITO"),rs.getString("NOMBRE_HITO"),rs.getString("PROYECTO_ID_PROY"),"Incompleto"});
+                }
+            }
+            rs.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    void llenarTareaSeguimiento(String id_hito){
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT ID_TAR, NOMBRE_TAR , TO_CHAR(FECHA_INICIO_TAR,'DD/MM/YYYY') \"FECHA_INICIO_TAR\", TO_CHAR(FECHA_TERMINO_TAR,'DD/MM/YYYY') \"FECHA_TERMINO_TAR\", AVANCE_TAR FROM TAREA WHERE HITO_ID_HITO = '"+id_hito+"'");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSeleccioneTarea_Seguimiento.setModel(value);
+            value.addColumn("ID");
+            value.addColumn("TAREA");
+            value.addColumn("FECHA INICIO");
+            value.addColumn("FECHA TERMINO");
+            value.addColumn("PORCENTAJE");
+            tblSeleccioneTarea_Seguimiento.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblSeleccioneTarea_Seguimiento.getColumnModel().getColumn(0).setMinWidth(0);
+            tblSeleccioneTarea_Seguimiento.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblSeleccioneTarea_Seguimiento.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+            
+            while(rs.next()){
+                value.addRow(new Object[]{rs.getString("ID_TAR"),rs.getString("NOMBRE_TAR"),rs.getString("FECHA_INICIO_TAR"),rs.getString("FECHA_TERMINO_TAR"),rs.getString("AVANCE_TAR")+"%"});
+            }
+            rs.close();
+        } catch (Exception e) {
+            
+        }
+    }
+    
     private void btnSalir_FunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir_FunMouseClicked
         // TODO add your handling code here:
         new Mensajes_SalirAp().setVisible(true);
@@ -778,10 +985,21 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
     private void tblSeleccionarObra_Seguimiento_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSeleccionarObra_Seguimiento_TareasMouseClicked
         // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccionarObra_Seguimiento_Tareas.getModel();
+        String id_proy = String.valueOf(tm.getValueAt(tblSeleccionarObra_Seguimiento_Tareas.getSelectedRow(),1));
+        llenarHitoSeguimiento(id_proy);
+        txtTareaSeleccionada.setText("Tarea Seleccionada...");
+        llenarTareaSeguimiento("");
     }//GEN-LAST:event_tblSeleccionarObra_Seguimiento_TareasMouseClicked
 
     private void tblSeleccioneTarea_SeguimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSeleccioneTarea_SeguimientoMouseClicked
         // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccioneTarea_Seguimiento.getModel();
+        String nombre_tarea = String.valueOf(tm.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),1));
+        String avance = String.valueOf(tm.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),4));
+        avance = avance.substring(0, avance.length()-1);
+        txtTareaSeleccionada.setText(nombre_tarea);
+        txtPorcentajeAvance.setText(avance);
     }//GEN-LAST:event_tblSeleccioneTarea_SeguimientoMouseClicked
 
     private void btnIngresarFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarFuncionarioMouseClicked
@@ -796,6 +1014,8 @@ public class GUI_Hitos extends javax.swing.JFrame {
         PanelRegistrarHito.setVisible(true);
         PanelRegistrarActividades.setVisible(false);
         PanelSeguimiento.setVisible(false);
+        
+        
 
     }//GEN-LAST:event_btnIngresarFuncionarioMouseClicked
 
@@ -810,6 +1030,7 @@ public class GUI_Hitos extends javax.swing.JFrame {
         PanelRegistrarHito.setVisible(false);
         PanelRegistrarActividades.setVisible(true);
         PanelSeguimiento.setVisible(false);
+        
 
     }//GEN-LAST:event_btnEditarFuncionarioMouseClicked
 
@@ -824,16 +1045,34 @@ public class GUI_Hitos extends javax.swing.JFrame {
         PanelRegistrarHito.setVisible(false);
         PanelRegistrarActividades.setVisible(false);
         PanelSeguimiento.setVisible(true);
+        
 
     }//GEN-LAST:event_btnEliminarFuncionarioMouseClicked
 
     private void txtNombreHito1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreHito1MouseClicked
         // TODO add your handling code here:
-        txtNombreHito1.setText("");
+        if(txtNombreHito1.getText().equals("Ingrese hito...")){
+            txtNombreHito1.setText("");
+        }
     }//GEN-LAST:event_txtNombreHito1MouseClicked
 
     private void btnRegistrarInspeccion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarInspeccion1MouseClicked
         // TODO add your handling code here:
+        HitosConsultas hc = new HitosConsultas();
+        String texto = txtNombreHito1.getText();
+        texto = texto.replaceAll(" ", "");
+        if(txtNombreHito1.getText().equals("Ingrese hito...") || texto.length()==0){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Hito");
+        }else if(tblSeleccionarObra_RegHito1.getSelectedColumn()!=0){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una Obra");
+        }else{
+            DefaultTableModel tm = (DefaultTableModel)tblSeleccionarObra_RegHito1.getModel();
+            String id_proy = String.valueOf(tm.getValueAt(tblSeleccionarObra_RegHito1.getSelectedRow(),1));
+            String nombre = txtNombreHito1.getText();
+            hc.agregarHito(nombre, id_proy);
+            txtNombreHito1.setText("Ingrese hito...");
+            tblSeleccionarObra_RegHito1.clearSelection();
+        }
     }//GEN-LAST:event_btnRegistrarInspeccion1MouseClicked
 
     private void btnRegistrarInspeccion1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarInspeccion1MouseEntered
@@ -855,6 +1094,36 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
     private void btnRegistrarTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarTareaMouseClicked
         // TODO add your handling code here:
+        HitosConsultas hc = new HitosConsultas();
+        String nombre_tarea = txtNombreTarea.getText();
+        nombre_tarea = nombre_tarea.replaceAll(" ", "");
+        
+        if(tblSeleccionarObra_Tarea.getSelectedColumn()!=0){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una obra");
+        }else if(tblSeleccioneHito_Tareas.getSelectedColumn()!=1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un hito");
+        }else if(txtNombreTarea.getText().equals("Ingrese nombre...") || nombre_tarea.length()==0){
+            JOptionPane.showMessageDialog(null,"Debe ingresar un nombre de tarea" );
+        }else if(txtFechaInicioTarea.getText().equals("DD/MM/AAAA")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de inicio");
+        }else if(txtFechaTerminoTarea.getText().equals("DD/MM/AAAA")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de termino");
+        }else{
+        DefaultTableModel om = (DefaultTableModel)tblSeleccionarObra_Tarea.getModel();
+        String id_proy = String.valueOf(om.getValueAt(tblSeleccionarObra_Tarea.getSelectedRow(),1));
+        DefaultTableModel hm = (DefaultTableModel)tblSeleccioneHito_Tareas.getModel();
+        String id_hito = String.valueOf(hm.getValueAt(tblSeleccioneHito_Tareas.getSelectedRow(),0));
+        String nombre = txtNombreTarea.getText();
+        String fecha_in = txtFechaInicioTarea.getText();
+        String fecha_fin = txtFechaTerminoTarea.getText();
+        hc.agregarTarea(nombre, fecha_in, fecha_fin, id_hito, id_proy);
+        txtNombreTarea.setText("Ingrese nombre...");
+        txtFechaInicioTarea.setText("DD/MM/AAAA");
+        txtFechaTerminoTarea.setText("DD/MM/AAAA");
+        tblSeleccionarObra_Tarea.clearSelection();
+        llenarHito("");
+        }
+        
     }//GEN-LAST:event_btnRegistrarTareaMouseClicked
 
     private void btnRegistrarTareaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarTareaMouseEntered
@@ -867,7 +1136,9 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
     private void txtFechaInicioTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaInicioTareaMouseClicked
         // TODO add your handling code here:
-        txtFechaInicioTarea.setText("");
+        if(txtFechaInicioTarea.getText().equals("DD/MM/AAAA")){
+            txtFechaInicioTarea.setText("");
+        } 
     }//GEN-LAST:event_txtFechaInicioTareaMouseClicked
 
     private void txtFechaTerminoTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaTerminoTareaMouseClicked
@@ -877,14 +1148,35 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
     private void tblSeleccionarObra_TareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSeleccionarObra_TareaMouseClicked
         // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccionarObra_Tarea.getModel();
+        String id_proy = String.valueOf(tm.getValueAt(tblSeleccionarObra_Tarea.getSelectedRow(),1));
+        llenarHito(id_proy);
     }//GEN-LAST:event_tblSeleccionarObra_TareaMouseClicked
 
     private void tblSeleccioneHito_SeguimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSeleccioneHito_SeguimientoMouseClicked
         // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccioneHito_Seguimiento.getModel();
+        String id_hito = String.valueOf(tm.getValueAt(tblSeleccioneHito_Seguimiento.getSelectedRow(),0));
+        llenarTareaSeguimiento(id_hito);
+        txtTareaSeleccionada.setText("Tarea Seleccionada...");
     }//GEN-LAST:event_tblSeleccioneHito_SeguimientoMouseClicked
 
     private void btnActualizarTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTareaMouseClicked
         // TODO add your handling code here:
+        HitosConsultas hc = new HitosConsultas();
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccioneTarea_Seguimiento.getModel();
+        String id_tarea = String.valueOf(tm.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),0));
+        String avance = txtPorcentajeAvance.getText();
+        DefaultTableModel tm2 = (DefaultTableModel)tblSeleccioneHito_Seguimiento.getModel();
+        String id_hito = String.valueOf(tm2.getValueAt(tblSeleccioneHito_Seguimiento.getSelectedRow(),0));
+        
+        hc.actualizarTarea(id_tarea, id_hito, avance);
+        tblSeleccionarObra_Seguimiento_Tareas.clearSelection();
+        llenarHitoSeguimiento("");
+        llenarTareaSeguimiento("");
+        txtTareaSeleccionada.setText("Tarea Seleccionada...");
+        txtPorcentajeAvance.setText("%");
+        
     }//GEN-LAST:event_btnActualizarTareaMouseClicked
 
     private void btnActualizarTareaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTareaMouseEntered
@@ -897,12 +1189,114 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
     private void txtPorcentajeAvanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceMouseClicked
         // TODO add your handling code here:
-        txtPorcentajeAvance.setText("");
+        if(txtPorcentajeAvance.getText().equals("%")){
+             txtPorcentajeAvance.setText("");
+        }
+       
     }//GEN-LAST:event_txtPorcentajeAvanceMouseClicked
 
     private void tblSeleccioneHito_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSeleccioneHito_TareasMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSeleccioneHito_TareasMouseClicked
+
+    private void txtNombreHito1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreHito1KeyPressed
+        // TODO add your handling code here:
+        if(txtNombreHito1.getText().equals("Ingrese hito...")){
+            txtNombreHito1.setText("");
+        }
+    }//GEN-LAST:event_txtNombreHito1KeyPressed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        if(txtNombreHito1.getText().equals("")){
+            txtNombreHito1.setText("Ingrese hito...");
+        }
+        if(txtNombreTarea.getText().equals("")){
+            txtNombreTarea.setText("Ingrese nombre...");
+        }
+        if(txtFechaInicioTarea.getText().equals("")){
+            txtFechaInicioTarea.setText("DD/MM/AAAA");
+        }
+        if(txtFechaTerminoTarea.getText().equals("")){
+            txtFechaTerminoTarea.setText("DD/MM/AAAA");
+        }
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void tblSeleccioneHito_SeguimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblSeleccioneHito_SeguimientoKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccioneHito_Seguimiento.getModel();
+        String id_hito = String.valueOf(tm.getValueAt(tblSeleccioneHito_Seguimiento.getSelectedRow(),0));
+        llenarTareaSeguimiento(id_hito);
+        txtTareaSeleccionada.setText("Tarea Seleccionada...");
+    }//GEN-LAST:event_tblSeleccioneHito_SeguimientoKeyReleased
+
+    private void tblSeleccionarObra_Seguimiento_TareasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblSeleccionarObra_Seguimiento_TareasKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccionarObra_Seguimiento_Tareas.getModel();
+        String id_proy = String.valueOf(tm.getValueAt(tblSeleccionarObra_Seguimiento_Tareas.getSelectedRow(),1));
+        llenarHitoSeguimiento(id_proy);
+        txtTareaSeleccionada.setText("Tarea Seleccionada...");
+        llenarTareaSeguimiento("");
+    }//GEN-LAST:event_tblSeleccionarObra_Seguimiento_TareasKeyReleased
+
+    private void tblSeleccioneTarea_SeguimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblSeleccioneTarea_SeguimientoKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccioneTarea_Seguimiento.getModel();
+        String nombre_tarea = String.valueOf(tm.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),1));
+        String avance = String.valueOf(tm.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),4));
+        avance = avance.substring(0, avance.length()-1);
+        txtTareaSeleccionada.setText(nombre_tarea);
+        txtPorcentajeAvance.setText(avance);
+    }//GEN-LAST:event_tblSeleccioneTarea_SeguimientoKeyReleased
+
+    private void tblSeleccionarObra_TareaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblSeleccionarObra_TareaKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)tblSeleccionarObra_Tarea.getModel();
+        String id_proy = String.valueOf(tm.getValueAt(tblSeleccionarObra_Tarea.getSelectedRow(),1));
+        llenarHito(id_proy);
+    }//GEN-LAST:event_tblSeleccionarObra_TareaKeyReleased
+
+    private void txtPorcentajeAvanceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceKeyPressed
+        // TODO add your handling code here:
+        if(txtPorcentajeAvance.getText().equals("%")){
+          txtPorcentajeAvance.setText("");  
+        } 
+    }//GEN-LAST:event_txtPorcentajeAvanceKeyPressed
+
+    private void txtPorcentajeAvanceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_txtPorcentajeAvanceKeyTyped
+
+    private void txtPorcentajeAvanceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceKeyReleased
+        // TODO add your handling code here:
+        String cadena = txtPorcentajeAvance.getText();
+        if(!cadena.equals("")){
+            int porcentaje = Integer.parseInt(cadena);
+            if(porcentaje >100){
+                //JOptionPane.showMessageDialog(null, "Debe ser menor a 100");
+                cadena = cadena.substring(0, cadena.length()-1);
+                txtPorcentajeAvance.setText(cadena); 
+            } 
+        }
+        
+    }//GEN-LAST:event_txtPorcentajeAvanceKeyReleased
+
+    private void txtFechaInicioTareaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaInicioTareaKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtFechaInicioTareaKeyReleased
+
+    private void txtFechaInicioTareaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaInicioTareaKeyPressed
+        // TODO add your handling code here:
+        if(txtFechaInicioTarea.getText().equals("DD/MM/AAAA")){
+            txtFechaInicioTarea.setText("");
+        }
+    }//GEN-LAST:event_txtFechaInicioTareaKeyPressed
 
     /**
      * @param args the command line arguments

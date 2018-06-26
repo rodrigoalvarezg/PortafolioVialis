@@ -49,9 +49,9 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
         try {
             Statement stmt = con.getConexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM MATERIAL ORDER BY NOMBRE_MAT");
-                DefaultTableModel value = new DefaultTableModel();
-                jTable1.setModel(value);
-                value.addColumn("NOMBRE");
+            DefaultTableModel value = new DefaultTableModel();
+            jTable1.setModel(value);
+            value.addColumn("NOMBRE");
             value.addColumn("ID");
             //Oculta la Columna ID 
             jTable1.getColumnModel().getColumn(1).setMaxWidth(0);

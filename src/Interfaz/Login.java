@@ -144,6 +144,11 @@ public class Login extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -194,6 +199,11 @@ public class Login extends javax.swing.JFrame {
         txtContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtContraseñaMouseClicked(evt);
+            }
+        });
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyPressed(evt);
             }
         });
 
@@ -259,7 +269,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarMouseExited
 
     private void txtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseClicked
-        txtUsuario.setText("");
+        if(txtUsuario.getText().equals("Ingrese su usuario aquí...")){
+            txtUsuario.setText("");
+        }
     }//GEN-LAST:event_txtUsuarioMouseClicked
 
     private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
@@ -302,8 +314,23 @@ public class Login extends javax.swing.JFrame {
     private void txtContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseñaMouseClicked
         // TODO add your handling code here:
         
-        txtContraseña.setText("");
+            txtContraseña.setText("");
     }//GEN-LAST:event_txtContraseñaMouseClicked
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        // TODO add your handling code here:
+        if(txtUsuario.getText().equals("Ingrese su usuario aquí...")){
+            txtUsuario.setText("");
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
+        // TODO add your handling code here:
+        String pass = new String(txtContraseña.getPassword());
+        if(pass.equals("jPasswordField1")){
+            txtContraseña.setText("");
+        }
+    }//GEN-LAST:event_txtContraseñaKeyPressed
 
     /**
      * @param args the command line arguments
