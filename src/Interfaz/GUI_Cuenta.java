@@ -276,6 +276,11 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setText("Ingrese nombre de usuario...");
         txtUser.setBorder(null);
+        txtUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUserMouseClicked(evt);
+            }
+        });
         PanelCrearCuenta.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 192, -1));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
@@ -343,6 +348,11 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         txtRutFun1.setForeground(new java.awt.Color(255, 255, 255));
         txtRutFun1.setText("Ingrese nombre de usuario...");
         txtRutFun1.setBorder(null);
+        txtRutFun1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun1MouseClicked(evt);
+            }
+        });
 
         jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -465,6 +475,11 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         txtUserEditar.setForeground(new java.awt.Color(255, 255, 255));
         txtUserEditar.setText("Ingrese nombre de usuario...");
         txtUserEditar.setBorder(null);
+        txtUserEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUserEditarMouseClicked(evt);
+            }
+        });
         PanelEditarCuenta.add(txtUserEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 192, -1));
 
         jSeparator27.setForeground(new java.awt.Color(255, 255, 255));
@@ -507,6 +522,11 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         txtRutElimFun.setForeground(new java.awt.Color(255, 255, 255));
         txtRutElimFun.setText("Ingrese nombre de cuenta...");
         txtRutElimFun.setBorder(null);
+        txtRutElimFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutElimFunMouseClicked(evt);
+            }
+        });
         jPanel6.add(txtRutElimFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 380, -1));
 
         jSeparator21.setForeground(new java.awt.Color(255, 255, 255));
@@ -828,6 +848,7 @@ public class GUI_Cuenta extends javax.swing.JFrame {
 
     private void txtContraseñaEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseñaEditarMouseClicked
         // TODO add your handling code here:
+        txtContraseñaEditar.setText("");
     }//GEN-LAST:event_txtContraseñaEditarMouseClicked
 
     private void btnEliminarCuenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarCuenMouseClicked
@@ -894,6 +915,26 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         PanelEditarCuenta.setVisible(false);
         PanelEliminarCuenta.setVisible(true);
     }//GEN-LAST:event_btnEliminarCuentaMouseClicked
+
+    private void txtUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserMouseClicked
+        // TODO add your handling code here:
+        txtUser.setText("");
+    }//GEN-LAST:event_txtUserMouseClicked
+
+    private void txtUserEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserEditarMouseClicked
+        // TODO add your handling code here:
+        txtUserEditar.setText("");
+    }//GEN-LAST:event_txtUserEditarMouseClicked
+
+    private void txtRutFun1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun1MouseClicked
+        // TODO add your handling code here:
+        txtRutFun1.setText("");
+    }//GEN-LAST:event_txtRutFun1MouseClicked
+
+    private void txtRutElimFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutElimFunMouseClicked
+        // TODO add your handling code here:
+        txtRutElimFun.setText("");
+    }//GEN-LAST:event_txtRutElimFunMouseClicked
 
     /**
      * @param args the command line arguments

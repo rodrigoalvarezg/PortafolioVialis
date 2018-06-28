@@ -527,12 +527,22 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtNombreFun.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreFun.setText("Ingrese nombre aquí...");
         txtNombreFun.setBorder(null);
+        txtNombreFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtNombreFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 192, -1));
 
         txtApelPatFun.setBackground(new java.awt.Color(102, 102, 255));
         txtApelPatFun.setForeground(new java.awt.Color(255, 255, 255));
         txtApelPatFun.setText("Ingrese apellido paterno...");
         txtApelPatFun.setBorder(null);
+        txtApelPatFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtApelPatFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtApelPatFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 189, -1));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
@@ -542,6 +552,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtApelMatFun.setForeground(new java.awt.Color(255, 255, 255));
         txtApelMatFun.setText("Ingrese apellido materno...");
         txtApelMatFun.setBorder(null);
+        txtApelMatFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtApelMatFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtApelMatFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 189, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
@@ -551,6 +566,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtRutFun.setForeground(new java.awt.Color(255, 255, 255));
         txtRutFun.setText("Ingrese rut...");
         txtRutFun.setBorder(null);
+        txtRutFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtRutFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 189, -1));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
@@ -560,6 +580,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtFonoFun.setForeground(new java.awt.Color(255, 255, 255));
         txtFonoFun.setText("Ingrese celular...");
         txtFonoFun.setBorder(null);
+        txtFonoFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFonoFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtFonoFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 190, -1));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
@@ -569,6 +594,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtEmailFun.setForeground(new java.awt.Color(255, 255, 255));
         txtEmailFun.setText("Ingrese correo electrónico...");
         txtEmailFun.setBorder(null);
+        txtEmailFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtEmailFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 210, -1));
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
@@ -578,6 +608,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtDireccionFun.setForeground(new java.awt.Color(255, 255, 255));
         txtDireccionFun.setText("Ingrese dirección...");
         txtDireccionFun.setBorder(null);
+        txtDireccionFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDireccionFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtDireccionFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 210, -1));
 
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
@@ -613,6 +648,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtSueldoFun.setForeground(new java.awt.Color(255, 255, 255));
         txtSueldoFun.setText("Ingrese sueldo base...");
         txtSueldoFun.setBorder(null);
+        txtSueldoFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSueldoFunMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtSueldoFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 210, -1));
 
         jSeparator25.setForeground(new java.awt.Color(255, 255, 255));
@@ -640,6 +680,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtBonoEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtBonoEdit.setText("Ingrese bonos...");
         txtBonoEdit.setBorder(null);
+        txtBonoEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBonoEditMouseClicked(evt);
+            }
+        });
         PanelIngresarFun.add(txtBonoEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 210, -1));
 
         jSeparator26.setForeground(new java.awt.Color(255, 255, 255));
@@ -741,12 +786,22 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtNombreFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreFunEdit.setText("Ingrese nombre aquí...");
         txtNombreFunEdit.setBorder(null);
+        txtNombreFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtNombreFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 192, -1));
 
         txtApelPatFunEdit.setBackground(new java.awt.Color(102, 102, 255));
         txtApelPatFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtApelPatFunEdit.setText("Ingrese apellido paterno...");
         txtApelPatFunEdit.setBorder(null);
+        txtApelPatFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtApelPatFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtApelPatFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 189, -1));
 
         jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
@@ -756,6 +811,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtApelMatFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtApelMatFunEdit.setText("Ingrese apellido materno...");
         txtApelMatFunEdit.setBorder(null);
+        txtApelMatFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtApelMatFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtApelMatFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 189, -1));
 
         jSeparator15.setForeground(new java.awt.Color(255, 255, 255));
@@ -765,6 +825,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtFonoFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtFonoFunEdit.setText("Ingrese celular...");
         txtFonoFunEdit.setBorder(null);
+        txtFonoFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFonoFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtFonoFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 210, -1));
 
         jSeparator17.setForeground(new java.awt.Color(255, 255, 255));
@@ -774,6 +839,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtEmailFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtEmailFunEdit.setText("Ingrese correo electrónico...");
         txtEmailFunEdit.setBorder(null);
+        txtEmailFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtEmailFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 210, -1));
 
         jSeparator18.setForeground(new java.awt.Color(255, 255, 255));
@@ -783,6 +853,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtDireccionFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtDireccionFunEdit.setText("Ingrese dirección...");
         txtDireccionFunEdit.setBorder(null);
+        txtDireccionFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDireccionFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtDireccionFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 210, -1));
 
         jSeparator19.setForeground(new java.awt.Color(255, 255, 255));
@@ -799,6 +874,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtRutFun1.setForeground(new java.awt.Color(255, 255, 255));
         txtRutFun1.setText("Ingrese rut...");
         txtRutFun1.setBorder(null);
+        txtRutFun1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun1MouseClicked(evt);
+            }
+        });
 
         jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -918,6 +998,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtSueldoFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtSueldoFunEdit.setText("Ingrese sueldo base...");
         txtSueldoFunEdit.setBorder(null);
+        txtSueldoFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSueldoFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtSueldoFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 210, -1));
 
         jSeparator23.setForeground(new java.awt.Color(255, 255, 255));
@@ -940,6 +1025,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtBonoFunEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtBonoFunEdit.setText("Ingrese bonos...");
         txtBonoFunEdit.setBorder(null);
+        txtBonoFunEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBonoFunEditMouseClicked(evt);
+            }
+        });
         PanelEditarFun.add(txtBonoFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 210, -1));
 
         jSeparator24.setForeground(new java.awt.Color(255, 255, 255));
@@ -979,6 +1069,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtRutElimFun.setForeground(new java.awt.Color(255, 255, 255));
         txtRutElimFun.setText("Ingrese rut aquí...");
         txtRutElimFun.setBorder(null);
+        txtRutElimFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutElimFunMouseClicked(evt);
+            }
+        });
         jPanel6.add(txtRutElimFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 380, -1));
 
         jSeparator21.setForeground(new java.awt.Color(255, 255, 255));
@@ -1093,6 +1188,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtRutFun_Proyecto.setForeground(new java.awt.Color(255, 255, 255));
         txtRutFun_Proyecto.setText("Ingrese rut...");
         txtRutFun_Proyecto.setBorder(null);
+        txtRutFun_Proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun_ProyectoMouseClicked(evt);
+            }
+        });
         jPanel7.add(txtRutFun_Proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 250, -1));
 
         jSeparator22.setForeground(new java.awt.Color(255, 255, 255));
@@ -1591,6 +1691,106 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarFunMouseClicked
+
+    private void txtRutFun1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun1MouseClicked
+        // TODO add your handling code here:
+        txtRutFun1.setText("");
+    }//GEN-LAST:event_txtRutFun1MouseClicked
+
+    private void txtNombreFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreFunEditMouseClicked
+        // TODO add your handling code here:
+        txtNombreFunEdit.setText("");
+    }//GEN-LAST:event_txtNombreFunEditMouseClicked
+
+    private void txtApelPatFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApelPatFunEditMouseClicked
+        // TODO add your handling code here:
+        txtApelPatFunEdit.setText("");
+    }//GEN-LAST:event_txtApelPatFunEditMouseClicked
+
+    private void txtApelMatFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApelMatFunEditMouseClicked
+        // TODO add your handling code here:
+        txtApelMatFunEdit.setText("");
+    }//GEN-LAST:event_txtApelMatFunEditMouseClicked
+
+    private void txtFonoFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFonoFunEditMouseClicked
+        // TODO add your handling code here:
+        txtFonoFunEdit.setText("");
+    }//GEN-LAST:event_txtFonoFunEditMouseClicked
+
+    private void txtEmailFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailFunEditMouseClicked
+        // TODO add your handling code here:
+        txtEmailFunEdit.setText("");
+    }//GEN-LAST:event_txtEmailFunEditMouseClicked
+
+    private void txtDireccionFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionFunEditMouseClicked
+        // TODO add your handling code here:
+        txtDireccionFunEdit.setText("");
+    }//GEN-LAST:event_txtDireccionFunEditMouseClicked
+
+    private void txtSueldoFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSueldoFunEditMouseClicked
+        // TODO add your handling code here:
+         txtSueldoFunEdit.setText("");
+    }//GEN-LAST:event_txtSueldoFunEditMouseClicked
+
+    private void txtBonoFunEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBonoFunEditMouseClicked
+        // TODO add your handling code here:
+        txtBonoFunEdit.setText("");
+    }//GEN-LAST:event_txtBonoFunEditMouseClicked
+
+    private void txtNombreFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreFunMouseClicked
+        // TODO add your handling code here:
+        txtNombreFun.setText("");
+    }//GEN-LAST:event_txtNombreFunMouseClicked
+
+    private void txtApelPatFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApelPatFunMouseClicked
+        // TODO add your handling code here:
+        txtApelPatFun.setText("");
+    }//GEN-LAST:event_txtApelPatFunMouseClicked
+
+    private void txtApelMatFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApelMatFunMouseClicked
+        // TODO add your handling code here:
+        txtApelMatFun.setText("");
+    }//GEN-LAST:event_txtApelMatFunMouseClicked
+
+    private void txtRutFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFunMouseClicked
+        // TODO add your handling code here:
+        txtRutFun.setText("");
+    }//GEN-LAST:event_txtRutFunMouseClicked
+
+    private void txtFonoFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFonoFunMouseClicked
+        // TODO add your handling code here:
+        txtFonoFun.setText("");
+    }//GEN-LAST:event_txtFonoFunMouseClicked
+
+    private void txtEmailFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailFunMouseClicked
+        // TODO add your handling code here:
+        txtEmailFun.setText("");
+    }//GEN-LAST:event_txtEmailFunMouseClicked
+
+    private void txtDireccionFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionFunMouseClicked
+        // TODO add your handling code here:
+        txtDireccionFun.setText("");
+    }//GEN-LAST:event_txtDireccionFunMouseClicked
+
+    private void txtSueldoFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSueldoFunMouseClicked
+        // TODO add your handling code here:
+        txtSueldoFun.setText("");
+    }//GEN-LAST:event_txtSueldoFunMouseClicked
+
+    private void txtBonoEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBonoEditMouseClicked
+        // TODO add your handling code here:
+        txtBonoEdit.setText("");
+    }//GEN-LAST:event_txtBonoEditMouseClicked
+
+    private void txtRutElimFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutElimFunMouseClicked
+        // TODO add your handling code here:
+        txtRutElimFun.setText("");
+    }//GEN-LAST:event_txtRutElimFunMouseClicked
+
+    private void txtRutFun_ProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_ProyectoMouseClicked
+        // TODO add your handling code here:
+        txtRutFun_Proyecto.setText("");
+    }//GEN-LAST:event_txtRutFun_ProyectoMouseClicked
 
     /**
      * @param args the command line arguments

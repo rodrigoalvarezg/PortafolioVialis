@@ -73,6 +73,8 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
         jLabel71 = new javax.swing.JLabel();
         txtFechaReunion = new javax.swing.JTextField();
         jSeparator30 = new javax.swing.JSeparator();
+        jLabel26 = new javax.swing.JLabel();
+        cmbHitoReunion = new javax.swing.JComboBox<>();
         PanelRegistrarInspeccion = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -85,15 +87,14 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
         jLabel65 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblSeleccionarObra_RegInspecciones = new javax.swing.JTable();
-        jLabel66 = new javax.swing.JLabel();
-        txtAprobacion = new javax.swing.JTextField();
-        jSeparator31 = new javax.swing.JSeparator();
         jLabel72 = new javax.swing.JLabel();
         txtDescripcionInspeccion = new javax.swing.JTextField();
         jSeparator33 = new javax.swing.JSeparator();
         jLabel73 = new javax.swing.JLabel();
-        txtFechaInspeccion = new javax.swing.JTextField();
+        txtPorcentajeAvance = new javax.swing.JTextField();
         jSeparator34 = new javax.swing.JSeparator();
+        jLabel74 = new javax.swing.JLabel();
+        cmbHitoInspeccion = new javax.swing.JComboBox<>();
         PanelReuniones = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -260,8 +261,8 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Citador:");
-        PanelRegistrarReunion.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        jLabel21.setText("Hito:");
+        PanelRegistrarReunion.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
 
         btnLimpiarFun.setBackground(new java.awt.Color(204, 51, 0));
         btnLimpiarFun.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -425,6 +426,14 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
         jSeparator30.setForeground(new java.awt.Color(255, 255, 255));
         PanelRegistrarReunion.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 189, -1));
 
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Citador:");
+        PanelRegistrarReunion.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+
+        cmbHitoReunion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PanelRegistrarReunion.add(cmbHitoReunion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 190, -1));
+
         jPanel9.add(PanelRegistrarReunion, "card2");
 
         PanelRegistrarInspeccion.setBackground(new java.awt.Color(102, 102, 255));
@@ -532,25 +541,6 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
 
         PanelRegistrarInspeccion.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 640, 130));
 
-        jLabel66.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel66.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel66.setText("Aprobación:");
-        PanelRegistrarInspeccion.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
-
-        txtAprobacion.setBackground(new java.awt.Color(102, 102, 255));
-        txtAprobacion.setForeground(new java.awt.Color(255, 255, 255));
-        txtAprobacion.setText("Ingrese hora de inicio...");
-        txtAprobacion.setBorder(null);
-        txtAprobacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtAprobacionMouseClicked(evt);
-            }
-        });
-        PanelRegistrarInspeccion.add(txtAprobacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 189, -1));
-
-        jSeparator31.setForeground(new java.awt.Color(255, 255, 255));
-        PanelRegistrarInspeccion.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 189, -1));
-
         jLabel72.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel72.setForeground(new java.awt.Color(255, 255, 255));
         jLabel72.setText("Descripción:");
@@ -572,22 +562,30 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
 
         jLabel73.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel73.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel73.setText("Fecha de Inspección:");
+        jLabel73.setText("Hito:");
         PanelRegistrarInspeccion.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
 
-        txtFechaInspeccion.setBackground(new java.awt.Color(102, 102, 255));
-        txtFechaInspeccion.setForeground(new java.awt.Color(255, 255, 255));
-        txtFechaInspeccion.setText("DD/MM/AAAA");
-        txtFechaInspeccion.setBorder(null);
-        txtFechaInspeccion.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtPorcentajeAvance.setBackground(new java.awt.Color(102, 102, 255));
+        txtPorcentajeAvance.setForeground(new java.awt.Color(255, 255, 255));
+        txtPorcentajeAvance.setText("Ingrese porcentaje (numero)...");
+        txtPorcentajeAvance.setBorder(null);
+        txtPorcentajeAvance.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtFechaInspeccionMouseClicked(evt);
+                txtPorcentajeAvanceMouseClicked(evt);
             }
         });
-        PanelRegistrarInspeccion.add(txtFechaInspeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 189, -1));
+        PanelRegistrarInspeccion.add(txtPorcentajeAvance, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 189, -1));
 
         jSeparator34.setForeground(new java.awt.Color(255, 255, 255));
-        PanelRegistrarInspeccion.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 189, -1));
+        PanelRegistrarInspeccion.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 189, -1));
+
+        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel74.setText("Porcentaje de avance:");
+        PanelRegistrarInspeccion.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
+
+        cmbHitoInspeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PanelRegistrarInspeccion.add(cmbHitoInspeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 190, -1));
 
         jPanel9.add(PanelRegistrarInspeccion, "card2");
 
@@ -1043,20 +1041,15 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSeleccionarObra_RegInspeccionesMouseClicked
 
-    private void txtAprobacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAprobacionMouseClicked
-        // TODO add your handling code here:
-        txtAprobacion.setText("");
-    }//GEN-LAST:event_txtAprobacionMouseClicked
-
     private void txtDescripcionInspeccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionInspeccionMouseClicked
         // TODO add your handling code here:
         txtDescripcionInspeccion.setText("");
     }//GEN-LAST:event_txtDescripcionInspeccionMouseClicked
 
-    private void txtFechaInspeccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaInspeccionMouseClicked
+    private void txtPorcentajeAvanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceMouseClicked
         // TODO add your handling code here:
-        txtFechaInspeccion.setText("");
-    }//GEN-LAST:event_txtFechaInspeccionMouseClicked
+        txtPorcentajeAvance.setText("");
+    }//GEN-LAST:event_txtPorcentajeAvanceMouseClicked
 
     private void btnEliminarFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarFuncionarioMouseClicked
         // TODO add your handling code here:
@@ -1158,6 +1151,8 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     private javax.swing.JPanel btnRegistrarInspeccion;
     private javax.swing.JPanel btnRegistrarReunion;
     private javax.swing.JLabel btnSalir_Fun;
+    private javax.swing.JComboBox<String> cmbHitoInspeccion;
+    private javax.swing.JComboBox<String> cmbHitoReunion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1175,6 +1170,7 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -1192,12 +1188,12 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1214,7 +1210,6 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator28;
     private javax.swing.JSeparator jSeparator29;
     private javax.swing.JSeparator jSeparator30;
-    private javax.swing.JSeparator jSeparator31;
     private javax.swing.JSeparator jSeparator33;
     private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator6;
@@ -1226,14 +1221,13 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     private javax.swing.JTable tblSeleccionarObra_RegInspecciones;
     private javax.swing.JTable tblSeleccionarObra_Reunion;
     private javax.swing.JTable tblSeleccionarObra_Reunion_Seguimiento;
-    private javax.swing.JTextField txtAprobacion;
     private javax.swing.JTextField txtDescripcionInspeccion;
-    private javax.swing.JTextField txtFechaInspeccion;
     private javax.swing.JTextField txtFechaReunion;
     private javax.swing.JTextField txtHoraInicio;
     private javax.swing.JTextField txtHoraTermino;
     private javax.swing.JTextField txtInspector;
     private javax.swing.JTextField txtMotivo;
     private javax.swing.JTextField txtNombreCitador;
+    private javax.swing.JTextField txtPorcentajeAvance;
     // End of variables declaration//GEN-END:variables
 }

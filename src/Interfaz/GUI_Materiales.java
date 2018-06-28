@@ -274,7 +274,7 @@ public class GUI_Materiales extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Registro de Funcionario");
+        jLabel18.setText("Registro de Material");
         PanelIngresarMateriales.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -312,6 +312,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtNombreMat.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreMat.setText("Ingrese nombre aquí...");
         txtNombreMat.setBorder(null);
+        txtNombreMat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreMatMouseClicked(evt);
+            }
+        });
         PanelIngresarMateriales.add(txtNombreMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 192, -1));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
@@ -321,6 +326,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtStockMaterial.setForeground(new java.awt.Color(255, 255, 255));
         txtStockMaterial.setText("Ingrese stock...");
         txtStockMaterial.setBorder(null);
+        txtStockMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtStockMaterialMouseClicked(evt);
+            }
+        });
         PanelIngresarMateriales.add(txtStockMaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 210, -1));
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
@@ -369,6 +379,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtIdMaterial.setForeground(new java.awt.Color(255, 255, 255));
         txtIdMaterial.setText("Ingrese código aquí...");
         txtIdMaterial.setBorder(null);
+        txtIdMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIdMaterialMouseClicked(evt);
+            }
+        });
 
         jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -488,6 +503,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtNombreMatEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreMatEdit.setText("Ingrese nombre aquí...");
         txtNombreMatEdit.setBorder(null);
+        txtNombreMatEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreMatEditMouseClicked(evt);
+            }
+        });
         PanelEditarMat.add(txtNombreMatEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 192, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
@@ -497,6 +517,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtStockMaterialEdit.setForeground(new java.awt.Color(255, 255, 255));
         txtStockMaterialEdit.setText("Ingrese stock...");
         txtStockMaterialEdit.setBorder(null);
+        txtStockMaterialEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtStockMaterialEditMouseClicked(evt);
+            }
+        });
         PanelEditarMat.add(txtStockMaterialEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 210, -1));
 
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
@@ -520,6 +545,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtMaterialCodElim.setForeground(new java.awt.Color(255, 255, 255));
         txtMaterialCodElim.setText("Ingrese código aquí...");
         txtMaterialCodElim.setBorder(null);
+        txtMaterialCodElim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMaterialCodElimMouseClicked(evt);
+            }
+        });
         jPanel6.add(txtMaterialCodElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 380, -1));
 
         jSeparator21.setForeground(new java.awt.Color(255, 255, 255));
@@ -637,6 +667,11 @@ public class GUI_Materiales extends javax.swing.JFrame {
         txtRutFun_Proyecto.setForeground(new java.awt.Color(255, 255, 255));
         txtRutFun_Proyecto.setText("Ingrese código...");
         txtRutFun_Proyecto.setBorder(null);
+        txtRutFun_Proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun_ProyectoMouseClicked(evt);
+            }
+        });
         jPanel7.add(txtRutFun_Proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 250, -1));
 
         jSeparator22.setForeground(new java.awt.Color(255, 255, 255));
@@ -1146,6 +1181,41 @@ public class GUI_Materiales extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnEditarMatMouseClicked
+
+    private void txtNombreMatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMatMouseClicked
+        // TODO add your handling code here:
+        txtNombreMat.setText("");
+    }//GEN-LAST:event_txtNombreMatMouseClicked
+
+    private void txtStockMaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtStockMaterialMouseClicked
+        // TODO add your handling code here:
+       txtStockMaterial.setText("");
+    }//GEN-LAST:event_txtStockMaterialMouseClicked
+
+    private void txtIdMaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMaterialMouseClicked
+        // TODO add your handling code here:
+        txtIdMaterial.setText("");
+    }//GEN-LAST:event_txtIdMaterialMouseClicked
+
+    private void txtNombreMatEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMatEditMouseClicked
+        // TODO add your handling code here:
+        txtNombreMatEdit.setText("");
+    }//GEN-LAST:event_txtNombreMatEditMouseClicked
+
+    private void txtStockMaterialEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtStockMaterialEditMouseClicked
+        // TODO add your handling code here:
+        txtStockMaterialEdit.setText("");
+    }//GEN-LAST:event_txtStockMaterialEditMouseClicked
+
+    private void txtMaterialCodElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaterialCodElimMouseClicked
+        // TODO add your handling code here:
+        txtMaterialCodElim.setText("");
+    }//GEN-LAST:event_txtMaterialCodElimMouseClicked
+
+    private void txtRutFun_ProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_ProyectoMouseClicked
+        // TODO add your handling code here:
+        txtRutFun_Proyecto.setText("");
+    }//GEN-LAST:event_txtRutFun_ProyectoMouseClicked
 
     /**
      * @param args the command line arguments

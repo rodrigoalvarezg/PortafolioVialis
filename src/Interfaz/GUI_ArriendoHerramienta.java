@@ -132,6 +132,11 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -315,6 +320,11 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         txtFechaArriendo.setForeground(new java.awt.Color(255, 255, 255));
         txtFechaArriendo.setText("MM/DD/AAAA...");
         txtFechaArriendo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtFechaArriendo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFechaArriendoMouseClicked(evt);
+            }
+        });
         txtFechaArriendo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaArriendoActionPerformed(evt);
@@ -329,12 +339,22 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         txtFechaEntrega_Arriendo.setForeground(new java.awt.Color(255, 255, 255));
         txtFechaEntrega_Arriendo.setText("MM/DD/AAAA...");
         txtFechaEntrega_Arriendo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtFechaEntrega_Arriendo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFechaEntrega_ArriendoMouseClicked(evt);
+            }
+        });
         jPanel1.add(txtFechaEntrega_Arriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 192, -1));
 
         txtCantidadHerramienta.setBackground(new java.awt.Color(102, 102, 255));
         txtCantidadHerramienta.setForeground(new java.awt.Color(255, 255, 255));
         txtCantidadHerramienta.setText("Ingrese cantidad...");
         txtCantidadHerramienta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtCantidadHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCantidadHerramientaMouseClicked(evt);
+            }
+        });
         jPanel1.add(txtCantidadHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 192, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -462,6 +482,25 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
     private void txtFechaArriendoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaArriendoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaArriendoActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void txtFechaArriendoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaArriendoMouseClicked
+        // TODO add your handling code here:
+        txtFechaArriendo.setText("");
+    }//GEN-LAST:event_txtFechaArriendoMouseClicked
+
+    private void txtFechaEntrega_ArriendoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFechaEntrega_ArriendoMouseClicked
+        // TODO add your handling code here:
+        txtFechaEntrega_Arriendo.setText("");
+    }//GEN-LAST:event_txtFechaEntrega_ArriendoMouseClicked
+
+    private void txtCantidadHerramientaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadHerramientaMouseClicked
+        // TODO add your handling code here:
+        txtCantidadHerramienta.setText("");
+    }//GEN-LAST:event_txtCantidadHerramientaMouseClicked
 
     /**
      * @param args the command line arguments

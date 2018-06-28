@@ -312,12 +312,22 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         txtNombreProyecto.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreProyecto.setText("Ingrese nombre aquí...");
         txtNombreProyecto.setBorder(null);
+        txtNombreProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreProyectoMouseClicked(evt);
+            }
+        });
         PanelCrearProyecto.add(txtNombreProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 192, -1));
 
         txtDescripcionProyecto.setBackground(new java.awt.Color(102, 102, 255));
         txtDescripcionProyecto.setForeground(new java.awt.Color(255, 255, 255));
         txtDescripcionProyecto.setText("Ingrese la descripción...");
         txtDescripcionProyecto.setBorder(null);
+        txtDescripcionProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDescripcionProyectoMouseClicked(evt);
+            }
+        });
         PanelCrearProyecto.add(txtDescripcionProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 189, -1));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,6 +376,11 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         txtCodEditarProyecto.setForeground(new java.awt.Color(255, 255, 255));
         txtCodEditarProyecto.setText("Ingrese código...");
         txtCodEditarProyecto.setBorder(null);
+        txtCodEditarProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodEditarProyectoMouseClicked(evt);
+            }
+        });
 
         jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -485,12 +500,22 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         txtNombreProyecto_Edit.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreProyecto_Edit.setText("Busque un Proyecto...");
         txtNombreProyecto_Edit.setBorder(null);
+        txtNombreProyecto_Edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreProyecto_EditMouseClicked(evt);
+            }
+        });
         PanelEditarProyecto.add(txtNombreProyecto_Edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 192, -1));
 
         txtDescripcionProyecto_Edit.setBackground(new java.awt.Color(102, 102, 255));
         txtDescripcionProyecto_Edit.setForeground(new java.awt.Color(255, 255, 255));
         txtDescripcionProyecto_Edit.setText("Busque un Proyecto...");
         txtDescripcionProyecto_Edit.setBorder(null);
+        txtDescripcionProyecto_Edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDescripcionProyecto_EditMouseClicked(evt);
+            }
+        });
         PanelEditarProyecto.add(txtDescripcionProyecto_Edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 189, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
@@ -514,6 +539,11 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         txtCodProyecto_Elim.setForeground(new java.awt.Color(255, 255, 255));
         txtCodProyecto_Elim.setText("Ingrese código aquí...");
         txtCodProyecto_Elim.setBorder(null);
+        txtCodProyecto_Elim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodProyecto_ElimMouseClicked(evt);
+            }
+        });
         jPanel6.add(txtCodProyecto_Elim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 380, -1));
 
         jSeparator21.setForeground(new java.awt.Color(255, 255, 255));
@@ -643,6 +673,11 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         txtCodigoProyecto_Hitos.setForeground(new java.awt.Color(255, 255, 255));
         txtCodigoProyecto_Hitos.setText("Ingrese el código aquí...");
         txtCodigoProyecto_Hitos.setBorder(null);
+        txtCodigoProyecto_Hitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodigoProyecto_HitosMouseClicked(evt);
+            }
+        });
         jPanel7.add(txtCodigoProyecto_Hitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 250, -1));
 
         jSeparator22.setForeground(new java.awt.Color(255, 255, 255));
@@ -1157,6 +1192,41 @@ public class GUI_Proyectos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error", "Registro no Actualizado", 1); 
         }
     }//GEN-LAST:event_btnEditarProyectoMouseClicked
+
+    private void txtNombreProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreProyectoMouseClicked
+        // TODO add your handling code here:
+        txtNombreProyecto.setText("");
+    }//GEN-LAST:event_txtNombreProyectoMouseClicked
+
+    private void txtDescripcionProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionProyectoMouseClicked
+        // TODO add your handling code here:
+        txtDescripcionProyecto.setText("");
+    }//GEN-LAST:event_txtDescripcionProyectoMouseClicked
+
+    private void txtCodEditarProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodEditarProyectoMouseClicked
+        // TODO add your handling code here:
+        txtCodEditarProyecto.setText("");
+    }//GEN-LAST:event_txtCodEditarProyectoMouseClicked
+
+    private void txtNombreProyecto_EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreProyecto_EditMouseClicked
+        // TODO add your handling code here:
+        txtNombreProyecto_Edit.setText("");
+    }//GEN-LAST:event_txtNombreProyecto_EditMouseClicked
+
+    private void txtDescripcionProyecto_EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionProyecto_EditMouseClicked
+        // TODO add your handling code here:
+        txtDescripcionProyecto_Edit.setText("");
+    }//GEN-LAST:event_txtDescripcionProyecto_EditMouseClicked
+
+    private void txtCodProyecto_ElimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodProyecto_ElimMouseClicked
+        // TODO add your handling code here:
+        txtCodProyecto_Elim.setText("");
+    }//GEN-LAST:event_txtCodProyecto_ElimMouseClicked
+
+    private void txtCodigoProyecto_HitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoProyecto_HitosMouseClicked
+        // TODO add your handling code here:
+        txtCodigoProyecto_Hitos.setText("");
+    }//GEN-LAST:event_txtCodigoProyecto_HitosMouseClicked
     
     
     /**

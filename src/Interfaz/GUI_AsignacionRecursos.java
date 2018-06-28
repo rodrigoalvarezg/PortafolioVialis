@@ -397,6 +397,9 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
         btnAgregarFun.setBackground(new java.awt.Color(255, 204, 51));
         btnAgregarFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarFunMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAgregarFunMouseEntered(evt);
             }
@@ -425,6 +428,11 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         txtRutFun_Asignar.setForeground(new java.awt.Color(255, 255, 255));
         txtRutFun_Asignar.setText("Ingrese aquí el rut...");
         txtRutFun_Asignar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtRutFun_Asignar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun_AsignarMouseClicked(evt);
+            }
+        });
         jPanel5.add(txtRutFun_Asignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 192, -1));
 
         Panel_AsignarPersonal.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 260, 170));
@@ -635,6 +643,11 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         txtNombreFunEdit1.setForeground(new java.awt.Color(255, 255, 255));
         txtNombreFunEdit1.setText("Ingrese cantidad a solicitar...");
         txtNombreFunEdit1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtNombreFunEdit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreFunEdit1MouseClicked(evt);
+            }
+        });
         jPanel4.add(txtNombreFunEdit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 192, -1));
 
         Panel_AsignarRecursos.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 260, 230));
@@ -892,6 +905,20 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
     private void btnLimpiarAsig_funMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarAsig_funMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarAsig_funMouseExited
+
+    private void txtNombreFunEdit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreFunEdit1MouseClicked
+        // TODO add your handling code here:
+        txtNombreFunEdit1.setText("");
+    }//GEN-LAST:event_txtNombreFunEdit1MouseClicked
+
+    private void txtRutFun_AsignarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_AsignarMouseClicked
+        // TODO add your handling code here:
+        txtRutFun_Asignar.setText("");
+    }//GEN-LAST:event_txtRutFun_AsignarMouseClicked
+
+    private void btnAgregarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarFunMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarFunMouseClicked
 
     /**
      * @param args the command line arguments
