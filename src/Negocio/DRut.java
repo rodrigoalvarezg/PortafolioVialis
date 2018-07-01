@@ -10,13 +10,11 @@ package Negocio;
  * @author detha
  */
 
-public class validarRut {
-    public static boolean validarRut(String vrut, String vverificador) 
+public class DRut {
+    
+    public String Rut(String rut) 
     { 
-        boolean flag = false; 
-        String rut = vrut.trim(); 
-
-        String posibleVerificador = vverificador.trim(); 
+        
         int cantidad = rut.length(); 
         int factor = 2; 
         int suma = 0; 
@@ -33,28 +31,23 @@ public class validarRut {
 
         } 
         verificador = String.valueOf(11 - suma%11); 
-        if(verificador.equals(posibleVerificador)) 
-        { 
-            flag = true; 
-        } 
-        else 
-        { 
-            if((verificador.equals("10")) && (posibleVerificador.toLowerCase().equals("k"))) 
+        
+        if((verificador.equals("10"))) 
             { 
-                flag = true; 
+                verificador = "k"; 
             } 
             else 
             { 
-                if((verificador.equals("11") && posibleVerificador.equals("0"))) 
+                if((verificador.equals("11"))) 
                 { 
-                    flag = true; 
+                    verificador = "0"; 
                 } 
-                else 
-                { 
-                    flag = false; 
-                } 
+
             } 
-        } 
-        return flag;         
+        rut = rut+"-"+verificador;
+        
+        System.out.println(rut);
+        
+        return rut;         
     }  
 }

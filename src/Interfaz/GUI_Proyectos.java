@@ -8,7 +8,7 @@ package Interfaz;
 import Conexion.Conexion;
 import Modelo.Material;
 import Modelo.Proyecto;
-import Negocio.RProyecto;
+import Negocio.TProyecto;
 import Negocio.TLogin;
 import java.awt.Color;
 import java.sql.ResultSet;
@@ -1138,7 +1138,7 @@ public class GUI_Proyectos extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHitosProyectoMouseClicked
 
     private void btnCrearProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearProyectoMouseClicked
-        RProyecto rp = new RProyecto();
+        TProyecto rp = new TProyecto();
         try{
              rp.registrarProyecto(txtNombreProyecto.getText(), txtDescripcionProyecto.getText());
              JOptionPane.showMessageDialog(null, "Registrar", "Registro Exitoso", 1);
@@ -1149,7 +1149,7 @@ public class GUI_Proyectos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearProyectoMouseClicked
 
     private void btnEliminarProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProyectoMouseClicked
-        RProyecto rp = new RProyecto();
+        TProyecto rp = new TProyecto();
         try{
             rp.eliminarProyecto(txtCodProyecto_Elim.getText());
             JOptionPane.showMessageDialog(null, "Eliminar", "Eliminado con Exito", 1);            
@@ -1184,7 +1184,7 @@ public class GUI_Proyectos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarProyecto_EditMouseClicked
 
     private void btnEditarProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarProyectoMouseClicked
-        RProyecto rp = new RProyecto();
+        TProyecto rp = new TProyecto();
         try{
              rp.editarProyecto(txtNombreProyecto_Edit.getText(), txtDescripcionProyecto_Edit.getText(), txtCodEditarProyecto.getText());
              JOptionPane.showMessageDialog(null, "Actualizar", "Actualizado", 1);

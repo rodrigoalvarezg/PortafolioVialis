@@ -13,6 +13,7 @@ import java.sql.*;
 public class Conexion {
     
     //Conexion AWS
+    /*
     private String username ="cons";
     private String password  ="portafolio2018";
     private String host ="@vialis.c1rdtq9kg6sd.us-east-2.rds.amazonaws.com";
@@ -20,17 +21,18 @@ public class Conexion {
     private String database ="cons";
     private String url  = "jdbc:oracle:thin:"+host+":"+port+":"+database;
     private Connection con;
+    */
     
     //Conexion Local
-    /*
+    
     private String username ="cons";
     private String password  ="oracle";
     private String host ="@localhost";
     private String port ="1521";
-    private String database ="cons";
+    private String database ="orcl";
     private String url  = "jdbc:oracle:thin:"+host+":"+port+":"+database;
     private Connection con;    
-    */
+    
     
     public Conexion(){
         PreparedStatement ps;

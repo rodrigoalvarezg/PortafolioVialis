@@ -5,18 +5,17 @@ import java.util.Date;
 
 public class Acta_Reunion {
     
-    private String Id_Reun, Citador_Reun, Motivo_Reun, Hito_Id_Hito, Hito_Proyecto_Id_Proy;
+    private String Id_Reun, Citador_Reun, Motivo_Reun,hito_id_hito,hito_proyecto_id_proy;
     private Date Fecha_Reun, Hora_Ini_Reun, Hora_Ter_Reun; 
     
     public Acta_Reunion(){}
 
-    public Acta_Reunion(String Id_Reun, String Citador_Reun, String Motivo_Reun, String Hito_Id_Hito, String Hito_Proyecto_Id_Proy, Date Fecha_Reun, Date Hora_Ini_Reun, Date Hora_Ter_Reun) {
+    public Acta_Reunion(String Id_Reun, String Citador_Reun, String Motivo_Reun, String hito_id_hito, String hito_proyecto_id_proy, Date Hora_Ini_Reun, Date Hora_Ter_Reun) {
         this.Id_Reun = Id_Reun;
         this.Citador_Reun = Citador_Reun;
         this.Motivo_Reun = Motivo_Reun;
-        this.Hito_Id_Hito = Hito_Id_Hito;
-        this.Hito_Proyecto_Id_Proy = Hito_Proyecto_Id_Proy;
-        this.Fecha_Reun = Fecha_Reun;
+        this.hito_id_hito = hito_id_hito;
+        this.hito_proyecto_id_proy = hito_proyecto_id_proy;
         this.Hora_Ini_Reun = Hora_Ini_Reun;
         this.Hora_Ter_Reun = Hora_Ter_Reun;
     }
@@ -45,20 +44,20 @@ public class Acta_Reunion {
         this.Motivo_Reun = Motivo_Reun;
     }
 
-    public String getHito_Id_Hito() {
-        return Hito_Id_Hito;
+    public String getHito_id_hito() {
+        return hito_id_hito;
     }
 
-    public void setHito_Id_Hito(String Hito_Id_Hito) {
-        this.Hito_Id_Hito = Hito_Id_Hito;
+    public void setHito_id_hito(String hito_id_hito) {
+        this.hito_id_hito = hito_id_hito;
     }
 
-    public String getHito_Proyecto_Id_Proy() {
-        return Hito_Proyecto_Id_Proy;
+    public String getHito_proyecto_id_proy() {
+        return hito_proyecto_id_proy;
     }
 
-    public void setHito_Proyecto_Id_Proy(String Hito_Proyecto_Id_Proy) {
-        this.Hito_Proyecto_Id_Proy = Hito_Proyecto_Id_Proy;
+    public void setHito_proyecto_id_proy(String hito_proyecto_id_proy) {
+        this.hito_proyecto_id_proy = hito_proyecto_id_proy;
     }
 
     public Date getFecha_Reun() {
@@ -84,6 +83,8 @@ public class Acta_Reunion {
     public void setHora_Ter_Reun(Date Hora_Ter_Reun) {
         this.Hora_Ter_Reun = Hora_Ter_Reun;
     }
+
+    
     
     
     

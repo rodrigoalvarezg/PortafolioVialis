@@ -8,8 +8,8 @@ package Interfaz;
 import Conexion.Conexion;
 import java.awt.Color;
 import Interfaz.*;
-import Negocio.RFuncionarios;
-import Negocio.RProyecto;
+import Negocio.TFuncionarios;
+import Negocio.TProyecto;
 import Negocio.TLogin;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -1580,7 +1580,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarFunMouseExited
 
     private void btnInsertarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertarFunMouseClicked
-        RFuncionarios rf = new RFuncionarios();
+        TFuncionarios rf = new TFuncionarios();
         try{
             rf.registrarFunncionario(txtRutFun.getText(), 
                     txtNombreFun.getText(), 
@@ -1606,7 +1606,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsertarFunMouseClicked
 
     private void btnEliminarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarFunMouseClicked
-        RFuncionarios rf = new RFuncionarios();
+        TFuncionarios rf = new TFuncionarios();
         try{
             JOptionPane.showMessageDialog(null, "Eliminar", "Eliminado con Exito", 1);
             rf.eliminarFuncionario(txtRutElimFun.getText());
@@ -1657,7 +1657,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbContratoActionPerformed
 
     private void btnEditarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarFunMouseClicked
-        RFuncionarios rf = new RFuncionarios();
+        TFuncionarios rf = new TFuncionarios();
         try{
             rf.editarProyecto(txtRutFun1.getText(), 
                     txtNombreFunEdit.getText(), 
