@@ -5,7 +5,14 @@
  */
 package Interfaz;
 
+import Conexion.Conexion;
+import Negocio.TUsuario;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +25,52 @@ public class GUI_Cuenta extends javax.swing.JFrame {
      */
     public GUI_Cuenta() {
         initComponents();
+        llenar_cmbPerfil();
+        llenar_cmbPerfilEditar();
+    }
+    
+    void llenar_cmbPerfil(){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM PERFIL")){
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                modeloCombo.addElement("Seleccionar");
+                cmbPerfil.setModel(modeloCombo);
+                while(rs.next()){
+                   // Maqui_Herra mh = new Maqui_Herra(rs.getString("NOMBRE_MH"));
+                    modeloCombo.addElement(rs.getString("NOMBRE_PERFIL"));
+                    cmbPerfil.setModel(modeloCombo);
+                }               
+                
+            }
+        }catch(Exception ex){
+            
+        }
+        
+        
+    }
+    
+    void llenar_cmbPerfilEditar(){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM PERFIL")){
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                modeloCombo.addElement("Seleccionar");
+                cmbPerfilEditar.setModel(modeloCombo);
+                while(rs.next()){
+                   // Maqui_Herra mh = new Maqui_Herra(rs.getString("NOMBRE_MH"));
+                    modeloCombo.addElement(rs.getString("NOMBRE_PERFIL"));
+                    cmbPerfilEditar.setModel(modeloCombo);
+                }               
+                
+            }
+        }catch(Exception ex){
+            
+        }
     }
 
     /**
@@ -312,7 +365,7 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         jLabel69.setText("Perfil:");
         PanelCrearCuenta.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, -1, -1));
 
-        cmbPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "40", "60", "100" }));
+        cmbPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         PanelCrearCuenta.add(cmbPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 200, -1));
 
         txtContraseña.setBackground(new java.awt.Color(102, 102, 255));
@@ -490,7 +543,7 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         jLabel70.setText("Perfil:");
         PanelEditarCuenta.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, -1, -1));
 
-        cmbPerfilEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "40", "60", "100" }));
+        cmbPerfilEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         PanelEditarCuenta.add(cmbPerfilEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 200, -1));
 
         txtContraseñaEditar.setBackground(new java.awt.Color(102, 102, 255));
@@ -785,7 +838,34 @@ public class GUI_Cuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarFunMouseExited
 
     private void btnInsertarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertarFunMouseClicked
-
+        TUsuario tu = new TUsuario();
+        int id_perfil = 0;
+        Conexion con = new Conexion();
+        // Registtrar objeto del combobox
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT ID_PERFIL FROM PERFIL WHERE NOMBRE_PERFIL ='"+cmbPerfil.getSelectedItem().toString()+"'");
+                while(rs.next()){
+                    String id = rs.getString("ID_PERFIL");
+                    id_perfil = Integer.parseInt(id);
+                }                
+            }catch (SQLException ex){
+                System.out.println(ex);
+            }
+        }   catch (SQLException ex) {
+                System.out.println(ex);
+    }
+        
+        try{
+            tu.registrarUsuario(txtUser.getText(),
+                    txtContraseña.getText(), 
+                    id_perfil);
+            JOptionPane.showMessageDialog(null, "Registrar", "Registro Exitoso", 1);
+        }catch(Exception ex){
+             JOptionPane.showMessageDialog(null, "Error", "Registro Fallido", 1);
+        }
     }//GEN-LAST:event_btnInsertarFunMouseClicked
 
     private void btnInsertarFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertarFunMouseEntered
@@ -805,7 +885,33 @@ public class GUI_Cuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaMouseClicked
 
     private void btnEditarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUserMouseClicked
-
+        TUsuario tu = new TUsuario();
+        int id_perfil = 0;
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT ID_PERFIL FROM PERFIL WHERE NOMBRE_PERFIL ='"+cmbPerfilEditar.getSelectedItem().toString()+"'");
+                while(rs.next()){
+                    String id = rs.getString("ID_PERFIL");
+                    id_perfil = Integer.parseInt(id);
+                }                
+            }catch (SQLException ex){
+                System.out.println(ex);
+            }
+        }   catch (SQLException ex) {
+                System.out.println(ex);
+    }
+        
+        try{
+        tu.editarUsuario(txtUser.getText(),
+                    txtContraseña.getText(), 
+                    id_perfil);
+        JOptionPane.showMessageDialog(null, "Actualizar", "Actualizacion Exitosa", 1);
+        }catch(Exception ex){
+             JOptionPane.showMessageDialog(null, "Error", "Actualizacion Fallida", 1);
+        }
     }//GEN-LAST:event_btnEditarUserMouseClicked
 
     private void btnEditarUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUserMouseEntered
@@ -833,7 +939,24 @@ public class GUI_Cuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarEditFunMouseExited
 
     private void btnBuscarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarUserMouseClicked
-
+        Conexion con = new Conexion();
+        
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIO WHERE USUARIO ='"+txtRutFun1.getText()+"'");
+                while(rs.next()){
+                    txtUserEditar.setText(rs.getString("USUARIO"));
+                    txtContraseñaEditar.setText(rs.getString("CONTRASEÑA"));
+                    cmbPerfilEditar.setSelectedItem(rs.getString("PERFIL_ID_PERFIL"));
+                }
+            }catch (SQLException ex){                
+                System.out.println(ex);            
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_btnBuscarUserMouseClicked
 
     private void btnBuscarUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarUserMouseEntered
@@ -852,7 +975,15 @@ public class GUI_Cuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaEditarMouseClicked
 
     private void btnEliminarCuenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarCuenMouseClicked
-
+        TUsuario tu = new TUsuario();
+        try{
+            tu.eliminarUsuario(txtRutElimFun.getText());
+            JOptionPane.showMessageDialog(null, "Eliminar", "Eliminado con Exito", 1);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error", "Eliminado sin Exito", 1); 
+        }
+        
+        
     }//GEN-LAST:event_btnEliminarCuenMouseClicked
 
     private void btnEliminarCuenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarCuenMouseEntered
