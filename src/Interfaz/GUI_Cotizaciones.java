@@ -905,22 +905,28 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnAbrirCotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCotMouseClicked
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        int returnVal = chooser.showOpenDialog(null);
         
-        if ( returnVal == JFileChooser.APPROVE_OPTION){
-            File myFiles = chooser.getSelectedFile();
-            lblAbrirCot.setText(myFiles+ "");
-            long longitud = myFiles.length();
-            try {
-                FileInputStream myFile = new FileInputStream(myFiles);
-                this.myFile = myFile;
-                this.lon = longitud;
-                
-            } catch (Exception e) {
-                System.out.println("Error archivo");
+        if(jTable1.getSelectedColumn()==0){
+            JFileChooser chooser = new JFileChooser();
+            int returnVal = chooser.showOpenDialog(null);
+        
+            if ( returnVal == JFileChooser.APPROVE_OPTION){
+                File myFiles = chooser.getSelectedFile();
+                lblAbrirCot.setText(myFiles+ "");
+                long longitud = myFiles.length();
+                try {
+                    FileInputStream myFile = new FileInputStream(myFiles);
+                    this.myFile = myFile;
+                    this.lon = longitud;
+
+                } catch (Exception e) {
+                    System.out.println("Error archivo");
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un material.");
         }
+        
     }//GEN-LAST:event_btnAbrirCotMouseClicked
 
     private void btnCotizacionMaterialesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCotizacionMaterialesMouseClicked
@@ -972,22 +978,28 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnAbrirCotServicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCotServicioMouseClicked
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        int returnVal = chooser.showOpenDialog(null);
         
-        if ( returnVal == JFileChooser.APPROVE_OPTION){
-            File myFiles = chooser.getSelectedFile();
-            lblAbrirCot.setText(myFiles+ "");
-            long longitud = myFiles.length();
-            try {
-                FileInputStream myFile = new FileInputStream(myFiles);
-                this.myFile = myFile;
-                this.lon = longitud;
+        if(tblServicios.getSelectedColumn()==0){
+            JFileChooser chooser = new JFileChooser();
+            int returnVal = chooser.showOpenDialog(null);
+        
+            if ( returnVal == JFileChooser.APPROVE_OPTION){
+                File myFiles = chooser.getSelectedFile();
+                lblAbrirCot1.setText(myFiles+ "");
+                long longitud = myFiles.length();
+                try {
+                    FileInputStream myFile = new FileInputStream(myFiles);
+                    this.myFile = myFile;
+                    this.lon = longitud;
                 
-            } catch (Exception e) {
+                } catch (Exception e) {
                 System.out.println("Error archivo");
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una cotización.");
         }
+        
     }//GEN-LAST:event_btnAbrirCotServicioMouseClicked
 
     private void btnAbrirCotServicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirCotServicioMouseEntered
@@ -1087,19 +1099,29 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     private void btnSubirCotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubirCotMouseClicked
         // TODO add your handling code here:
-        MaterialConsultas mc = new MaterialConsultas();
-        DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
-        String dato = String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),1));
-        mc.subirCotizacion(dato, myFile, lon);
+        if(!lblAbrirCot.getText().equals("Abrir...")){
+            MaterialConsultas mc = new MaterialConsultas();
+            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
+            String dato = String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),1));
+            mc.subirCotizacion(dato, myFile, lon);
+            lblAbrirCot.setText("Abrir...");
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una cotización.");
+        }
     }//GEN-LAST:event_btnSubirCotMouseClicked
 
     private void btnSubirCotServicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubirCotServicioMouseClicked
         // TODO add your handling code here:
-        MaterialConsultas mc = new MaterialConsultas();
-        DefaultTableModel tm = (DefaultTableModel)tblServicios.getModel();
-        String dato = String.valueOf(tm.getValueAt(tblServicios.getSelectedRow(),1));
-        System.out.println(dato);
-        mc.subirCotiServicio(dato, myFile, lon);
+        if(!lblAbrirCot.getText().equals("Abrir...")){
+            MaterialConsultas mc = new MaterialConsultas();
+            DefaultTableModel tm = (DefaultTableModel)tblServicios.getModel();
+            String dato = String.valueOf(tm.getValueAt(tblServicios.getSelectedRow(),1));
+            System.out.println(dato);
+            mc.subirCotiServicio(dato, myFile, lon);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una cotización.");
+        }
+        
     }//GEN-LAST:event_btnSubirCotServicioMouseClicked
 
     private void btnDescargarCotServMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarCotServMouseClicked

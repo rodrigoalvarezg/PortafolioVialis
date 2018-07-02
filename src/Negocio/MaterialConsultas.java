@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 //comentario de prueba netbeans 2
 /**
  *
@@ -34,6 +35,7 @@ public class MaterialConsultas extends Conexion {
                 ps.setBlob(1, archivo,longitud);
                 ps.setString(2, id_mat);
                 ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Cotizacion guardada con exito.");
                 System.out.println("Sentencia sql correcta en Material Consulta");
                 rs.close();
             } catch (Exception e) {
@@ -49,6 +51,7 @@ public class MaterialConsultas extends Conexion {
             ps.setBlob(1, archivo,longitud);
             ps.setString(2, id_serv);
             ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Cotizacion guardada con exito.");
             System.out.println("Sentencia sql correcta en Material Consulta");
             rs.close();
         } catch (Exception e) {
