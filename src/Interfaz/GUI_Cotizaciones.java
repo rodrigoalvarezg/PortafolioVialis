@@ -24,6 +24,8 @@ import javax.swing.table.TableModel;
 public class GUI_Cotizaciones extends javax.swing.JFrame {
 
     TLogin tLogin = new TLogin();
+    int xMouse;
+    int yMouse;
     /**
      * Creates new form GUI_Cotizaciones
      */
@@ -32,6 +34,7 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
     Conexion con = new Conexion();
     public GUI_Cotizaciones() {
         initComponents();
+        this.setLocationRelativeTo(null);
         muestraFecha();
         jLabel3.setText(tLogin.getUsuario());
     }
@@ -238,8 +241,12 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
         btnAceptacionServ = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        Drag = new javax.swing.JPanel();
+        FrameDrag = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
@@ -289,7 +296,7 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 22, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 806, 13));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 53, 810, 13));
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -828,6 +835,36 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 560, 130));
 
+        Drag.setBackground(new java.awt.Color(102, 102, 255));
+
+        javax.swing.GroupLayout DragLayout = new javax.swing.GroupLayout(Drag);
+        Drag.setLayout(DragLayout);
+        DragLayout.setHorizontalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 850, Short.MAX_VALUE)
+        );
+        DragLayout.setVerticalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(Drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 50));
+
+        FrameDrag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                FrameDragMouseDragged(evt);
+            }
+        });
+        FrameDrag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FrameDragMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                FrameDragMousePressed(evt);
+            }
+        });
+        jPanel1.add(FrameDrag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 50));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 760));
 
         pack();
@@ -1118,6 +1155,24 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
         mc.aceptarCotServicio(dato);
         llenarTablaCotServicio();
     }//GEN-LAST:event_btnAceptarCotServMouseClicked
+
+    private void FrameDragMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen(); //para rescatar el valor X de la posición de la ventana
+        int y = evt.getYOnScreen(); //para rescatar el valor Y de la posición de la ventana
+
+        this.setLocation(x - xMouse ,y - yMouse);
+    }//GEN-LAST:event_FrameDragMouseDragged
+
+    private void FrameDragMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FrameDragMouseClicked
+
+    private void FrameDragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_FrameDragMousePressed
                                                                                         
                                               
 
@@ -1157,6 +1212,8 @@ public class GUI_Cotizaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Drag;
+    private javax.swing.JLabel FrameDrag;
     private javax.swing.JPanel PanelAceptacionMateriales;
     private javax.swing.JPanel PanelAceptacionServicios;
     private javax.swing.JPanel PanelCotizacionProducto;
