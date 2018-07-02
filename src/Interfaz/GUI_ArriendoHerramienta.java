@@ -9,6 +9,7 @@ import Conexion.Conexion;
 import Modelo.Maqui_Herra;
 import Negocio.TArriendo;
 import Negocio.TLogin;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,13 +25,16 @@ import javax.swing.table.DefaultTableModel;
 public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
         TLogin tLogin = new TLogin();
+        int xMouse;
+        int yMouse;
    
     public GUI_ArriendoHerramienta() {
         initComponents();
+        this.setLocationRelativeTo(null);
         muestraFecha();
-        llenar_cmbHerramientas();
+        /*llenar_cmbHerramientas();
         llenar_tblSeleccionarObra_Arriendo();
-        jLabel3.setText(tLogin.getUsuario());
+        jLabel3.setText(tLogin.getUsuario());*/
     }
     
     void muestraFecha(){
@@ -104,6 +108,8 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        ArriendoHerramienta = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cmbHerramientas = new javax.swing.JComboBox<>();
@@ -127,8 +133,50 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         txtCantidadHerramienta = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jSeparator17 = new javax.swing.JSeparator();
+        PanelIngresoHerramienta = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        btnLimpiar_Proyecto = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        txtNombreHer = new javax.swing.JTextField();
+        txtPrecioDiario = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        btnCrearProyecto = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        txtCantidadInicial = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel27 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        cmbTipo = new javax.swing.JComboBox<>();
+        PanelEliminarHerramienta = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel45 = new javax.swing.JLabel();
+        txtCodigoHerramientaElim = new javax.swing.JTextField();
+        jSeparator21 = new javax.swing.JSeparator();
+        btnEliminarHerramienta = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        btnLimpiarElimHerramienta = new javax.swing.JPanel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btnArriendoHerramienta = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        btnIngresarHerramienta = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        btnPEliminarHerramienta = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        Drag = new javax.swing.JPanel();
+        FrameDrag = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
@@ -185,15 +233,22 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CALENDARIO_MINI_ICON_MAINMENU.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 32, -1, -1));
 
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        ArriendoHerramienta.setBackground(new java.awt.Color(102, 102, 255));
+        ArriendoHerramienta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ArriendoHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Arriendo Herramientas");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        ArriendoHerramienta.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha de Entrega");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
+        ArriendoHerramienta.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
 
         cmbHerramientas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbHerramientas.addActionListener(new java.awt.event.ActionListener() {
@@ -201,12 +256,12 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
                 cmbHerramientasActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbHerramientas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 190, 30));
+        ArriendoHerramienta.add(cmbHerramientas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 190, 30));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Seleccione Herramienta");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        ArriendoHerramienta.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane4.setBorder(null);
@@ -236,40 +291,40 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(tblSeleccionarObra_Arriendo);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 360, 130));
+        ArriendoHerramienta.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 360, 130));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Valor Arriendo");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 180, -1));
+        ArriendoHerramienta.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 180, -1));
 
         txtValorArriendo.setEditable(false);
         txtValorArriendo.setBackground(new java.awt.Color(204, 204, 204));
         txtValorArriendo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtValorArriendo.setForeground(new java.awt.Color(204, 0, 0));
         txtValorArriendo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jPanel1.add(txtValorArriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 360, -1));
+        ArriendoHerramienta.add(txtValorArriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 360, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Seleccione una obra...");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 180, -1));
+        ArriendoHerramienta.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 180, -1));
 
         txtDisponibilidadArriendo.setEditable(false);
         txtDisponibilidadArriendo.setBackground(new java.awt.Color(204, 204, 204));
         txtDisponibilidadArriendo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtDisponibilidadArriendo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jPanel1.add(txtDisponibilidadArriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 110, -1));
+        ArriendoHerramienta.add(txtDisponibilidadArriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 110, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("¿Disponibilidad?");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+        ArriendoHerramienta.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Fecha de Arriendo");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, -1));
+        ArriendoHerramienta.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
 
         btnArrendarHer.setBackground(new java.awt.Color(0, 153, 153));
         btnArrendarHer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -290,7 +345,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         jLabel46.setText("ARRENDAR");
         btnArrendarHer.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jPanel1.add(btnArrendarHer, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, 120, 50));
+        ArriendoHerramienta.add(btnArrendarHer, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 120, 50));
 
         btnLimpiarHerramienta.setBackground(new java.awt.Color(204, 51, 0));
         btnLimpiarHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -311,10 +366,10 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         jLabel47.setText("LIMPIAR");
         btnLimpiarHerramienta.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jPanel1.add(btnLimpiarHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, 100, 50));
+        ArriendoHerramienta.add(btnLimpiarHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 100, 50));
 
         jSeparator15.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 230, 10));
+        ArriendoHerramienta.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 230, 10));
 
         txtFechaArriendo.setBackground(new java.awt.Color(102, 102, 255));
         txtFechaArriendo.setForeground(new java.awt.Color(255, 255, 255));
@@ -330,10 +385,10 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
                 txtFechaArriendoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtFechaArriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 192, -1));
+        ArriendoHerramienta.add(txtFechaArriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 192, -1));
 
         jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 230, 10));
+        ArriendoHerramienta.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 230, 10));
 
         txtFechaEntrega_Arriendo.setBackground(new java.awt.Color(102, 102, 255));
         txtFechaEntrega_Arriendo.setForeground(new java.awt.Color(255, 255, 255));
@@ -344,7 +399,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
                 txtFechaEntrega_ArriendoMouseClicked(evt);
             }
         });
-        jPanel1.add(txtFechaEntrega_Arriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 192, -1));
+        ArriendoHerramienta.add(txtFechaEntrega_Arriendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 192, -1));
 
         txtCantidadHerramienta.setBackground(new java.awt.Color(102, 102, 255));
         txtCantidadHerramienta.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,17 +410,275 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
                 txtCantidadHerramientaMouseClicked(evt);
             }
         });
-        jPanel1.add(txtCantidadHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 192, -1));
+        ArriendoHerramienta.add(txtCantidadHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 192, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Cantidad");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, -1, -1));
+        ArriendoHerramienta.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
         jSeparator17.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 230, 10));
+        ArriendoHerramienta.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 230, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 510));
+        jPanel2.add(ArriendoHerramienta, "card2");
+
+        PanelIngresoHerramienta.setBackground(new java.awt.Color(102, 102, 255));
+        PanelIngresoHerramienta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PanelIngresoHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Ingresar Herramienta");
+        PanelIngresoHerramienta.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Nombre de Herramienta:");
+        PanelIngresoHerramienta.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Precio por Día:");
+        PanelIngresoHerramienta.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+
+        btnLimpiar_Proyecto.setBackground(new java.awt.Color(204, 51, 0));
+        btnLimpiar_Proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiar_ProyectoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiar_ProyectoMouseExited(evt);
+            }
+        });
+        btnLimpiar_Proyecto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("LIMPIAR");
+        btnLimpiar_Proyecto.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, -1, -1));
+
+        PanelIngresoHerramienta.add(btnLimpiar_Proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 100, 50));
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        PanelIngresoHerramienta.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 189, -1));
+
+        txtNombreHer.setBackground(new java.awt.Color(102, 102, 255));
+        txtNombreHer.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreHer.setText("Ingrese nombre aquí...");
+        txtNombreHer.setBorder(null);
+        PanelIngresoHerramienta.add(txtNombreHer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 192, -1));
+
+        txtPrecioDiario.setBackground(new java.awt.Color(102, 102, 255));
+        txtPrecioDiario.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecioDiario.setText("Ingrese el precio por día...");
+        txtPrecioDiario.setBorder(null);
+        PanelIngresoHerramienta.add(txtPrecioDiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 189, -1));
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        PanelIngresoHerramienta.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 192, -1));
+
+        btnCrearProyecto.setBackground(new java.awt.Color(0, 153, 153));
+        btnCrearProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCrearProyectoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCrearProyectoMouseExited(evt);
+            }
+        });
+        btnCrearProyecto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("INGRESAR");
+        btnCrearProyecto.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        PanelIngresoHerramienta.add(btnCrearProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 130, 50));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Cantidad disponible:");
+        PanelIngresoHerramienta.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+
+        txtCantidadInicial.setBackground(new java.awt.Color(102, 102, 255));
+        txtCantidadInicial.setForeground(new java.awt.Color(255, 255, 255));
+        txtCantidadInicial.setText("Ingrese cantidad...");
+        txtCantidadInicial.setBorder(null);
+        PanelIngresoHerramienta.add(txtCantidadInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 192, -1));
+
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        PanelIngresoHerramienta.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 192, -1));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Tipo de herramienta:");
+        PanelIngresoHerramienta.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        PanelIngresoHerramienta.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 192, -1));
+
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PanelIngresoHerramienta.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 190, -1));
+
+        jPanel2.add(PanelIngresoHerramienta, "card3");
+
+        PanelEliminarHerramienta.setBackground(new java.awt.Color(102, 102, 255));
+        PanelEliminarHerramienta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PanelEliminarHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel6.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel45.setText("Ingrese Código de Herramienta:");
+        jPanel6.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        txtCodigoHerramientaElim.setBackground(new java.awt.Color(102, 102, 255));
+        txtCodigoHerramientaElim.setForeground(new java.awt.Color(255, 255, 255));
+        txtCodigoHerramientaElim.setText("Ingrese código aquí...");
+        txtCodigoHerramientaElim.setBorder(null);
+        jPanel6.add(txtCodigoHerramientaElim, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 380, -1));
+
+        jSeparator21.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 380, 10));
+
+        btnEliminarHerramienta.setBackground(new java.awt.Color(0, 153, 153));
+        btnEliminarHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarHerramientaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarHerramientaMouseExited(evt);
+            }
+        });
+        btnEliminarHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("ELIMINAR");
+        btnEliminarHerramienta.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 13, -1, -1));
+
+        jPanel6.add(btnEliminarHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 150, 50));
+
+        btnLimpiarElimHerramienta.setBackground(new java.awt.Color(204, 51, 0));
+        btnLimpiarElimHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarElimHerramientaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarElimHerramientaMouseExited(evt);
+            }
+        });
+        btnLimpiarElimHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("LIMPIAR");
+        btnLimpiarElimHerramienta.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, -1, -1));
+
+        jPanel6.add(btnLimpiarElimHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 100, 50));
+
+        PanelEliminarHerramienta.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 450, 220));
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel50.setText("Eliminar Herramienta");
+        PanelEliminarHerramienta.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
+
+        jPanel2.add(PanelEliminarHerramienta, "card4");
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 750, 430));
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnArriendoHerramienta.setBackground(new java.awt.Color(255, 102, 0));
+        btnArriendoHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnArriendoHerramientaMouseClicked(evt);
+            }
+        });
+        btnArriendoHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Arriendo");
+        btnArriendoHerramienta.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ARRENDARHERRAMIENTA_ARRIENDO.png"))); // NOI18N
+        btnArriendoHerramienta.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jPanel4.add(btnArriendoHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 130));
+
+        btnIngresarHerramienta.setBackground(new java.awt.Color(51, 0, 204));
+        btnIngresarHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIngresarHerramientaMouseClicked(evt);
+            }
+        });
+        btnIngresarHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Ingresar");
+        btnIngresarHerramienta.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 70, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/AgregarHerramienta_Arriendo.png"))); // NOI18N
+        btnIngresarHerramienta.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 70, -1));
+
+        jPanel4.add(btnIngresarHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 140, 130));
+
+        btnPEliminarHerramienta.setBackground(new java.awt.Color(204, 0, 204));
+        btnPEliminarHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPEliminarHerramientaMouseClicked(evt);
+            }
+        });
+        btnPEliminarHerramienta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Eliminar");
+        btnPEliminarHerramienta.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ELIMINAR.png"))); // NOI18N
+        btnPEliminarHerramienta.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 70, -1));
+
+        jPanel4.add(btnPEliminarHerramienta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 140, 130));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, 130));
+
+        Drag.setBackground(new java.awt.Color(102, 102, 255));
+
+        FrameDrag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                FrameDragMouseDragged(evt);
+            }
+        });
+        FrameDrag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FrameDragMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                FrameDragMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DragLayout = new javax.swing.GroupLayout(Drag);
+        Drag.setLayout(DragLayout);
+        DragLayout.setHorizontalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FrameDrag, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+        );
+        DragLayout.setVerticalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FrameDrag, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(Drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 70));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -404,7 +717,6 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
     private void cmbHerramientasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHerramientasActionPerformed
         // TODO add your handling code here:
-        
         Conexion con = new Conexion();
         try{
             con.getConexion();
@@ -422,12 +734,10 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         }   catch (SQLException ex) {
                 System.out.println(ex);
             }
-        
     }//GEN-LAST:event_cmbHerramientasActionPerformed
 
     private void btnArrendarHerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArrendarHerMouseClicked
         // TODO add your handling code here:
-        
         TArriendo arr = new TArriendo();
         DefaultTableModel modeloTabla = (DefaultTableModel)tblSeleccionarObra_Arriendo.getModel();
         String dato = String.valueOf(modeloTabla.getValueAt(tblSeleccionarObra_Arriendo.getSelectedRow(),0));
@@ -463,8 +773,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
                 Logger.getLogger(GUI_ArriendoHerramienta.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error","Error al Registrar" , 1);
             }
-        
-        
+
         
     }//GEN-LAST:event_btnArrendarHerMouseClicked
 
@@ -502,6 +811,97 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         txtCantidadHerramienta.setText("");
     }//GEN-LAST:event_txtCantidadHerramientaMouseClicked
 
+    private void btnArriendoHerramientaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArriendoHerramientaMouseClicked
+        // TODO add your handling btnArriendoHerramientanIngresarFuncionario.setBackground(new Color (255,204,153));
+        btnArriendoHerramienta.setBackground(new Color (255,204,153));
+        btnIngresarHerramienta.setBackground(new Color (51,0,204));
+        btnPEliminarHerramienta.setBackground(new Color (204,0,204));
+
+        ArriendoHerramienta.setVisible(true);
+        PanelIngresoHerramienta.setVisible(false);
+        PanelEliminarHerramienta.setVisible(false);
+    }//GEN-LAST:event_btnArriendoHerramientaMouseClicked
+
+    private void btnIngresarHerramientaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarHerramientaMouseClicked
+        // TODO add your handlingbtnArriendoHerramientanIngresarFuncionario.setBackground(new Color (255,102,0));
+        btnArriendoHerramienta.setBackground(new Color (255,102,0));
+        btnIngresarHerramienta.setBackground(new Color (204,204,255));
+        btnPEliminarHerramienta.setBackground(new Color (204,0,204));
+
+        ArriendoHerramienta.setVisible(false);
+        PanelIngresoHerramienta.setVisible(true);
+        PanelEliminarHerramienta.setVisible(false);
+    }//GEN-LAST:event_btnIngresarHerramientaMouseClicked
+
+    private void btnPEliminarHerramientaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPEliminarHerramientaMouseClicked
+        // TODO add your handlingbtnArriendoHerramientanIngresarFuncionario.setBackground(new Color (255,102,0));
+        btnArriendoHerramienta.setBackground(new Color (255,102,0));
+        btnIngresarHerramienta.setBackground(new Color (51,0,204));
+        btnPEliminarHerramienta.setBackground(new Color (255,153,255));
+
+        ArriendoHerramienta.setVisible(false);
+        PanelIngresoHerramienta.setVisible(false);
+        PanelEliminarHerramienta.setVisible(true);
+    }//GEN-LAST:event_btnPEliminarHerramientaMouseClicked
+
+    private void btnLimpiar_ProyectoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiar_ProyectoMouseEntered
+        // TODO add your handling code here:
+        btnLimpiar_Proyecto.setBackground(new Color (255,51,0));
+    }//GEN-LAST:event_btnLimpiar_ProyectoMouseEntered
+
+    private void btnLimpiar_ProyectoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiar_ProyectoMouseExited
+        // TODO add your handling code here:
+        btnLimpiar_Proyecto.setBackground(new Color (204,51,0));
+    }//GEN-LAST:event_btnLimpiar_ProyectoMouseExited
+
+    private void btnCrearProyectoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearProyectoMouseEntered
+        // TODO add your handling code here:
+        btnCrearProyecto.setBackground(new Color (0,204,153));
+    }//GEN-LAST:event_btnCrearProyectoMouseEntered
+
+    private void btnCrearProyectoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearProyectoMouseExited
+        // TODO add your handling code here:
+        btnCrearProyecto.setBackground(new Color (0,153,153));
+    }//GEN-LAST:event_btnCrearProyectoMouseExited
+
+    private void btnEliminarHerramientaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarHerramientaMouseEntered
+        // TODO add your handling code here:
+        btnEliminarHerramienta.setBackground(new Color (0,204,153));
+    }//GEN-LAST:event_btnEliminarHerramientaMouseEntered
+
+    private void btnEliminarHerramientaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarHerramientaMouseExited
+        // TODO add your handling code here:
+        btnEliminarHerramienta.setBackground(new Color (0,153,153));
+    }//GEN-LAST:event_btnEliminarHerramientaMouseExited
+
+    private void btnLimpiarElimHerramientaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarElimHerramientaMouseEntered
+        // TODO add your handling code here:
+        btnLimpiarElimHerramienta.setBackground(new Color (255,51,0));
+    }//GEN-LAST:event_btnLimpiarElimHerramientaMouseEntered
+
+    private void btnLimpiarElimHerramientaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarElimHerramientaMouseExited
+        // TODO add your handling code here:
+        btnLimpiarElimHerramienta.setBackground(new Color (204,51,0));
+    }//GEN-LAST:event_btnLimpiarElimHerramientaMouseExited
+
+    private void FrameDragMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen(); //para rescatar el valor X de la posición de la ventana
+        int y = evt.getYOnScreen(); //para rescatar el valor Y de la posición de la ventana
+        
+        this.setLocation(x - xMouse ,y - yMouse);
+    }//GEN-LAST:event_FrameDragMouseDragged
+
+    private void FrameDragMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FrameDragMouseClicked
+
+    private void FrameDragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_FrameDragMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -538,38 +938,80 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ArriendoHerramienta;
+    private javax.swing.JPanel Drag;
+    private javax.swing.JLabel FrameDrag;
+    private javax.swing.JPanel PanelEliminarHerramienta;
+    private javax.swing.JPanel PanelIngresoHerramienta;
     private javax.swing.JPanel btnArrendarHer;
+    private javax.swing.JPanel btnArriendoHerramienta;
     private javax.swing.JLabel btnAtras_Fun;
+    private javax.swing.JPanel btnCrearProyecto;
+    private javax.swing.JPanel btnEliminarHerramienta;
+    private javax.swing.JPanel btnIngresarHerramienta;
+    private javax.swing.JPanel btnLimpiarElimHerramienta;
     private javax.swing.JPanel btnLimpiarHerramienta;
+    private javax.swing.JPanel btnLimpiar_Proyecto;
+    private javax.swing.JPanel btnPEliminarHerramienta;
     private javax.swing.JLabel btnSalir_Fun;
     private javax.swing.JComboBox<String> cmbHerramientas;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lblDate;
     private javax.swing.JTable tblSeleccionarObra_Arriendo;
     private javax.swing.JTextField txtCantidadHerramienta;
+    private javax.swing.JTextField txtCantidadInicial;
+    private javax.swing.JTextField txtCodigoHerramientaElim;
     private javax.swing.JTextField txtDisponibilidadArriendo;
     private javax.swing.JTextField txtFechaArriendo;
     private javax.swing.JTextField txtFechaEntrega_Arriendo;
+    private javax.swing.JTextField txtNombreHer;
+    private javax.swing.JTextField txtPrecioDiario;
     private javax.swing.JTextField txtValorArriendo;
     // End of variables declaration//GEN-END:variables
 }

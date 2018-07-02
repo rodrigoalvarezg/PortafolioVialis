@@ -25,11 +25,14 @@ import javax.swing.table.DefaultTableModel;
 public class GUI_Funcionarios extends javax.swing.JFrame {
 
      TLogin tLogin = new TLogin();
+     int xMouse;
+     int yMouse;
     /**
      * Creates new form GUI_Funcionarios
      */
     public GUI_Funcionarios() {
         initComponents();
+        this.setLocationRelativeTo(null);
         muestraFecha();
         Mensajes_SalirAp men = new Mensajes_SalirAp();
         llenarTabla();
@@ -259,10 +262,20 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel51 = new javax.swing.JLabel();
+        PanelSueldoFuncionario = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel72 = new javax.swing.JLabel();
+        jSeparator27 = new javax.swing.JSeparator();
+        btnBuscarFunSueldo = new javax.swing.JPanel();
+        jLabel73 = new javax.swing.JLabel();
+        txtRutFun_Sueldo1 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblSueldosHistoricos = new javax.swing.JTable();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        txtRutFun_Sueldo = new javax.swing.JTextField();
+        jLabel76 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnProyectosFuncionario = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         btnIngresarFuncionario = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -275,6 +288,14 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         btnListarFuncionario = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        btnProyectosFuncionario = new javax.swing.JPanel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        btnSueldosFuncionario = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        Drag = new javax.swing.JPanel();
+        FrameDrag = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -282,16 +303,21 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new java.awt.CardLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 699, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Bienvenido");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 19, -1, -1));
 
         btnSalir_Fun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CERRAR_MINI_ICON.png"))); // NOI18N
         btnSalir_Fun.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -299,6 +325,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
                 btnSalir_FunMouseClicked(evt);
             }
         });
+        jPanel1.add(btnSalir_Fun, new org.netbeans.lib.awtextra.AbsoluteConstraints(966, 15, -1, -1));
 
         btnAtras_Fun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ATRAS_MINI_ICON.png"))); // NOI18N
         btnAtras_Fun.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,25 +333,32 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
                 btnAtras_FunMouseClicked(evt);
             }
         });
+        jPanel1.add(btnAtras_Fun, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 15, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("USER");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 19, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/USER_MINI_ICON_MAINMENU.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 23, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CONSTRUCTORA VIALIS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 14, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CALENDARIO_MINI_ICON_MAINMENU.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 23, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 54, 991, 13));
 
         lblDate.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         lblDate.setForeground(new java.awt.Color(255, 255, 255));
         lblDate.setText("jLabel6");
+        jPanel1.add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 23, -1, -1));
 
         jPanel9.setBackground(new java.awt.Color(102, 102, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -1240,25 +1274,99 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
 
         jPanel9.add(PanelProyectosFun, "card6");
 
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelSueldoFuncionario.setBackground(new java.awt.Color(102, 102, 255));
+        PanelSueldoFuncionario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PanelSueldoFuncionario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnProyectosFuncionario.setBackground(new java.awt.Color(204, 0, 0));
-        btnProyectosFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnProyectosFuncionarioMouseClicked(evt);
+        jPanel8.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel72.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel72.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel72.setText("Ingrese Rut de Funcionario");
+        jPanel8.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jSeparator27.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel8.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 390, 10));
+
+        btnBuscarFunSueldo.setBackground(new java.awt.Color(255, 204, 51));
+        btnBuscarFunSueldo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarFunSueldoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarFunSueldoMouseExited(evt);
             }
         });
-        btnProyectosFuncionario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnBuscarFunSueldo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Proyectos");
-        btnProyectosFuncionario.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel73.setText("BUSCAR");
+        btnBuscarFunSueldo.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 13, -1, -1));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/PROYECTOS_FUNCIONARIOS.png"))); // NOI18N
-        btnProyectosFuncionario.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 70, -1));
+        jPanel8.add(btnBuscarFunSueldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 120, 50));
 
-        jPanel3.add(btnProyectosFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 140, 130));
+        txtRutFun_Sueldo1.setBackground(new java.awt.Color(102, 102, 255));
+        txtRutFun_Sueldo1.setForeground(new java.awt.Color(255, 255, 255));
+        txtRutFun_Sueldo1.setText("Ingrese rut...");
+        txtRutFun_Sueldo1.setBorder(null);
+        txtRutFun_Sueldo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun_Sueldo1MouseClicked(evt);
+            }
+        });
+        jPanel8.add(txtRutFun_Sueldo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 250, -1));
+
+        PanelSueldoFuncionario.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 580, 100));
+
+        tblSueldosHistoricos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tblSueldosHistoricos);
+
+        PanelSueldoFuncionario.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 820, 200));
+
+        jLabel74.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel74.setText("Sueldo de Funcionario");
+        PanelSueldoFuncionario.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+
+        jLabel75.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel75.setText("Sueldos Históricos:");
+        PanelSueldoFuncionario.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+
+        txtRutFun_Sueldo.setBackground(new java.awt.Color(102, 102, 255));
+        txtRutFun_Sueldo.setForeground(new java.awt.Color(255, 255, 255));
+        txtRutFun_Sueldo.setText("Busque un funcionario...");
+        txtRutFun_Sueldo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtRutFun_Sueldo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRutFun_SueldoMouseClicked(evt);
+            }
+        });
+        PanelSueldoFuncionario.add(txtRutFun_Sueldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 310, 30));
+
+        jLabel76.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel76.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel76.setText("Sueldo Actual:");
+        PanelSueldoFuncionario.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, -1, 30));
+
+        jPanel9.add(PanelSueldoFuncionario, "card6");
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 217, -1, -1));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnIngresarFuncionario.setBackground(new java.awt.Color(255, 102, 0));
         btnIngresarFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1332,72 +1440,72 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
 
         jPanel3.add(btnListarFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 140, 130));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel1)
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel4)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblDate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAtras_Fun)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSalir_Fun)
-                        .addGap(13, 13, 13)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        btnProyectosFuncionario.setBackground(new java.awt.Color(204, 0, 0));
+        btnProyectosFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProyectosFuncionarioMouseClicked(evt);
+            }
+        });
+        btnProyectosFuncionario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel70.setText("Proyectos");
+        btnProyectosFuncionario.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/PROYECTOS_FUNCIONARIOS.png"))); // NOI18N
+        btnProyectosFuncionario.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 70, -1));
+
+        jPanel3.add(btnProyectosFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 140, 130));
+
+        btnSueldosFuncionario.setBackground(new java.awt.Color(153, 153, 153));
+        btnSueldosFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSueldosFuncionarioMouseClicked(evt);
+            }
+        });
+        btnSueldosFuncionario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Sueldos");
+        btnSueldosFuncionario.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 100, 50, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/SueldoFuncionario.png"))); // NOI18N
+        btnSueldosFuncionario.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 70, -1));
+
+        jPanel3.add(btnSueldosFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 140, 130));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+
+        Drag.setBackground(new java.awt.Color(102, 102, 255));
+
+        FrameDrag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                FrameDragMouseDragged(evt);
+            }
+        });
+        FrameDrag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FrameDragMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                FrameDragMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DragLayout = new javax.swing.GroupLayout(Drag);
+        Drag.setLayout(DragLayout);
+        DragLayout.setHorizontalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FrameDrag, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)))
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnSalir_Fun, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnAtras_Fun, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(15, 15, 15)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+        DragLayout.setVerticalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FrameDrag, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
+
+        jPanel1.add(Drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 820));
 
@@ -1412,6 +1520,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         btnEliminarFuncionario.setBackground(new Color (204,0,204));
         btnListarFuncionario.setBackground(new Color (0,153,153));
         btnProyectosFuncionario.setBackground(new Color (204,0,0));
+        btnSueldosFuncionario.setBackground(new Color (153,153,153));
         
         PanelMenuFuncionarios.setVisible(false);
         PanelIngresarFun.setVisible(true);
@@ -1419,6 +1528,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         PanelEliminarFun.setVisible(false);
         PanelListarFun.setVisible(false);
         PanelProyectosFun.setVisible(false);
+        PanelSueldoFuncionario.setVisible(false);
 
     }//GEN-LAST:event_btnIngresarFuncionarioMouseClicked
 
@@ -1429,6 +1539,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         btnEliminarFuncionario.setBackground(new Color (204,0,204));
         btnListarFuncionario.setBackground(new Color (0,153,153));
         btnProyectosFuncionario.setBackground(new Color (204,0,0));
+        btnSueldosFuncionario.setBackground(new Color (153,153,153));
         
         PanelMenuFuncionarios.setVisible(false);
         PanelIngresarFun.setVisible(false);
@@ -1436,6 +1547,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         PanelEliminarFun.setVisible(false);
         PanelListarFun.setVisible(false);
         PanelProyectosFun.setVisible(false);
+        PanelSueldoFuncionario.setVisible(false);
     }//GEN-LAST:event_btnEditarFuncionarioMouseClicked
 
     private void btnEliminarFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarFuncionarioMouseClicked
@@ -1445,6 +1557,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         btnEliminarFuncionario.setBackground(new Color (255,153,255));
         btnListarFuncionario.setBackground(new Color (0,153,153));
         btnProyectosFuncionario.setBackground(new Color (204,0,0));
+        btnSueldosFuncionario.setBackground(new Color (153,153,153));
         
         PanelMenuFuncionarios.setVisible(false);
         PanelIngresarFun.setVisible(false);
@@ -1452,6 +1565,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         PanelEliminarFun.setVisible(true);
         PanelListarFun.setVisible(false);
         PanelProyectosFun.setVisible(false);
+        PanelSueldoFuncionario.setVisible(false);
     }//GEN-LAST:event_btnEliminarFuncionarioMouseClicked
 
     private void btnListarFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarFuncionarioMouseClicked
@@ -1461,6 +1575,8 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         btnEliminarFuncionario.setBackground(new Color (204,0,204));
         btnListarFuncionario.setBackground(new Color (0,204,153));
         btnProyectosFuncionario.setBackground(new Color (204,0,0));
+        btnSueldosFuncionario.setBackground(new Color (153,153,153));
+        
         
         PanelMenuFuncionarios.setVisible(false);
         PanelIngresarFun.setVisible(false);
@@ -1468,24 +1584,27 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         PanelEliminarFun.setVisible(false);
         PanelListarFun.setVisible(true);
         PanelProyectosFun.setVisible(false);
+        PanelSueldoFuncionario.setVisible(false);
         llenarTabla();
     }//GEN-LAST:event_btnListarFuncionarioMouseClicked
 
-    private void btnProyectosFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProyectosFuncionarioMouseClicked
+    private void btnSueldosFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSueldosFuncionarioMouseClicked
         // TODO add your handling code here:
         btnIngresarFuncionario.setBackground(new Color (255,102,0));
         btnEditarFuncionario.setBackground(new Color (51,0,204));
         btnEliminarFuncionario.setBackground(new Color (204,0,204));
         btnListarFuncionario.setBackground(new Color (0,153,153));
-        btnProyectosFuncionario.setBackground(new Color (255,102,102));
+        btnProyectosFuncionario.setBackground(new Color (204,0,0));
+        btnSueldosFuncionario.setBackground(new Color (204,204,204));
         
         PanelMenuFuncionarios.setVisible(false);
         PanelIngresarFun.setVisible(false);
         PanelEditarFun.setVisible(false);
         PanelEliminarFun.setVisible(false);
         PanelListarFun.setVisible(false);
-        PanelProyectosFun.setVisible(true);
-    }//GEN-LAST:event_btnProyectosFuncionarioMouseClicked
+        PanelProyectosFun.setVisible(false);
+        PanelSueldoFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnSueldosFuncionarioMouseClicked
 
     private void btnSalir_FunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir_FunMouseClicked
         // TODO add your handling code here:
@@ -1792,6 +1911,58 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         txtRutFun_Proyecto.setText("");
     }//GEN-LAST:event_txtRutFun_ProyectoMouseClicked
 
+    private void FrameDragMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen(); //para rescatar el valor X de la posición de la ventana
+        int y = evt.getYOnScreen(); //para rescatar el valor Y de la posición de la ventana
+
+        this.setLocation(x - xMouse ,y - yMouse);
+    }//GEN-LAST:event_FrameDragMouseDragged
+
+    private void FrameDragMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FrameDragMouseClicked
+
+    private void FrameDragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_FrameDragMousePressed
+
+    private void btnProyectosFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProyectosFuncionarioMouseClicked
+        // TODO add your handling code here:
+        btnIngresarFuncionario.setBackground(new Color (255,102,0));
+        btnEditarFuncionario.setBackground(new Color (51,0,204));
+        btnEliminarFuncionario.setBackground(new Color (204,0,204));
+        btnListarFuncionario.setBackground(new Color (0,153,153));
+        btnProyectosFuncionario.setBackground(new Color (255,102,102));
+        btnSueldosFuncionario.setBackground(new Color (153,153,153));
+        
+        PanelMenuFuncionarios.setVisible(false);
+        PanelIngresarFun.setVisible(false);
+        PanelEditarFun.setVisible(false);
+        PanelEliminarFun.setVisible(false);
+        PanelListarFun.setVisible(false);
+        PanelProyectosFun.setVisible(true);
+        PanelSueldoFuncionario.setVisible(false);
+    }//GEN-LAST:event_btnProyectosFuncionarioMouseClicked
+
+    private void txtRutFun_SueldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_SueldoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutFun_SueldoMouseClicked
+
+    private void btnBuscarFunSueldoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunSueldoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarFunSueldoMouseEntered
+
+    private void btnBuscarFunSueldoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunSueldoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarFunSueldoMouseExited
+
+    private void txtRutFun_Sueldo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_Sueldo1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutFun_Sueldo1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1829,15 +2000,19 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Drag;
+    private javax.swing.JLabel FrameDrag;
     private javax.swing.JPanel PanelEditarFun;
     private javax.swing.JPanel PanelEliminarFun;
     private javax.swing.JPanel PanelIngresarFun;
     private javax.swing.JPanel PanelListarFun;
     private javax.swing.JPanel PanelMenuFuncionarios;
     private javax.swing.JPanel PanelProyectosFun;
+    private javax.swing.JPanel PanelSueldoFuncionario;
     private javax.swing.JLabel btnAtras_Fun;
     private javax.swing.JPanel btnBuscarFun;
     private javax.swing.JPanel btnBuscarFunProy;
+    private javax.swing.JPanel btnBuscarFunSueldo;
     private javax.swing.JPanel btnEditarFun;
     private javax.swing.JPanel btnEditarFuncionario;
     private javax.swing.JPanel btnEliminarFun;
@@ -1850,6 +2025,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private javax.swing.JPanel btnListarFuncionario;
     private javax.swing.JPanel btnProyectosFuncionario;
     private javax.swing.JLabel btnSalir_Fun;
+    private javax.swing.JPanel btnSueldosFuncionario;
     private javax.swing.JComboBox<String> cmbAFPFun;
     private javax.swing.JComboBox<String> cmbAFPFunEdit1;
     private javax.swing.JComboBox<String> cmbContrato;
@@ -1929,6 +2105,13 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -1940,9 +2123,11 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -1962,6 +2147,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator24;
     private javax.swing.JSeparator jSeparator25;
     private javax.swing.JSeparator jSeparator26;
+    private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -1972,6 +2158,7 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDate;
     private javax.swing.JTable tblListadoFuncionarios;
+    private javax.swing.JTable tblSueldosHistoricos;
     private javax.swing.JTextField txtApelMatFun;
     private javax.swing.JTextField txtApelMatFunEdit;
     private javax.swing.JTextField txtApelPatFun;
@@ -1990,6 +2177,8 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private javax.swing.JTextField txtRutFun;
     private javax.swing.JTextField txtRutFun1;
     private javax.swing.JTextField txtRutFun_Proyecto;
+    private javax.swing.JTextField txtRutFun_Sueldo;
+    private javax.swing.JTextField txtRutFun_Sueldo1;
     private javax.swing.JTextField txtSueldoFun;
     private javax.swing.JTextField txtSueldoFunEdit;
     // End of variables declaration//GEN-END:variables

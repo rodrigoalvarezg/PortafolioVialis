@@ -18,10 +18,13 @@ public final class MainMenu extends javax.swing.JFrame {
 
     
     TLogin tLogin = new TLogin();
+    int xMouse;
+    int yMouse;
     
     
     public MainMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
         muestraFecha();
         jLabel3.setText(tLogin.getUsuario());        
     }
@@ -83,8 +86,13 @@ public final class MainMenu extends javax.swing.JFrame {
         btnHito = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        Drag = new javax.swing.JPanel();
+        FrameDrag = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
@@ -400,8 +408,8 @@ public final class MainMenu extends javax.swing.JFrame {
                                     .addComponent(lblDate, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -426,6 +434,31 @@ public final class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 540));
+
+        javax.swing.GroupLayout DragLayout = new javax.swing.GroupLayout(Drag);
+        Drag.setLayout(DragLayout);
+        DragLayout.setHorizontalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1040, Short.MAX_VALUE)
+        );
+        DragLayout.setVerticalGroup(
+            DragLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 80));
+
+        FrameDrag.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                FrameDragMouseDragged(evt);
+            }
+        });
+        FrameDrag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                FrameDragMousePressed(evt);
+            }
+        });
+        getContentPane().add(FrameDrag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -595,6 +628,21 @@ public final class MainMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCuentasMouseClicked
 
+    private void FrameDragMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen(); //para rescatar el valor X de la posición de la ventana
+        int y = evt.getYOnScreen(); //para rescatar el valor Y de la posición de la ventana
+        
+        this.setLocation(x - xMouse ,y - yMouse);
+        
+    }//GEN-LAST:event_FrameDragMouseDragged
+
+    private void FrameDragMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_FrameDragMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -631,6 +679,8 @@ public final class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Drag;
+    private javax.swing.JLabel FrameDrag;
     private javax.swing.JPanel btnCotizaciones;
     private javax.swing.JPanel btnCuentas;
     private javax.swing.JPanel btnFuncionarios;
