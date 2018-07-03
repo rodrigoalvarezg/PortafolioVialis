@@ -278,11 +278,33 @@ public class Login extends javax.swing.JFrame {
           
           if(tLogin.encontrado){
               if(tLogin.confirmar(pass)){
+                  if(tLogin.getId_perfil()==1){
+                     MainMenu menu = new MainMenu();
+                     menu.setVisible(true);
+                     dispose();
+                     new Mensajes_Bienvenido().setVisible(true); 
+                  }else if(tLogin.getId_perfil()==2){
+                      MainMenu_GerenteProyecto menu = new MainMenu_GerenteProyecto();
+                     menu.setVisible(true);
+                     dispose();
+                     new Mensajes_Bienvenido().setVisible(true);
+                  }else if(tLogin.getId_perfil()==3){
+                      MainMenu_JefeProyecto menu = new MainMenu_JefeProyecto();
+                     menu.setVisible(true);
+                     dispose();
+                     new Mensajes_Bienvenido().setVisible(true);
+                  }else if(tLogin.getId_perfil()==4){
+                      MainMenu_JefeBodega menu = new MainMenu_JefeBodega();
+                     menu.setVisible(true);
+                     dispose();
+                     new Mensajes_Bienvenido().setVisible(true);
+                  }else if(tLogin.getId_perfil()==5){
+                     MainMenu_RecursosHumanos menu = new MainMenu_RecursosHumanos();
+                     menu.setVisible(true);
+                     dispose();
+                     new Mensajes_Bienvenido().setVisible(true); 
+                  }
                   
-                  MainMenu menu = new MainMenu();
-                  menu.setVisible(true);
-                  dispose();
-                  new Mensajes_Bienvenido().setVisible(true);
                   
               }else{
                   txtContraseña.setText("");

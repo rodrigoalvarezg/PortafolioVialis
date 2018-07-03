@@ -104,8 +104,6 @@ public class GUI_Hitos extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         txtTareaSeleccionada = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
-        btnActaFinal = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
         txtPorcentajeAvance = new javax.swing.JTextField();
         jSeparator35 = new javax.swing.JSeparator();
@@ -658,27 +656,6 @@ public class GUI_Hitos extends javax.swing.JFrame {
         jLabel36.setText("Seleccione Tarea:");
         PanelSeguimiento.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
 
-        btnActaFinal.setBackground(new java.awt.Color(255, 204, 0));
-        btnActaFinal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnActaFinalMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnActaFinalMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnActaFinalMouseExited(evt);
-            }
-        });
-        btnActaFinal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("ACTA FINAL");
-        btnActaFinal.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, -1));
-
-        PanelSeguimiento.add(btnActaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 150, 50));
-
         jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel74.setForeground(new java.awt.Color(255, 255, 255));
         jLabel74.setText("Ingrese nuevo porcentaje:");
@@ -1169,32 +1146,6 @@ public class GUI_Hitos extends javax.swing.JFrame {
         txtTareaSeleccionada.setText("Tarea Seleccionada...");
     }//GEN-LAST:event_tblSeleccioneHito_SeguimientoMouseClicked
 
-    private void btnActaFinalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActaFinalMouseClicked
-        // TODO add your handling code here:
-        HitosConsultas hc = new HitosConsultas();
-        DefaultTableModel tm = (DefaultTableModel)tblSeleccioneTarea_Seguimiento.getModel();
-        String id_tarea = String.valueOf(tm.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),0));
-        String avance = txtPorcentajeAvance.getText();
-        DefaultTableModel tm2 = (DefaultTableModel)tblSeleccioneHito_Seguimiento.getModel();
-        String id_hito = String.valueOf(tm2.getValueAt(tblSeleccioneHito_Seguimiento.getSelectedRow(),0));
-        
-        hc.actualizarTarea(id_tarea, id_hito, avance);
-        tblSeleccionarObra_Seguimiento_Tareas.clearSelection();
-        llenarHitoSeguimiento("");
-        llenarTareaSeguimiento("");
-        txtTareaSeleccionada.setText("Tarea Seleccionada...");
-        txtPorcentajeAvance.setText("%");
-        
-    }//GEN-LAST:event_btnActaFinalMouseClicked
-
-    private void btnActaFinalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActaFinalMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActaFinalMouseEntered
-
-    private void btnActaFinalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActaFinalMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActaFinalMouseExited
-
     private void txtPorcentajeAvanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceMouseClicked
         // TODO add your handling code here:
         if(txtPorcentajeAvance.getText().equals("%")){
@@ -1326,6 +1277,18 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
     private void btnActualizarTarea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTarea1MouseClicked
         // TODO add your handling code here:
+       DefaultTableModel tm = (DefaultTableModel)tblSeleccioneHito_Seguimiento.getModel();
+       String id_hito = String.valueOf(tm.getValueAt(tblSeleccioneHito_Seguimiento.getSelectedRow(),0));
+       DefaultTableModel tm1 = (DefaultTableModel)tblSeleccioneTarea_Seguimiento.getModel();
+       String id_tarea = String.valueOf(tm1.getValueAt(tblSeleccioneTarea_Seguimiento.getSelectedRow(),0));
+       int avance = Integer.parseInt(txtPorcentajeAvance.getText());
+       HitosConsultas hc = new HitosConsultas();
+       
+       if(txtPorcentajeAvance.getText().equals("%") || txtPorcentajeAvance.getText().equals("")|| id_hito.equals("")||id_tarea.equals("")){
+           JOptionPane.showMessageDialog(null, "Debe seleccionar elementos.");
+       }else{
+           hc.actualizarTarea(id_tarea, id_hito, String.valueOf(avance));
+       }
     }//GEN-LAST:event_btnActualizarTarea1MouseClicked
 
     private void btnActualizarTarea1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTarea1MouseEntered
@@ -1379,7 +1342,6 @@ public class GUI_Hitos extends javax.swing.JFrame {
     private javax.swing.JPanel PanelRegistrarActividades;
     private javax.swing.JPanel PanelRegistrarHito;
     private javax.swing.JPanel PanelSeguimiento;
-    private javax.swing.JPanel btnActaFinal;
     private javax.swing.JPanel btnActualizarTarea1;
     private javax.swing.JLabel btnAtras_Fun;
     private javax.swing.JPanel btnEditarFuncionario;
@@ -1408,7 +1370,6 @@ public class GUI_Hitos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel49;
