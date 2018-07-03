@@ -157,7 +157,7 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         cantidad = txtNombreFunEdit1.getText();
         modeloTabla.addRow(new Object[]{material, cantidad});
         cant.add(cantidad);
-
+        
     }
 
     /**
