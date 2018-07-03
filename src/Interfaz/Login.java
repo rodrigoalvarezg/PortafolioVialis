@@ -285,14 +285,14 @@ public class Login extends javax.swing.JFrame {
                   new Mensajes_Bienvenido().setVisible(true);
                   
               }else{
-                  new Mensajes_ContraseñaIncorrecta().setVisible(true);
                   txtContraseña.setText("");
+                  new Mensajes_ContraseñaIncorrecta().setVisible(true);
               }
               
           }else{
-              JOptionPane.showMessageDialog(null, "Usuario No Encontrado ", "ERROR", 1);
               txtUsuario.setText("");
               txtContraseña.setText("");
+              new Mensajes_ContraseñaIncorrecta().setVisible(true);
           }
                
 

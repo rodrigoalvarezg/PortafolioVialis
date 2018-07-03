@@ -9,7 +9,6 @@ import Conexion.Conexion;
 import Modelo.Maqui_Herra;
 import Negocio.TArriendo;
 import Negocio.TLogin;
-import Negocio.idAutomatico;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;

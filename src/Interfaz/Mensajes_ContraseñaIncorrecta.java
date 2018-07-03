@@ -55,8 +55,8 @@ public class Mensajes_ContraseñaIncorrecta extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CONTRASEÑA INCORRECTA");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+        jLabel1.setText("CREDENCIALES INCORRECTAS");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
 
         btnSalir_Fun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/CERRAR_MINI_ICON.png"))); // NOI18N
         btnSalir_Fun.addMouseListener(new java.awt.event.MouseAdapter() {
