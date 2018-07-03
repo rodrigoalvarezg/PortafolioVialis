@@ -374,7 +374,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
         txtFechaArriendo.setBackground(new java.awt.Color(102, 102, 255));
         txtFechaArriendo.setForeground(new java.awt.Color(255, 255, 255));
-        txtFechaArriendo.setText("MM/DD/AAAA...");
+        txtFechaArriendo.setText("DD/MM/AAAA...");
         txtFechaArriendo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtFechaArriendo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -393,7 +393,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
         txtFechaEntrega_Arriendo.setBackground(new java.awt.Color(102, 102, 255));
         txtFechaEntrega_Arriendo.setForeground(new java.awt.Color(255, 255, 255));
-        txtFechaEntrega_Arriendo.setText("MM/DD/AAAA...");
+        txtFechaEntrega_Arriendo.setText("DD/MM/AAAA...");
         txtFechaEntrega_Arriendo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtFechaEntrega_Arriendo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
