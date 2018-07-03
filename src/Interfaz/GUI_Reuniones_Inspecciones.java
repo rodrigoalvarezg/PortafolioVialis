@@ -1053,7 +1053,7 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
                     txtHoraTermino.getText(), 
                     txtMotivo.getText(), 
                     txtFechaReunion.getText(), 
-                    id_hi, dato);
+                    String.valueOf(id_hi), dato);
             new Mensajes_ExitoIngreso().setVisible(true);
         }catch(Exception ex){
             new Mensajes_ErrorIngresar().setVisible(true);

@@ -21,7 +21,7 @@ public class TReunion extends Conexion{
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public void registrarReunion(String Citador_Reun, String Motivo_Reun, String Fecha_Reun, String Hora_Ini_Reun, String Hora_Ter_Reun, int hito_id_hito, String hito_proyecto_id_proy) {
+    public void registrarReunion(String Citador_Reun, String Motivo_Reun, String Fecha_Reun, String Hora_Ini_Reun, String Hora_Ter_Reun, String hito_id_hito, String hito_proyecto_id_proy) {
         try{
             ps = con.getConexion().prepareStatement("call AG_REUNION(?,?,?,?,?,?,?)");
             ps.setString(1, Citador_Reun);
@@ -29,7 +29,7 @@ public class TReunion extends Conexion{
             ps.setString(3, Fecha_Reun);
             ps.setString(4, Hora_Ini_Reun);
             ps.setString(5, Hora_Ter_Reun);
-            ps.setInt(6, hito_id_hito);
+            ps.setString(6, hito_id_hito);
             ps.setString(7, hito_proyecto_id_proy);
             ps.executeUpdate();
             System.out.println("Registro Realizado");

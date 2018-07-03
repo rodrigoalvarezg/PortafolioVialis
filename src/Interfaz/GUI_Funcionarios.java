@@ -11,6 +11,7 @@ import Interfaz.*;
 import Negocio.TFuncionarios;
 import Negocio.TProyecto;
 import Negocio.TLogin;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,6 +37,8 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
         muestraFecha();
         Mensajes_SalirAp men = new Mensajes_SalirAp();
         llenarTabla();
+        iniciarTablaSueldos();
+        iniciarTablaProyectos();
         jLabel3.setText(tLogin.getUsuario());
     }
     
@@ -69,6 +72,75 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
             }
             rs.close();
         } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    void iniciarTablaSueldos(){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            DefaultTableModel value = new DefaultTableModel();
+            tblSueldosHistoricos.setModel(value);
+            value.addColumn("SUELDO");
+            value.addColumn("FECHA");
+        }catch (Exception e){
+            System.out.println(e);
+    }
+    }
+    
+    void iniciarTablaProyectos(){
+        try{
+            
+            DefaultTableModel value = new DefaultTableModel();
+            jTable1.setModel(value);
+            value.addColumn("PROYECTO");
+        }catch (Exception e){
+            System.out.println(e);
+    }
+    }
+    
+    void llenarTablaSueldos(String rut){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM sueldo_historico WHERE rut_trab ='"+rut+"' ORDER BY pago");
+            DefaultTableModel value = new DefaultTableModel();
+            tblSueldosHistoricos.setModel(value);
+            value.addColumn("SUELDO");
+            value.addColumn("FECHA");
+            while(rs.next()){
+                value.addRow(new Object[]{rs.getInt("SUELDO"), rs.getDate("PAGO")});
+            }
+            
+            ResultSet rs2 = stmt.executeQuery("SELECT SUELDO_BASE_TRAB FROM TRABAJADOR WHERE RUN_TRAB='"+rut+"'");
+            while(rs2.next()){
+                txtRutFun_Sueldo.setText((String) rs2.getString("SUELDO_BASE_TRAB"));
+            }
+            
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    void llenarTablaProyectos(String rut){
+        Conexion con = new Conexion();
+        try{
+            
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM PROY_TRAB WHERE trabajador_run_trab='"+rut+"'");
+            DefaultTableModel value = new DefaultTableModel();
+            jTable1.setModel(value);
+
+            value.addColumn("PROYECTO");
+            while(rs.next()){
+                value.addRow(new Object[]{rs.getString("PROYECTO_ID_PROY")});
+            }
+            
+        }catch (Exception e){
             System.out.println(e);
         }
     }
@@ -1234,6 +1306,9 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
 
         btnBuscarFunProy.setBackground(new java.awt.Color(255, 204, 51));
         btnBuscarFunProy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarFunProyMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnBuscarFunProyMouseEntered(evt);
             }
@@ -1292,6 +1367,9 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
 
         btnBuscarFunSueldo.setBackground(new java.awt.Color(255, 204, 51));
         btnBuscarFunSueldo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarFunSueldoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnBuscarFunSueldoMouseEntered(evt);
             }
@@ -1962,6 +2040,21 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private void txtRutFun_Sueldo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_Sueldo1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRutFun_Sueldo1MouseClicked
+
+    private void btnBuscarFunProyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunProyMouseClicked
+
+        llenarTablaProyectos(txtRutFun_Proyecto.getText());
+        
+    }//GEN-LAST:event_btnBuscarFunProyMouseClicked
+
+    private void btnBuscarFunSueldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunSueldoMouseClicked
+        
+        
+        llenarTablaSueldos(txtRutFun_Sueldo1.getText());
+        
+        
+        
+    }//GEN-LAST:event_btnBuscarFunSueldoMouseClicked
 
     /**
      * @param args the command line arguments
