@@ -264,7 +264,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
         
-        
+             
           tLogin.setUsuario(txtUsuario.getText());
           char[] password = txtContraseña.getPassword();
           String pass = new String(password);
@@ -278,14 +278,17 @@ public class Login extends javax.swing.JFrame {
           
           if(tLogin.encontrado){
               if(tLogin.confirmar(pass)){
-                  JOptionPane.showMessageDialog(null, "¡Bienvenido!", "Ingreso Exitoso", 1);
+                  
                   MainMenu menu = new MainMenu();
                   menu.setVisible(true);
                   dispose();
+                  new Mensajes_Bienvenido().setVisible(true);
+                  
               }else{
-                  JOptionPane.showMessageDialog(null, "Contraseña Incorrecta", "ERROR", 1);
+                  new Mensajes_ContraseñaIncorrecta().setVisible(true);
+                  txtContraseña.setText("");
               }
-              txtContraseña.setText("");
+              
           }else{
               JOptionPane.showMessageDialog(null, "Usuario No Encontrado ", "ERROR", 1);
               txtUsuario.setText("");

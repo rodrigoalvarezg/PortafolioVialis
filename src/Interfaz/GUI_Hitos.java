@@ -104,11 +104,13 @@ public class GUI_Hitos extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         txtTareaSeleccionada = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
-        btnActualizarTarea = new javax.swing.JPanel();
+        btnActaFinal = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
         txtPorcentajeAvance = new javax.swing.JTextField();
         jSeparator35 = new javax.swing.JSeparator();
+        btnActualizarTarea1 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnIngresarFuncionario = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -656,26 +658,26 @@ public class GUI_Hitos extends javax.swing.JFrame {
         jLabel36.setText("Seleccione Tarea:");
         PanelSeguimiento.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
 
-        btnActualizarTarea.setBackground(new java.awt.Color(0, 153, 153));
-        btnActualizarTarea.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnActaFinal.setBackground(new java.awt.Color(255, 204, 0));
+        btnActaFinal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnActualizarTareaMouseClicked(evt);
+                btnActaFinalMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnActualizarTareaMouseEntered(evt);
+                btnActaFinalMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnActualizarTareaMouseExited(evt);
+                btnActaFinalMouseExited(evt);
             }
         });
-        btnActualizarTarea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnActaFinal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("ACTUALIZAR");
-        btnActualizarTarea.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, -1));
+        jLabel37.setText("ACTA FINAL");
+        btnActaFinal.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, -1));
 
-        PanelSeguimiento.add(btnActualizarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 150, 50));
+        PanelSeguimiento.add(btnActaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 150, 50));
 
         jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel74.setForeground(new java.awt.Color(255, 255, 255));
@@ -707,6 +709,27 @@ public class GUI_Hitos extends javax.swing.JFrame {
 
         jSeparator35.setForeground(new java.awt.Color(255, 255, 255));
         PanelSeguimiento.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 290, 10));
+
+        btnActualizarTarea1.setBackground(new java.awt.Color(0, 153, 153));
+        btnActualizarTarea1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnActualizarTarea1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnActualizarTarea1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnActualizarTarea1MouseExited(evt);
+            }
+        });
+        btnActualizarTarea1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("ACTUALIZAR");
+        btnActualizarTarea1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, -1));
+
+        PanelSeguimiento.add(btnActualizarTarea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 150, 50));
 
         jPanel9.add(PanelSeguimiento, "card4");
 
@@ -1146,7 +1169,7 @@ public class GUI_Hitos extends javax.swing.JFrame {
         txtTareaSeleccionada.setText("Tarea Seleccionada...");
     }//GEN-LAST:event_tblSeleccioneHito_SeguimientoMouseClicked
 
-    private void btnActualizarTareaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTareaMouseClicked
+    private void btnActaFinalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActaFinalMouseClicked
         // TODO add your handling code here:
         HitosConsultas hc = new HitosConsultas();
         DefaultTableModel tm = (DefaultTableModel)tblSeleccioneTarea_Seguimiento.getModel();
@@ -1162,15 +1185,15 @@ public class GUI_Hitos extends javax.swing.JFrame {
         txtTareaSeleccionada.setText("Tarea Seleccionada...");
         txtPorcentajeAvance.setText("%");
         
-    }//GEN-LAST:event_btnActualizarTareaMouseClicked
+    }//GEN-LAST:event_btnActaFinalMouseClicked
 
-    private void btnActualizarTareaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTareaMouseEntered
+    private void btnActaFinalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActaFinalMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarTareaMouseEntered
+    }//GEN-LAST:event_btnActaFinalMouseEntered
 
-    private void btnActualizarTareaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTareaMouseExited
+    private void btnActaFinalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActaFinalMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarTareaMouseExited
+    }//GEN-LAST:event_btnActaFinalMouseExited
 
     private void txtPorcentajeAvanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPorcentajeAvanceMouseClicked
         // TODO add your handling code here:
@@ -1301,6 +1324,18 @@ public class GUI_Hitos extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_FrameDragMousePressed
 
+    private void btnActualizarTarea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTarea1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarTarea1MouseClicked
+
+    private void btnActualizarTarea1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTarea1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarTarea1MouseEntered
+
+    private void btnActualizarTarea1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarTarea1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarTarea1MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1344,7 +1379,8 @@ public class GUI_Hitos extends javax.swing.JFrame {
     private javax.swing.JPanel PanelRegistrarActividades;
     private javax.swing.JPanel PanelRegistrarHito;
     private javax.swing.JPanel PanelSeguimiento;
-    private javax.swing.JPanel btnActualizarTarea;
+    private javax.swing.JPanel btnActaFinal;
+    private javax.swing.JPanel btnActualizarTarea1;
     private javax.swing.JLabel btnAtras_Fun;
     private javax.swing.JPanel btnEditarFuncionario;
     private javax.swing.JPanel btnEliminarFuncionario;
@@ -1373,6 +1409,7 @@ public class GUI_Hitos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;

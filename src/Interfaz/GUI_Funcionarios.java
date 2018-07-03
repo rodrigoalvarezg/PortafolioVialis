@@ -1716,9 +1716,9 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
                     cmbProfesion.getSelectedIndex(),
                     txtFonoFun.getText(), 
                     txtEmailFun.getText());
-            JOptionPane.showMessageDialog(null, "Registrar", "Registro Exitoso", 1);
+            new Mensajes_ExitoIngreso().setVisible(true);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Registro Fallido", 1);
+            new Mensajes_ErrorIngresar().setVisible(true);
         }
         
         
@@ -1727,10 +1727,10 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
     private void btnEliminarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarFunMouseClicked
         TFuncionarios rf = new TFuncionarios();
         try{
-            JOptionPane.showMessageDialog(null, "Eliminar", "Eliminado con Exito", 1);
+            new Mensajes_ExitoEliminar().setVisible(true);
             rf.eliminarFuncionario(txtRutElimFun.getText());
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Eliminado sin Exito", 1); 
+            new Mensajes_ErrorEliminar().setVisible(true);
         }
     }//GEN-LAST:event_btnEliminarFunMouseClicked
 
@@ -1793,9 +1793,9 @@ public class GUI_Funcionarios extends javax.swing.JFrame {
                     cmbProfesionEdit.getSelectedIndex(),
                     txtFonoFunEdit.getText(), 
                     txtEmailFunEdit.getText());
-            JOptionPane.showMessageDialog(null, "Registrar", "Registro Actualizado", 1);
+            new Mensajes_ExitoModificacion().setVisible(true);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Actulizacion Fallida", 1);
+            new Mensajes_ErrorModificar().setVisible(true);
         
         }
     }//GEN-LAST:event_btnEditarFunMouseClicked

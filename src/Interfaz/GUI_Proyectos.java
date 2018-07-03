@@ -1128,9 +1128,9 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         TProyecto rp = new TProyecto();
         try{
              rp.registrarProyecto(txtNombreProyecto.getText(), txtDescripcionProyecto.getText());
-             JOptionPane.showMessageDialog(null, "Registrar", "Registro Exitoso", 1);
+             new Mensajes_ExitoIngreso().setVisible(true);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Registro no Exitoso", 1);   
+            new Mensajes_ErrorIngresar().setVisible(true);   
         }
         
     }//GEN-LAST:event_btnCrearProyectoMouseClicked
@@ -1139,9 +1139,9 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         TProyecto rp = new TProyecto();
         try{
             rp.eliminarProyecto(txtCodProyecto_Elim.getText());
-            JOptionPane.showMessageDialog(null, "Eliminar", "Eliminado con Exito", 1);            
+            new Mensajes_ExitoEliminar().setVisible(true);          
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Eliminado sin Exito", 1); 
+            new Mensajes_ErrorEliminar().setVisible(true);
         }
         
     }//GEN-LAST:event_btnEliminarProyectoMouseClicked
@@ -1174,9 +1174,9 @@ public class GUI_Proyectos extends javax.swing.JFrame {
         TProyecto rp = new TProyecto();
         try{
              rp.editarProyecto(txtNombreProyecto_Edit.getText(), txtDescripcionProyecto_Edit.getText(), txtCodEditarProyecto.getText());
-             JOptionPane.showMessageDialog(null, "Actualizar", "Actualizado", 1);
+             new Mensajes_ExitoModificacion().setVisible(true);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Registro no Actualizado", 1); 
+            new Mensajes_ExitoModificacion().setVisible(true);
         }
     }//GEN-LAST:event_btnEditarProyectoMouseClicked
 

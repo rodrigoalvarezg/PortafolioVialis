@@ -1111,9 +1111,9 @@ public class GUI_Materiales extends javax.swing.JFrame {
         MaterialConsultas mc = new MaterialConsultas();
         try{
             mc.agregarMaterial(txtNombreMat.getText(), Integer.parseInt(txtStockMaterial.getText()));
-            JOptionPane.showMessageDialog(null, "Registrar", "Registro Exitoso", 1);
+            new Mensajes_ExitoIngreso().setVisible(true);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Registro no Exitoso", 1);   
+            new Mensajes_ErrorIngresar().setVisible(true);
         }
         
     }//GEN-LAST:event_btnInsertarMatMouseClicked
@@ -1123,9 +1123,9 @@ public class GUI_Materiales extends javax.swing.JFrame {
         MaterialConsultas mc = new MaterialConsultas();
         try{
             mc.eliminarMaterial(txtMaterialCodElim.getText());
-            JOptionPane.showMessageDialog(null, "Eliminar", "Eliminado con Exito", 1);
+            new Mensajes_ExitoEliminar().setVisible(true);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Eliminado sin Exito", 1);
+            new Mensajes_ErrorEliminar().setVisible(true);
         }
     }//GEN-LAST:event_btnEliminarMaterialMouseClicked
 
@@ -1159,9 +1159,9 @@ public class GUI_Materiales extends javax.swing.JFrame {
         try{
             
             mc.editarMaterial(txtIdMaterial.getText(), txtNombreMatEdit.getText(), Integer.parseInt(txtStockMaterialEdit.getText()));
-            JOptionPane.showMessageDialog(null, "Actualizar", "Actualizado", 1);            
+            new Mensajes_ExitoModificacion().setVisible(true);         
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error", "Registro no Actualizado", 1); 
+            new Mensajes_ErrorModificar().setVisible(true);
         }
         
     }//GEN-LAST:event_btnEditarMatMouseClicked

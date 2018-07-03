@@ -767,7 +767,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Error","Cantidad solicitada excede al stock disponible" , 1);
                 } else {
                     arr.registrarArriendo(txtFechaArriendo.getText(), txtFechaEntrega_Arriendo.getText(), id_mh, dato, cantidad);
-                    JOptionPane.showMessageDialog(null, "Exito","Registro Exitoso" , 1);
+                    new Mensajes_ExitoIngreso().setVisible(true);
             }                
             } catch (ParseException ex) {
                 Logger.getLogger(GUI_ArriendoHerramienta.class.getName()).log(Level.SEVERE, null, ex);
