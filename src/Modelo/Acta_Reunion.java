@@ -5,12 +5,13 @@ import java.util.Date;
 
 public class Acta_Reunion {
     
-    private String Id_Reun, Citador_Reun, Motivo_Reun,hito_id_hito,hito_proyecto_id_proy;
+    private int hito_id_hito;
+    private String Id_Reun, Citador_Reun, Motivo_Reun,hito_proyecto_id_proy;
     private Date Fecha_Reun, Hora_Ini_Reun, Hora_Ter_Reun; 
     
     public Acta_Reunion(){}
 
-    public Acta_Reunion(String Id_Reun, String Citador_Reun, String Motivo_Reun, String hito_id_hito, String hito_proyecto_id_proy, Date Hora_Ini_Reun, Date Hora_Ter_Reun) {
+    public Acta_Reunion(String Id_Reun, String Citador_Reun, String Motivo_Reun, int hito_id_hito, String hito_proyecto_id_proy, Date Hora_Ini_Reun, Date Hora_Ter_Reun) {
         this.Id_Reun = Id_Reun;
         this.Citador_Reun = Citador_Reun;
         this.Motivo_Reun = Motivo_Reun;
@@ -44,11 +45,11 @@ public class Acta_Reunion {
         this.Motivo_Reun = Motivo_Reun;
     }
 
-    public String getHito_id_hito() {
+    public int getHito_id_hito() {
         return hito_id_hito;
     }
 
-    public void setHito_id_hito(String hito_id_hito) {
+    public void setHito_id_hito(int hito_id_hito) {
         this.hito_id_hito = hito_id_hito;
     }
 

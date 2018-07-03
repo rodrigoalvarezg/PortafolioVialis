@@ -5,7 +5,15 @@
  */
 package Interfaz;
 
+import Conexion.Conexion;
+import Negocio.TInspecciones;
+import Negocio.TReunion;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +29,102 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     public GUI_Reuniones_Inspecciones() {
         initComponents();
         this.setLocationRelativeTo(null);
+        llenar_tblSeguimientoReuniones();
+        llenar_tblSeguimientoInspecciones();
+        llenar_cmbHitoReunion();
+        llenar_cmbHitoInspeccion();
+    }
+    
+    void llenar_cmbHitoInspeccion(){
+    Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM HITO")){
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                modeloCombo.addElement("Seleccionar");
+                cmbHitoInspeccion.setModel(modeloCombo);
+                while(rs.next()){
+                   // Maqui_Herra mh = new Maqui_Herra(rs.getString("NOMBRE_MH"));
+                    modeloCombo.addElement(rs.getString("ID_HITO"));
+                    cmbHitoInspeccion.setModel(modeloCombo);
+                }               
+                
+            }
+            
+        }catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    void llenar_cmbHitoReunion(){
+    Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM HITO")){
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                modeloCombo.addElement("Seleccionar");
+                cmbHitoReunion.setModel(modeloCombo);
+                while(rs.next()){
+                   // Maqui_Herra mh = new Maqui_Herra(rs.getString("NOMBRE_MH"));
+                    modeloCombo.addElement(rs.getString("ID_HITO"));
+                    cmbHitoReunion.setModel(modeloCombo);
+                }               
+                
+            }
+            
+        }catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    void llenar_tblSeguimientoReuniones(){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM ACTA_REUNION")){
+                DefaultTableModel modeloTabla = new DefaultTableModel();
+                tblSeguimientoReuniones.setModel(modeloTabla);
+                modeloTabla.addColumn("NOMBRE");
+                modeloTabla.addColumn("CITADOR"); 
+                modeloTabla.addColumn("DESCRIPCION"); 
+                modeloTabla.addColumn("FECHA"); 
+                while(rs.next()){
+                   modeloTabla.addRow(new Object[]{ rs.getString("ID_REUN"),rs.getString("CITADOR_REUN"),
+                   rs.getString("MOTIVO_REUN"), rs.getDate("FECHA_REUN")});
+                }               
+                
+            }
+            
+        }catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    void llenar_tblSeguimientoInspecciones(){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM ACTA_REUNION")){
+                DefaultTableModel modeloTabla = new DefaultTableModel();
+                tblSeguimientoInspecciones.setModel(modeloTabla);
+                modeloTabla.addColumn("NOMBRE");
+                modeloTabla.addColumn("CITADOR"); 
+                modeloTabla.addColumn("DESCRIPCION"); 
+                modeloTabla.addColumn("FECHA"); 
+                while(rs.next()){
+                   modeloTabla.addRow(new Object[]{ rs.getString("ID_REUN"),rs.getString("CITADOR_REUN"),
+                   rs.getString("MOTIVO_REUN"), rs.getDate("FECHA_REUN")});
+                }               
+                
+            }
+            
+        }catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -922,7 +1026,39 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarFunMouseExited
 
     private void btnRegistrarReunionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarReunionMouseClicked
-
+        TReunion tr = new TReunion();
+        DefaultTableModel modeloTabla = (DefaultTableModel)tblSeleccionarObra_Reunion.getModel();
+        String dato = String.valueOf(modeloTabla.getValueAt(tblSeleccionarObra_Reunion.getSelectedRow(),0));
+        Conexion con = new Conexion();
+        int id_hi = 0;
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT ID_HITO FROM HITO WHERE NOMBRE_HITO ='"+cmbHitoReunion.getSelectedItem().toString()+"'");
+                while(rs.next()){
+                    String id = rs.getString("ID_HITO");
+                    id_hi = Integer.parseInt(id);
+                }                
+            }catch (SQLException ex){
+                System.out.println(ex);
+            }
+        }catch(Exception ex){
+            
+        }
+        
+        try{
+            tr.registrarReunion(txtNombreCitador.getText(),
+                    txtHoraInicio.getText(),
+                    txtHoraTermino.getText(), 
+                    txtMotivo.getText(), 
+                    txtFechaReunion.getText(), 
+                    id_hi, dato);
+            new Mensajes_ExitoIngreso().setVisible(true);
+        }catch(Exception ex){
+            new Mensajes_ErrorIngresar().setVisible(true);
+        }
+        
     }//GEN-LAST:event_btnRegistrarReunionMouseClicked
 
     private void btnRegistrarReunionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarReunionMouseEntered
@@ -1014,7 +1150,33 @@ public class GUI_Reuniones_Inspecciones extends javax.swing.JFrame {
     }//GEN-LAST:event_txtInspectorMouseClicked
 
     private void btnRegistrarInspeccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarInspeccionMouseClicked
-        // TODO add your handling code here:
+        TInspecciones ti = new TInspecciones();
+        DefaultTableModel modeloTabla = (DefaultTableModel)tblSeleccionarObra_RegInspecciones.getModel();
+        String dato = String.valueOf(modeloTabla.getValueAt(tblSeleccionarObra_RegInspecciones.getSelectedRow(),0));
+        Conexion con = new Conexion();
+        int id_hi = 0;
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT ID_HITO FROM HITO WHERE NOMBRE_HITO ='"+cmbHitoInspeccion.getSelectedItem().toString()+"'");
+                while(rs.next()){
+                    String id = rs.getString("ID_HITO");
+                    id_hi = Integer.parseInt(id);
+                }                
+            }catch (SQLException ex){
+                System.out.println(ex);
+            }
+        }catch(Exception ex){
+            
+        } 
+        
+        try{
+            ti.registrarInspecciones(Double.parseDouble(txtPorcentajeAvance.getText()),
+                    txtDescripcionInspeccion.getText(), String.valueOf(id_hi), dato);
+        }catch(Exception ex){
+            
+        }
     }//GEN-LAST:event_btnRegistrarInspeccionMouseClicked
 
     private void btnRegistrarInspeccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarInspeccionMouseEntered

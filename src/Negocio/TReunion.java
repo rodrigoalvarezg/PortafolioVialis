@@ -21,18 +21,16 @@ public class TReunion extends Conexion{
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public void registrarReunion(String Citador_Reun, String Motivo_Reun, String Fecha_Reun, String Hora_Ini_Reun, String Hora_Ter_Reun, String hito_id_hito, String hito_proyecto_id_proy) {
-        String Id_Reun = Citador_Reun.substring(0,3) + Motivo_Reun.substring(0,3);
+    public void registrarReunion(String Citador_Reun, String Motivo_Reun, String Fecha_Reun, String Hora_Ini_Reun, String Hora_Ter_Reun, int hito_id_hito, String hito_proyecto_id_proy) {
         try{
-            ps = con.getConexion().prepareStatement("call AG_REUNION(?,?,?,?,?,?,?,?)");
-            ps.setString(1, Id_Reun);
-            ps.setString(2, Citador_Reun);
-            ps.setString(3, Motivo_Reun);
-            ps.setString(4, Fecha_Reun);
-            ps.setString(5, Hora_Ini_Reun);
-            ps.setString(6, Hora_Ter_Reun);
-            ps.setString(7, hito_id_hito);
-            ps.setString(8, hito_proyecto_id_proy);
+            ps = con.getConexion().prepareStatement("call AG_REUNION(?,?,?,?,?,?,?)");
+            ps.setString(1, Citador_Reun);
+            ps.setString(2, Motivo_Reun);
+            ps.setString(3, Fecha_Reun);
+            ps.setString(4, Hora_Ini_Reun);
+            ps.setString(5, Hora_Ter_Reun);
+            ps.setInt(6, hito_id_hito);
+            ps.setString(7, hito_proyecto_id_proy);
             ps.executeUpdate();
             System.out.println("Registro Realizado");
         }catch(SQLException ex){

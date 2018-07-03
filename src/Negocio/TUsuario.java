@@ -53,9 +53,9 @@ public class TUsuario {
             ps.setString(2, password);
             ps.setInt(3, id_perfil);
             ps.executeUpdate();
-            System.out.println("Registro Realizado");
+            System.out.println("Actualizacion Realizada");
         }catch(Exception ex){
-            System.out.println("Registro no Realizado");
+            System.out.println("Actualizacion no Realizada");
         }
     }
 }

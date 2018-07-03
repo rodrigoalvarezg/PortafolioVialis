@@ -9,7 +9,9 @@ import Conexion.Conexion;
 import Modelo.Maqui_Herra;
 import Negocio.TArriendo;
 import Negocio.TLogin;
+import Negocio.idAutomatico;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,9 +34,9 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         muestraFecha();
-        /*llenar_cmbHerramientas();
+        llenar_cmbHerramientas();
         llenar_tblSeleccionarObra_Arriendo();
-        jLabel3.setText(tLogin.getUsuario());*/
+        //jLabel3.setText(tLogin.getUsuario());*/
     }
     
     void muestraFecha(){
@@ -443,6 +445,9 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
         btnLimpiar_Proyecto.setBackground(new java.awt.Color(204, 51, 0));
         btnLimpiar_Proyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiar_ProyectoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLimpiar_ProyectoMouseEntered(evt);
             }
@@ -479,6 +484,9 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
         btnCrearProyecto.setBackground(new java.awt.Color(0, 153, 153));
         btnCrearProyecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCrearProyectoMouseEntered(evt);
             }
@@ -517,7 +525,7 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         PanelIngresoHerramienta.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 192, -1));
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeña", "Vehiculo", "Grande", "Mediana", "Transporte" }));
         PanelIngresoHerramienta.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 190, -1));
 
         jPanel2.add(PanelIngresoHerramienta, "card3");
@@ -546,6 +554,9 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
 
         btnEliminarHerramienta.setBackground(new java.awt.Color(0, 153, 153));
         btnEliminarHerramienta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEliminarHerramientaMouseEntered(evt);
             }
@@ -901,6 +912,39 @@ public class GUI_ArriendoHerramienta extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_FrameDragMousePressed
+
+    private void btnLimpiar_ProyectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiar_ProyectoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiar_ProyectoMouseClicked
+
+    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
+        TArriendo ta = new TArriendo();
+
+            try{
+                ta.registrarHerramientas(txtNombreHer.getText(),cmbTipo.getSelectedItem().toString(), 
+                        Integer.parseInt(txtPrecioDiario.getText()),
+                        Integer.parseInt(txtCantidadInicial.getText()));
+                new Mensajes_ExitoIngreso().setVisible(true);
+            }catch(Exception ex){
+                new Mensajes_ErrorIngresar().setVisible(true); 
+            }
+
+        
+        
+    
+    
+        
+    }//GEN-LAST:event_btnRegistrarMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+        TArriendo ta = new TArriendo();
+        try{
+            new Mensajes_ExitoEliminar().setVisible(true);
+            ta.eliminarHerramienta(Integer.parseInt(txtCodigoHerramientaElim.getText()));
+        }catch(Exception ex){
+            new Mensajes_ErrorEliminar().setVisible(true);   
+        }
+    }//GEN-LAST:event_btnEliminarMouseClicked
 
     /**
      * @param args the command line arguments

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,6 +32,7 @@ public class GUI_Cuenta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         llenar_cmbPerfil();
         llenar_cmbPerfilEditar();
+        llenar_tblCuentas();
     }
     
     
@@ -76,6 +78,27 @@ public class GUI_Cuenta extends javax.swing.JFrame {
             }
         }catch(Exception ex){
             
+        }
+    }
+    
+    void llenar_tblCuentas(){
+        Conexion con = new Conexion();
+        try{
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try(ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIO")){
+                DefaultTableModel modeloTabla = new DefaultTableModel();
+                tblCuentas.setModel(modeloTabla);
+                modeloTabla.addColumn("ID");
+                modeloTabla.addColumn("NOMBRE");                
+                while(rs.next()){
+                   modeloTabla.addRow(new Object[]{ rs.getString("USUARIO"),rs.getString("PERFIL_ID_PERFIL")});
+                }               
+                
+            }
+            
+        }catch (SQLException e) {
+            System.out.println(e);
         }
     }
 

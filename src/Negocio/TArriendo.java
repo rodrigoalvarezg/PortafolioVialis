@@ -16,6 +16,7 @@ public class TArriendo extends Conexion {
     
     PreparedStatement ps = null;
     ResultSet rs = null;
+    Conexion con = new Conexion();
     
     public void registrarArriendo(String fecha_arriendo, String fecha_entrega, int id_mh, String id_proy, int cantidad) throws ParseException{
                 
@@ -34,6 +35,33 @@ public class TArriendo extends Conexion {
             System.out.println("No se Realizo bien la sentencia sql en Arriendo");
             System.out.println("Error: "+e);
         }  
+    }
+    
+    public void registrarHerramientas(String Nombre_Mh, String Tipo_Mh, int Precio_Mh, int Disponibilidad_Mh){
+        try{
+            ps = getConexion().prepareStatement("CALL AG_HERRAMIENTAS(?,?,?,?)");
+            ps.setString(1, Nombre_Mh);
+            ps.setString(2, Tipo_Mh);
+            ps.setInt(3, Precio_Mh);
+            ps.setInt(4, Disponibilidad_Mh);
+            ps.executeUpdate();            
+            System.out.println("Registro Realizado");
+        }catch(Exception ex){
+            System.out.println("Error: "+ex);
+        }
+        
+    }
+    
+    public void eliminarHerramienta(int ID_MH){
+        try {
+        String query = "DELETE FROM MAQUI_HERRA WHERE Id_MH='"+ID_MH+"'";
+        ps = con.getConexion().prepareStatement(query);
+        rs = ps.executeQuery();
+        System.out.println("Registros eliminado");
+        }catch(SQLException ex){
+            System.out.println("Registro no Eliminado");
+            System.out.println("Error:"+ex);
+        }
     }
     
 
