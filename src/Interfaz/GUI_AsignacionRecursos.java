@@ -15,7 +15,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import Modelo.ComboTrabajador;
+import Negocio.RecursosConsultas;
+import java.util.ArrayList;
+import javafx.scene.control.ComboBox;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,64 +33,132 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
     TLogin tLogin = new TLogin();
     int xMouse;
     int yMouse;
-    
+    Conexion con = new Conexion();
+    ArrayList<String> trab = new ArrayList<String>();
+    ArrayList<String> mat = new ArrayList<String>();
+    ArrayList<String> cant = new ArrayList<String>();
+
     public GUI_AsignacionRecursos() {
         initComponents();
         this.setLocationRelativeTo(null);
         muestraFecha();
         llenar_tblSeleccionarObra_Personal();
         llenar_jTable1();
-        jLabel3.setText(tLogin.getUsuario());  
+        jLabel3.setText(tLogin.getUsuario());
+        llenarCbTrabajadores();
+        llenarTablaMateriales();
     }
-    
-    void muestraFecha(){
+
+    void llenarCbTrabajadores() {
+        try {
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try (ResultSet rs = stmt.executeQuery("SELECT RUN_TRAB, APELLIDO_PAT_TRAB||' '||NOMBRE_TRAB \"NOMBRE_AP\" FROM TRABAJADOR ORDER BY APELLIDO_PAT_TRAB")) {
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                modeloCombo.addElement(new ComboTrabajador("0", "Seleccione..."));
+                jcbFuncionario.setModel(modeloCombo);
+                while (rs.next()) {
+                    modeloCombo.addElement(new ComboTrabajador(rs.getString("RUN_TRAB"), rs.getString("NOMBRE_AP")));
+                }
+                rs.close();
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    void muestraFecha() {
         //Muestra la fecha en el label
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat();
         lblDate.setText(s.format(d));
         /*Función para mostrar la fecha actual en el menú*/
     }
-    
-    void llenar_tblSeleccionarObra_Personal(){
-        Conexion con = new Conexion();
-        try{
+
+    void llenarTablaMateriales() {
+        try {
+            Statement stmt = con.getConexion().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM MATERIAL");
+            DefaultTableModel value = new DefaultTableModel();
+            tblInventario_Asignar.setModel(value);
+            value.addColumn("ID");
+            value.addColumn("NOMBRE");
+            value.addColumn("STOCK");
+            tblInventario_Asignar.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblInventario_Asignar.getColumnModel().getColumn(0).setMinWidth(0);
+            tblInventario_Asignar.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblInventario_Asignar.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+            tblInventario_Asignar.getColumnModel().getColumn(2).setMaxWidth(0);
+            tblInventario_Asignar.getColumnModel().getColumn(2).setMinWidth(0);
+            tblInventario_Asignar.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
+            tblInventario_Asignar.getTableHeader().getColumnModel().getColumn(2).setMinWidth(0);
+            while (rs.next()) {
+                value.addRow(new Object[]{rs.getString("ID_MAT"), rs.getString("NOMBRE_MAT"), rs.getString("STOCK_MAT")});
+            }
+            rs.close();
+        } catch (Exception e) {
+
+        }
+    }
+
+    void llenar_tblSeleccionarObra_Personal() {
+        try {
             con.getConexion();
             Statement stmt = con.getConexion().createStatement();
-            try(ResultSet rs = stmt.executeQuery("SELECT * FROM PROYECTO")){
+            try (ResultSet rs = stmt.executeQuery("SELECT * FROM PROYECTO")) {
                 DefaultTableModel modeloTabla = new DefaultTableModel();
                 tblSeleccionarObra_Personal.setModel(modeloTabla);
                 modeloTabla.addColumn("ID");
-                modeloTabla.addColumn("NOMBRE");                
-                while(rs.next()){
-                   modeloTabla.addRow(new Object[]{ rs.getString("ID_PROY"),rs.getString("NOMBRE_PROY")});
-                }        
-                
+                modeloTabla.addColumn("NOMBRE");
+                tblSeleccionarObra_Personal.getColumnModel().getColumn(0).setMaxWidth(0);
+                tblSeleccionarObra_Personal.getColumnModel().getColumn(0).setMinWidth(0);
+                tblSeleccionarObra_Personal.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+                tblSeleccionarObra_Personal.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+                while (rs.next()) {
+                    modeloTabla.addRow(new Object[]{rs.getString("ID_PROY"), rs.getString("NOMBRE_PROY")});
+                }
+                rs.close();
             }
-            
-        }catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-    
-    void llenar_jTable1(){
-        Conexion con = new Conexion();
-        try{
-            con.getConexion();
-            Statement stmt = con.getConexion().createStatement();
-            try(ResultSet rs = stmt.executeQuery("SELECT * FROM PROYECTO")){
-                DefaultTableModel modeloTabla = new DefaultTableModel();
-                jTable1.setModel(modeloTabla);
-                modeloTabla.addColumn("ID");
-                modeloTabla.addColumn("NOMBRE");                
-                while(rs.next()){
-                   modeloTabla.addRow(new Object[]{ rs.getString("ID_PROY"),rs.getString("NOMBRE_PROY")});
-                }               
-            }            
-        }catch (SQLException e) {
+
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
+    void llenar_jTable1() {
+        try {
+            con.getConexion();
+            Statement stmt = con.getConexion().createStatement();
+            try (ResultSet rs = stmt.executeQuery("SELECT * FROM PROYECTO")) {
+                DefaultTableModel modeloTabla = new DefaultTableModel();
+                jTable1.setModel(modeloTabla);
+                modeloTabla.addColumn("ID");
+                modeloTabla.addColumn("NOMBRE");
+                jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+                jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+                jTable1.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+                jTable1.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+                while (rs.next()) {
+                    modeloTabla.addRow(new Object[]{rs.getString("ID_PROY"), rs.getString("NOMBRE_PROY")});
+                }
+                rs.close();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    void llenarTablaAsignados() {
+        String material;
+        String cantidad;
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblAsignados.getModel();
+        tblAsignados.setModel(modeloTabla);
+        material = lblMaterialSeleccionado.getText();
+        cantidad = txtNombreFunEdit1.getText();
+        modeloTabla.addRow(new Object[]{material, cantidad});
+        cant.add(cantidad);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,7 +208,7 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         jLabel45 = new javax.swing.JLabel();
         jSeparator15 = new javax.swing.JSeparator();
         jLabel26 = new javax.swing.JLabel();
-        txtRutFun_Asignar = new javax.swing.JTextField();
+        jcbFuncionario = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         btnAsignarFun = new javax.swing.JPanel();
@@ -148,7 +223,7 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblAsignados = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInventario_Asignar = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -157,10 +232,10 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         btnBuscarFun = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         lblMaterialSeleccionado = new javax.swing.JLabel();
-        txtNombreFunEdit = new javax.swing.JTextField();
         jSeparator14 = new javax.swing.JSeparator();
         jLabel20 = new javax.swing.JLabel();
         txtNombreFunEdit1 = new javax.swing.JTextField();
+        lblCantidad = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         btnEditarFun = new javax.swing.JPanel();
@@ -394,9 +469,7 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         tblFuncionariosAsignados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblFuncionariosAsignados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"182935470", "Roberto Jeremias Fritanga Martinez"},
-                {"198374567", "Eulalio Del Carmen Guzmán"},
-                {null, null}
+
             },
             new String [] {
                 "RUT", "NOMBRE"
@@ -440,19 +513,17 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("Ingrese Rut de Funcionario:");
+        jLabel26.setText("Seleccione Funcionario:");
         jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        txtRutFun_Asignar.setBackground(new java.awt.Color(102, 102, 255));
-        txtRutFun_Asignar.setForeground(new java.awt.Color(255, 255, 255));
-        txtRutFun_Asignar.setText("Ingrese aquí el rut...");
-        txtRutFun_Asignar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtRutFun_Asignar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtRutFun_AsignarMouseClicked(evt);
+        jcbFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFuncionario.setEnabled(false);
+        jcbFuncionario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbFuncionarioItemStateChanged(evt);
             }
         });
-        jPanel5.add(txtRutFun_Asignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 192, -1));
+        jPanel5.add(jcbFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 170, -1));
 
         Panel_AsignarPersonal.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 260, 170));
 
@@ -466,6 +537,9 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
         btnAsignarFun.setBackground(new java.awt.Color(0, 153, 153));
         btnAsignarFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAsignarFunMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAsignarFunMouseEntered(evt);
             }
@@ -557,23 +631,21 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         jScrollPane2.setBorder(null);
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setBackground(new java.awt.Color(252, 251, 251));
-        jTable2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblAsignados.setBackground(new java.awt.Color(252, 251, 251));
+        tblAsignados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblAsignados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"MARTILLO", "2"},
-                {"POLLO GRITON", "5"},
-                {null, null}
+
             },
             new String [] {
                 "NOMBRE", "CANTIDAD"
             }
         ));
-        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable2.setSelectionBackground(new java.awt.Color(0, 204, 102));
-        jTable2.setShowHorizontalLines(false);
-        jTable2.setShowVerticalLines(false);
-        jScrollPane2.setViewportView(jTable2);
+        tblAsignados.setGridColor(new java.awt.Color(255, 255, 255));
+        tblAsignados.setSelectionBackground(new java.awt.Color(0, 204, 102));
+        tblAsignados.setShowHorizontalLines(false);
+        tblAsignados.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(tblAsignados);
 
         Panel_AsignarRecursos.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 220, 230));
 
@@ -623,6 +695,9 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
         btnBuscarFun.setBackground(new java.awt.Color(255, 204, 51));
         btnBuscarFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarFunMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnBuscarFunMouseEntered(evt);
             }
@@ -644,12 +719,6 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         lblMaterialSeleccionado.setText("Seleccione un material...");
         jPanel4.add(lblMaterialSeleccionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        txtNombreFunEdit.setBackground(new java.awt.Color(102, 102, 255));
-        txtNombreFunEdit.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombreFunEdit.setText("Seleccione un material...");
-        txtNombreFunEdit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel4.add(txtNombreFunEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 192, -1));
-
         jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 210, 10));
 
@@ -669,6 +738,11 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         });
         jPanel4.add(txtNombreFunEdit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 192, -1));
 
+        lblCantidad.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        lblCantidad.setText("Seleccione un material...");
+        jPanel4.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
         Panel_AsignarRecursos.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 260, 230));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Flecha_Asignacion.png"))); // NOI18N
@@ -681,6 +755,9 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
         btnEditarFun.setBackground(new java.awt.Color(0, 153, 153));
         btnEditarFun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarFunMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEditarFunMouseEntered(evt);
             }
@@ -769,9 +846,8 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
     private void btnAsignarPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarPersonalMouseClicked
         // TODO add your handling code here:
 
-        btnAsignarPersonal.setBackground(new Color (255,204,153));
-        btnAsignarRecursos.setBackground(new Color (51,0,204));
-
+        btnAsignarPersonal.setBackground(new Color(255, 204, 153));
+        btnAsignarRecursos.setBackground(new Color(51, 0, 204));
 
         PanelMenuAsignacion.setVisible(false);
         Panel_AsignarPersonal.setVisible(true);
@@ -782,9 +858,8 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
     private void btnAsignarRecursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarRecursosMouseClicked
         // TODO add your handling code here:
-        btnAsignarPersonal.setBackground(new Color (255,102,0));
-        btnAsignarRecursos.setBackground(new Color (204,204,255));
-
+        btnAsignarPersonal.setBackground(new Color(255, 102, 0));
+        btnAsignarRecursos.setBackground(new Color(204, 204, 255));
 
         PanelMenuAsignacion.setVisible(false);
         Panel_AsignarPersonal.setVisible(false);
@@ -795,81 +870,88 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
 
     private void btnBuscarFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunMouseEntered
         // TODO add your handling code here:
-        btnBuscarFun.setBackground(new Color (255,204,153));
+        btnBuscarFun.setBackground(new Color(255, 204, 153));
     }//GEN-LAST:event_btnBuscarFunMouseEntered
 
     private void btnBuscarFunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunMouseExited
         // TODO add your handling code here:
-        btnBuscarFun.setBackground(new Color (255,204,51));
+        btnBuscarFun.setBackground(new Color(255, 204, 51));
     }//GEN-LAST:event_btnBuscarFunMouseExited
 
     private void btnEditarFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarFunMouseEntered
         // TODO add your handling code here:
-        btnEditarFun.setBackground(new Color (0,204,153));
+        btnEditarFun.setBackground(new Color(0, 204, 153));
     }//GEN-LAST:event_btnEditarFunMouseEntered
 
     private void btnEditarFunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarFunMouseExited
         // TODO add your handling code here:
-        btnEditarFun.setBackground(new Color (0,153,153));
+        btnEditarFun.setBackground(new Color(0, 153, 153));
     }//GEN-LAST:event_btnEditarFunMouseExited
 
     private void btnLimpiarEditFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarEditFunMouseEntered
         // TODO add your handling code here:
-        btnLimpiarEditFun.setBackground(new Color (255,51,0));
+        btnLimpiarEditFun.setBackground(new Color(255, 51, 0));
     }//GEN-LAST:event_btnLimpiarEditFunMouseEntered
 
     private void btnLimpiarEditFunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarEditFunMouseExited
         // TODO add your handling code here:
-        btnLimpiarEditFun.setBackground(new Color (204,51,0));
+        btnLimpiarEditFun.setBackground(new Color(204, 51, 0));
     }//GEN-LAST:event_btnLimpiarEditFunMouseExited
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblAsignados.getModel();
+        tblAsignados.setModel(modeloTabla);
+        for (int i = 0; i < modeloTabla.getColumnCount(); i++) {
+            modeloTabla.removeRow(i);
+        }
         
+        tblInventario_Asignar.setEnabled(true);
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void tblInventario_AsignarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInventario_AsignarMouseClicked
         // TODO add your handling code here:
-        int column = 0;
+        int column = 1;
         int row = tblInventario_Asignar.getSelectedRow();
-        String value = tblInventario_Asignar.getModel().getValueAt(row, column).toString(); 
+        String value = tblInventario_Asignar.getModel().getValueAt(row, column).toString();
+        String cantidad = tblInventario_Asignar.getModel().getValueAt(row, 2).toString();
         lblMaterialSeleccionado.setText(value);
+        lblCantidad.setText(cantidad);
+        txtNombreFunEdit1.setText("");
     }//GEN-LAST:event_tblInventario_AsignarMouseClicked
 
     private void tblSeleccionarObra_PersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSeleccionarObra_PersonalMouseClicked
-        
-        
-        Conexion con = new Conexion();
-        
-        DefaultTableModel modeloTabla = (DefaultTableModel)tblSeleccionarObra_Personal.getModel();
-        String id_proyecto= String.valueOf(modeloTabla.getValueAt(tblSeleccionarObra_Personal.getSelectedRow(),0));
-        
+
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblSeleccionarObra_Personal.getModel();
+        String id_proyecto = String.valueOf(modeloTabla.getValueAt(tblSeleccionarObra_Personal.getSelectedRow(), 0));
+        jcbFuncionario.setEnabled(true);
+
         DefaultTableModel mt = new DefaultTableModel();
-                        tblFuncionariosAsignados.setModel(mt);
-                        mt.addColumn("RUT");
-                        mt.addColumn("NOMBRE");
-        
-        try{
+        tblFuncionariosAsignados.setModel(mt);
+        mt.addColumn("RUT");
+        mt.addColumn("NOMBRE");
+
+        try {
             con.getConexion();
             Statement stmt = con.getConexion().createStatement();
-            
-            try(ResultSet rs= stmt.executeQuery("SELECT TRABAJADOR_RUN_TRAB FROM PROY_TRAB WHERE PROYECTO_ID_PROY='"+id_proyecto+"'")){
-                
-                while(rs.next()){
-                    
-                    try(ResultSet rs2 = stmt.executeQuery("SELECT * FROM TRABAJADOR WHERE RUN_TRAB='"+rs.getString("TRABAJADOR_RUN_TRAB")+"'")){
-                                                         
-                        mt.addRow(new Object[]{rs2.getString("RUN_TRAB"), rs2.getString("NOMBRE_TRAB")});                                  
-                    }                   
-                }                
+
+            try (ResultSet rs = stmt.executeQuery("SELECT TRABAJADOR_RUN_TRAB FROM PROY_TRAB WHERE PROYECTO_ID_PROY='" + id_proyecto + "'")) {
+
+                while (rs.next()) {
+
+                    try (ResultSet rs2 = stmt.executeQuery("SELECT * FROM TRABAJADOR WHERE RUN_TRAB='" + rs.getString("TRABAJADOR_RUN_TRAB") + "'")) {
+
+                        mt.addRow(new Object[]{rs2.getString("RUN_TRAB"), rs2.getString("NOMBRE_TRAB")});
+                    }
+                }
+                rs.close();
             }
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_tblSeleccionarObra_PersonalMouseClicked
 
     private void btnAgregarFunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarFunMouseEntered
@@ -901,13 +983,39 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         txtNombreFunEdit1.setText("");
     }//GEN-LAST:event_txtNombreFunEdit1MouseClicked
 
-    private void txtRutFun_AsignarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRutFun_AsignarMouseClicked
-        // TODO add your handling code here:
-        txtRutFun_Asignar.setText("");
-    }//GEN-LAST:event_txtRutFun_AsignarMouseClicked
-
     private void btnAgregarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarFunMouseClicked
         // TODO add your handling code here:
+        ComboTrabajador ct = (ComboTrabajador) jcbFuncionario.getSelectedItem();
+        if (!ct.getNombre().equals("Seleccione...")) {
+            DefaultTableModel modeloTabla = (DefaultTableModel) tblFuncionariosAsignados.getModel();
+            tblFuncionariosAsignados.setModel(modeloTabla);
+            String run = ((ComboTrabajador) ct).getRut();
+            String nombre = ((ComboTrabajador) ct).getNombre();
+            int numero = 0;
+
+            if (modeloTabla.getRowCount() != 0) {
+                for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+                    if (!modeloTabla.getValueAt(i, 0).toString().equals(run)) {
+                        numero = 0;
+                    } else {
+                        numero = numero + 1;
+                        break;
+                    }
+                }
+                if (numero != 0) {
+                    JOptionPane.showMessageDialog(null, "Ya esta el Funcionario");
+                } else {
+                    modeloTabla.addRow(new Object[]{run, nombre});
+                    trab.add(run);
+                }
+            } else {
+                modeloTabla.addRow(new Object[]{run, nombre});
+                trab.add(run);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un funcionario");
+        }
     }//GEN-LAST:event_btnAgregarFunMouseClicked
 
     private void FrameDragMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseDragged
@@ -915,7 +1023,7 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         int x = evt.getXOnScreen(); //para rescatar el valor X de la posición de la ventana
         int y = evt.getYOnScreen(); //para rescatar el valor Y de la posición de la ventana
 
-        this.setLocation(x - xMouse ,y - yMouse);
+        this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_FrameDragMouseDragged
 
     private void FrameDragMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FrameDragMouseClicked
@@ -927,6 +1035,62 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_FrameDragMousePressed
+
+    private void jcbFuncionarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbFuncionarioItemStateChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jcbFuncionarioItemStateChanged
+
+    private void btnAsignarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignarFunMouseClicked
+        // TODO add your handling code here:
+        if (tblSeleccionarObra_Personal.getSelectedColumn() == 1) {
+            String run;
+            RecursosConsultas rc = new RecursosConsultas();
+            DefaultTableModel om = (DefaultTableModel) tblSeleccionarObra_Personal.getModel();
+            String id_proy = String.valueOf(om.getValueAt(tblSeleccionarObra_Personal.getSelectedRow(), 0));
+
+            for (int i = 0; i < trab.size(); i++) {
+                run = trab.get(i);
+                rc.agregarFuncionarios(id_proy, run);
+            }
+            trab.removeAll(trab);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una obra.");
+        }
+
+    }//GEN-LAST:event_btnAsignarFunMouseClicked
+
+    private void btnBuscarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarFunMouseClicked
+        // TODO add your handling code here:
+        if (tblInventario_Asignar.getSelectedColumn() != 1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar material.");
+        } else {
+            llenarTablaAsignados();
+            DefaultTableModel tm = (DefaultTableModel) tblInventario_Asignar.getModel();
+            String id_material = String.valueOf(tm.getValueAt(tblInventario_Asignar.getSelectedRow(), 0));
+            mat.add(id_material);
+        }
+    }//GEN-LAST:event_btnBuscarFunMouseClicked
+
+    private void btnEditarFunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarFunMouseClicked
+        // TODO add your handling code here:
+        if (jTable1.getSelectedColumn()!=1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una obra.");
+        } else {
+            DefaultTableModel om = (DefaultTableModel) jTable1.getModel();
+            String id_proyecto = String.valueOf(om.getValueAt(jTable1.getSelectedRow(), 0));
+            String id_mat;
+            int cantidad;
+            RecursosConsultas rc = new RecursosConsultas();
+            for (int i = 0; i < mat.size(); i++) {
+                id_mat = mat.get(i);
+                cantidad = Integer.parseInt(cant.get(i));
+                rc.agregarRecurso(id_mat, id_proyecto, cantidad);
+            }
+        }
+        mat.removeAll(mat);
+        cant.removeAll(mat);
+    }//GEN-LAST:event_btnEditarFunMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1030,14 +1194,14 @@ public class GUI_AsignacionRecursos extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> jcbFuncionario;
+    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblMaterialSeleccionado;
+    private javax.swing.JTable tblAsignados;
     private javax.swing.JTable tblFuncionariosAsignados;
     private javax.swing.JTable tblInventario_Asignar;
     private javax.swing.JTable tblSeleccionarObra_Personal;
-    private javax.swing.JTextField txtNombreFunEdit;
     private javax.swing.JTextField txtNombreFunEdit1;
-    private javax.swing.JTextField txtRutFun_Asignar;
     // End of variables declaration//GEN-END:variables
 }
